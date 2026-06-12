@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sim.contact_solve.SapContactSolveResult &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_generated/sim.contact_solve.SapContactSolveResult';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sim.free_motion.SapFreeMotion" href="sim.free_motion.SapFreeMotion.html" />
+    <link rel="prev" title="sim.contact_solve.SapContactSolve" href="sim.contact_solve.SapContactSolve.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide/quickstart.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/loader.html">Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/collision.html">Collision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/solver.html">Solver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../benchmarking/index.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/newton_integration.html">Newton Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/viser.html">Viser Viewer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="reference internal" href="../index.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sap-sim/sap_warp">GitHub</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">sim.contact_solve.SapContactSolveResult</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="sim-contact-solve-sapcontactsolveresult">
+<h1>sim.contact_solve.SapContactSolveResult<a class="headerlink" href="#sim-contact-solve-sapcontactsolveresult" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="sim.contact_solve.SapContactSolveResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sim.contact_solve.</span></span><span class="sig-name descname"><span class="pre">SapContactSolveResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_flat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">previous_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hessian</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_impulse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamics_impulse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_vc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_rt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_rn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_hdiag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_kp_eff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_kd_eff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_lower_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_upper_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_lower_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_upper_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_grad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_hdiag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_dv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iterations_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_search_iterations_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimality_reached_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_reached_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_search_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sim/contact_solve.html#SapContactSolveResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sim.contact_solve.SapContactSolveResult" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Views into buffers owned by <cite>SapContactSolve</cite>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sim.contact_solve.SapContactSolveResult.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_flat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">previous_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hessian</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_impulse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamics_impulse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_vc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_rt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_rn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_hdiag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_kp_eff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pd_kd_eff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_lower_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_upper_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_lower_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_upper_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_grad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_hdiag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_dv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iterations_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_search_iterations_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimality_reached_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_reached_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://nvidia.github.io/warp/stable/api_reference/_generated/warp.array.html#warp.array" title="(in Warp v1.14.0)"><span class="pre">array</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_search_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#sim.contact_solve.SapContactSolveResult.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sim.contact_solve.SapContactSolveResult.__init__" title="sim.contact_solve.SapContactSolveResult.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(v_env, v_flat, cost, previous_cost, ...)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">v_env</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">v_flat</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cost</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">previous_cost</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">grad</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hessian</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">constraint_impulse</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dynamics_impulse</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_gamma</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_g</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_vc</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_y</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_rt</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_rn</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_cost</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">contact_mode</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_active</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_y</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_gamma</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_hdiag</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_cost</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_kp_eff</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_kd_eff</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">limit_lower_active</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">limit_upper_active</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">limit_lower_gamma</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">limit_upper_gamma</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">limit_grad</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">limit_hdiag</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">limit_cost</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_dv</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">newton_iterations_env</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">line_search_iterations_env</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">newton_active</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">converged_env</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">optimality_reached_env</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cost_reached_env</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">iterations</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">line_search_iterations</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">converged</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sim.contact_solve.SapContactSolveResult"><code class="docutils literal notranslate"><span class="pre">SapContactSolveResult</span></code></a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sim.contact_solve.SapContactSolveResult.__init__"><code class="docutils literal notranslate"><span class="pre">SapContactSolveResult.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

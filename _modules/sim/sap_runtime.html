@@ -1,0 +1,1022 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sim.sap_runtime &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/sim/sap_runtime';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">sim.sap_runtime</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for sim.sap_runtime</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;SAP runtime data containers and Newton adapter helpers.</span>
+
+<span class="sd">Source note: the SAP modifications in this module are based on Newton&#39;s</span>
+<span class="sd">runtime container code and adapted so SAP Warp can wrap Newton-owned Warp</span>
+<span class="sd">arrays directly.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+
+<span class="n">SapPrecision</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;f32&quot;</span><span class="p">,</span> <span class="s2">&quot;f64&quot;</span><span class="p">]</span>
+<span class="n">SapDofOrder</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;sap&quot;</span><span class="p">,</span> <span class="s2">&quot;public&quot;</span><span class="p">]</span>
+<span class="n">SapBodyForceOrder</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;sap&quot;</span><span class="p">,</span> <span class="s2">&quot;public&quot;</span><span class="p">]</span>
+
+<span class="n">SAP_JOINT_PRISMATIC</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">SAP_JOINT_REVOLUTE</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">SAP_JOINT_BALL</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">SAP_JOINT_FIXED</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">SAP_JOINT_FREE</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">SAP_JOINT_DISTANCE</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">SAP_JOINT_D6</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">SAP_JOINT_TARGET_NONE</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">SAP_BODY_FLAG_DYNAMIC</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">SAP_BODY_FLAG_KINEMATIC</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">SAP_BODY_FLAG_ALL</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">constant</span><span class="p">((</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">))</span>
+
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapPrecisionPolicy</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Precision choices used by the SAP runtime stages. Each field selects the dtype family for state</span>
+<span class="sd">    storage, free motion, contact Jacobians, contact solve, and linear solve buffers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">SapPrecision</span> <span class="o">=</span> <span class="s2">&quot;f32&quot;</span>
+    <span class="n">free_motion</span><span class="p">:</span> <span class="n">SapPrecision</span> <span class="o">=</span> <span class="s2">&quot;f32&quot;</span>
+    <span class="n">contact_jacobian</span><span class="p">:</span> <span class="n">SapPrecision</span> <span class="o">=</span> <span class="s2">&quot;f64&quot;</span>
+    <span class="n">contact_solve</span><span class="p">:</span> <span class="n">SapPrecision</span> <span class="o">=</span> <span class="s2">&quot;f64&quot;</span>
+    <span class="n">contact_linear_solve</span><span class="p">:</span> <span class="n">SapPrecision</span> <span class="o">=</span> <span class="s2">&quot;f32&quot;</span>
+
+
+<div class="viewcode-block" id="SapModel">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapModel.html#sim.sap_runtime.SapModel">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Immutable SAP model arrays describing topology, articulated bodies, shapes, materials, limits,</span>
+<span class="sd">    drives, labels, and initial state for one or more replicated worlds.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">device</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">joint_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">joint_dof_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">joint_coord_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">body_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">articulation_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">world_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">shape_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span>
+
+    <span class="n">joint_type</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_articulation</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_parent</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_child</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_q_start</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_qd_start</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_dof_dim</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_axis</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_X_p</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_X_c</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_ancestor</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">articulation_start</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_qd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+
+    <span class="n">body_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_qd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_mass</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_inertia</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_com</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_flags</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_world</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">gravity</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_armature</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+
+    <span class="n">shape_body</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_material_mu</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">shape_material_ke</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">shape_material_tau</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span>
+
+    <span class="n">joint_target_mode</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_target_ke</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_target_kd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_target_pos</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_target_vel</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_f</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_act</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_effort_limit</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_limit_lower</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_limit_upper</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_limit_ke</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_limit_kd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+
+    <span class="n">sap_debug_body_mass</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_body_inertia</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_body_com</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_joint_axis</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_joint_X_p</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_joint_X_c</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_gravity</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_joint_armature</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_shape_material_mu</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_shape_material_ke</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sap_debug_shape_material_tau</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">up_axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">shape_transform</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_type</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_scale</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_flags</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_margin</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_gap</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_is_solid</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_source</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_source_ptr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_collision_radius</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_world</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_sdf_index</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">texture_sdf_data</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">texture_sdf_coarse_textures</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">texture_sdf_subgrid_textures</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">texture_sdf_subgrid_start_slots</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">body_label</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">joint_label</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">articulation_label</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">shape_label</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+
+<div class="viewcode-block" id="SapModel.state">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapModel.state.html#sim.sap_runtime.SapModel.state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SapState&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a mutable SapState initialized from the model position, velocity, body pose, and body</span>
+<span class="sd">        velocity arrays.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">requires_grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+        <span class="k">return</span> <span class="n">SapState</span><span class="p">(</span>
+            <span class="n">joint_q</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_q</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+            <span class="n">joint_qd</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_qd</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+            <span class="n">body_q</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body_q</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+            <span class="n">body_qd</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body_qd</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+            <span class="n">body_f</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body_qd</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+            <span class="n">joint_qd_order</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+            <span class="n">body_f_order</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+            <span class="n">requires_grad</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">requires_grad</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SapModel.control">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapModel.control.html#sim.sap_runtime.SapModel.control">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">clone_variables</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SapControl&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a SapControl object initialized from the model force, target, and actuation arrays.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">requires_grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+        <span class="k">if</span> <span class="n">clone_variables</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">SapControl</span><span class="p">(</span>
+                <span class="n">joint_f</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_f</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+                <span class="n">joint_target_pos</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_target_pos</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+                <span class="n">joint_target_vel</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_target_vel</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+                <span class="n">joint_act</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_act</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">),</span>
+                <span class="n">joint_f_order</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">SapControl</span><span class="p">(</span>
+            <span class="n">joint_f</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_f</span><span class="p">,</span>
+            <span class="n">joint_target_pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_target_pos</span><span class="p">,</span>
+            <span class="n">joint_target_vel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_target_vel</span><span class="p">,</span>
+            <span class="n">joint_act</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_act</span><span class="p">,</span>
+            <span class="n">joint_f_order</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SapState">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mutable SAP simulation state. Positions, velocities, body poses, body velocities, and external</span>
+<span class="sd">    forces live here while SapModel remains immutable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">joint_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_qd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">body_qd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">body_f</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">joint_qd_order</span><span class="p">:</span> <span class="n">SapDofOrder</span> <span class="o">=</span> <span class="s2">&quot;sap&quot;</span>
+    <span class="n">body_f_order</span><span class="p">:</span> <span class="n">SapBodyForceOrder</span> <span class="o">=</span> <span class="s2">&quot;sap&quot;</span>
+    <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="SapState.clear_forces">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapState.clear_forces.html#sim.sap_runtime.SapState.clear_forces">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_forces</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear external body forces in place while leaving positions and velocities unchanged.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_f</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">body_f</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">assign</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;SapState&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Copy all state arrays from another SapState with matching optional-buffer layout.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;joint_q&quot;</span><span class="p">,</span> <span class="s2">&quot;joint_qd&quot;</span><span class="p">,</span> <span class="s2">&quot;body_q&quot;</span><span class="p">,</span> <span class="s2">&quot;body_qd&quot;</span><span class="p">,</span> <span class="s2">&quot;body_f&quot;</span><span class="p">):</span>
+            <span class="n">dst</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">src</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dst</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">src</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">dst</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">src</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SapState assign mismatch for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">wp</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="n">src</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SapControl">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapControl.html#sim.sap_runtime.SapControl">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapControl</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mutable control input for a SAP timestep, including generalized forces, drive targets, target</span>
+<span class="sd">    velocities, and actuation values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">joint_f</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">joint_target_pos</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">joint_target_vel</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">joint_act</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">joint_f_order</span><span class="p">:</span> <span class="n">SapDofOrder</span> <span class="o">=</span> <span class="s2">&quot;sap&quot;</span>
+
+<div class="viewcode-block" id="SapControl.clear">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapControl.clear.html#sim.sap_runtime.SapControl.clear">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear direct forces, drive targets, target velocities, and actuation arrays in place.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_f</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_target_pos</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">joint_target_pos</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_target_vel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">joint_target_vel</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_act</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">joint_act</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SapContacts">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.SapContacts.html#sim.sap_runtime.SapContacts">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapContacts</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compatibility contact bundle used by solver-facing SAP runtime code. It stores rigid contact</span>
+<span class="sd">    arrays and optional f64 mirror buffers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rigid_contact_count</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_shape0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_shape1</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_point0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_point1</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_normal</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_margin0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_margin1</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_point0d</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_point1d</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_normald</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_margin0d</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rigid_contact_margin1d</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">hydro_contact_arrays</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_rigid_contacts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True when this contact bundle contains rigid-contact arrays.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rigid_contact_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_f64_rigid_contacts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True when all f64 rigid-contact mirror arrays are present.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rigid_contact_point0d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rigid_contact_point1d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rigid_contact_normald</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rigid_contact_margin0d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rigid_contact_margin1d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="p">)</span></div>
+
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapData</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scratch data bundle reserved for SAP stage buffers that need to travel together across runtime</span>
+<span class="sd">    calls.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">body_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">body_qd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">v0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">v_star</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">qdd</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">h</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">j</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">a_env</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">contact_env_count</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_array_size</span><span class="p">(</span><span class="n">arr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">arr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="sap_model_from_newton">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.sap_model_from_newton.html#sim.sap_runtime.sap_model_from_newton">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_model_from_newton</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">SapModel</span> <span class="o">|</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a Newton model into an immutable SapModel with SAP-owned array conventions and optional</span>
+<span class="sd">    debug mirrors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">SapModel</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span>
+
+    <span class="n">shape_body</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_body&quot;</span><span class="p">)</span>
+    <span class="n">shape_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_count&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">shape_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">shape_count</span> <span class="o">=</span> <span class="n">_array_size</span><span class="p">(</span><span class="n">shape_body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">SapModel</span><span class="p">(</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+        <span class="n">joint_count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">joint_count</span><span class="p">),</span>
+        <span class="n">joint_dof_count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">joint_dof_count</span><span class="p">),</span>
+        <span class="n">joint_coord_count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">joint_coord_count</span><span class="p">),</span>
+        <span class="n">body_count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">body_count</span><span class="p">),</span>
+        <span class="n">articulation_count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">articulation_count</span><span class="p">),</span>
+        <span class="n">world_count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;world_count&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+        <span class="n">shape_count</span><span class="o">=</span><span class="n">shape_count</span><span class="p">,</span>
+        <span class="n">requires_grad</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;requires_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)),</span>
+        <span class="n">joint_type</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_type</span><span class="p">,</span>
+        <span class="n">joint_articulation</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_articulation</span><span class="p">,</span>
+        <span class="n">joint_parent</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_parent</span><span class="p">,</span>
+        <span class="n">joint_child</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_child</span><span class="p">,</span>
+        <span class="n">joint_q_start</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_q_start</span><span class="p">,</span>
+        <span class="n">joint_qd_start</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_qd_start</span><span class="p">,</span>
+        <span class="n">joint_dof_dim</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_dof_dim</span><span class="p">,</span>
+        <span class="n">joint_axis</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_axis</span><span class="p">,</span>
+        <span class="n">joint_X_p</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_X_p</span><span class="p">,</span>
+        <span class="n">joint_X_c</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_X_c</span><span class="p">,</span>
+        <span class="n">joint_ancestor</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_ancestor</span><span class="p">,</span>
+        <span class="n">articulation_start</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">articulation_start</span><span class="p">,</span>
+        <span class="n">joint_q</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_q</span><span class="p">,</span>
+        <span class="n">joint_qd</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_qd</span><span class="p">,</span>
+        <span class="n">body_q</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">body_q</span><span class="p">,</span>
+        <span class="n">body_qd</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">body_qd</span><span class="p">,</span>
+        <span class="n">body_mass</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">body_mass</span><span class="p">,</span>
+        <span class="n">body_inertia</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">body_inertia</span><span class="p">,</span>
+        <span class="n">body_com</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">body_com</span><span class="p">,</span>
+        <span class="n">body_flags</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">body_flags</span><span class="p">,</span>
+        <span class="n">body_world</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">body_world</span><span class="p">,</span>
+        <span class="n">gravity</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">gravity</span><span class="p">,</span>
+        <span class="n">joint_armature</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_armature</span><span class="p">,</span>
+        <span class="n">shape_body</span><span class="o">=</span><span class="n">shape_body</span><span class="p">,</span>
+        <span class="n">shape_material_mu</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_mu&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_ke</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_ke&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_tau</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_tau&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">joint_target_mode</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_target_mode</span><span class="p">,</span>
+        <span class="n">joint_target_ke</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_target_ke</span><span class="p">,</span>
+        <span class="n">joint_target_kd</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_target_kd</span><span class="p">,</span>
+        <span class="n">joint_target_pos</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_target_pos</span><span class="p">,</span>
+        <span class="n">joint_target_vel</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_target_vel</span><span class="p">,</span>
+        <span class="n">joint_f</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_f</span><span class="p">,</span>
+        <span class="n">joint_act</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_act</span><span class="p">,</span>
+        <span class="n">joint_effort_limit</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_effort_limit</span><span class="p">,</span>
+        <span class="n">joint_limit_lower</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_limit_lower</span><span class="p">,</span>
+        <span class="n">joint_limit_upper</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_limit_upper</span><span class="p">,</span>
+        <span class="n">joint_limit_ke</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_limit_ke</span><span class="p">,</span>
+        <span class="n">joint_limit_kd</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">joint_limit_kd</span><span class="p">,</span>
+        <span class="n">sap_debug_body_mass</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_body_mass&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_body_inertia</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_body_inertia&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_body_com</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_body_com&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_joint_axis</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_joint_axis&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_joint_X_p</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_joint_X_p&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_joint_X_c</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_joint_X_c&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_gravity</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_gravity&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_joint_armature</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_joint_armature&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_shape_material_mu</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_shape_material_mu&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_shape_material_ke</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_shape_material_ke&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">sap_debug_shape_material_tau</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;sap_debug_shape_material_tau&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">up_axis</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;up_axis&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+        <span class="n">shape_transform</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_transform&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_type</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_scale</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_scale&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_flags</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_flags&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_margin</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_margin&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_gap</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_gap&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_is_solid</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_is_solid&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_source</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_source&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]),</span>
+        <span class="n">shape_source_ptr</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_source_ptr&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_collision_radius</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_collision_radius&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_world</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_world&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_sdf_index</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_sdf_index&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">texture_sdf_data</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_data&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">texture_sdf_coarse_textures</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_coarse_textures&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]),</span>
+        <span class="n">texture_sdf_subgrid_textures</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_subgrid_textures&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]),</span>
+        <span class="n">texture_sdf_subgrid_start_slots</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_subgrid_start_slots&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]),</span>
+        <span class="n">body_label</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;body_label&quot;</span><span class="p">,</span> <span class="p">())</span> <span class="ow">or</span> <span class="p">()),</span>
+        <span class="n">joint_label</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;joint_label&quot;</span><span class="p">,</span> <span class="p">())</span> <span class="ow">or</span> <span class="p">()),</span>
+        <span class="n">articulation_label</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;articulation_label&quot;</span><span class="p">,</span> <span class="p">())</span> <span class="ow">or</span> <span class="p">()),</span>
+        <span class="n">shape_label</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_label&quot;</span><span class="p">,</span> <span class="p">())</span> <span class="ow">or</span> <span class="p">()),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="sap_state_from_newton">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.sap_state_from_newton.html#sim.sap_runtime.sap_state_from_newton">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_state_from_newton</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SapState</span> <span class="o">|</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a Newton state into a SapState that uses the public boundary ordering expected by high-</span>
+<span class="sd">    level callers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">SapState</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">state</span>
+    <span class="k">return</span> <span class="n">SapState</span><span class="p">(</span>
+        <span class="n">joint_q</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">joint_q</span><span class="p">,</span>
+        <span class="n">joint_qd</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">joint_qd</span><span class="p">,</span>
+        <span class="n">body_q</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">body_q</span><span class="p">,</span>
+        <span class="n">body_qd</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;body_qd&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">body_f</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;body_f&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">joint_qd_order</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+        <span class="n">body_f_order</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+        <span class="n">requires_grad</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;requires_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="sap_control_from_newton">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.sap_control_from_newton.html#sim.sap_runtime.sap_control_from_newton">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_control_from_newton</span><span class="p">(</span><span class="n">control</span><span class="p">:</span> <span class="n">SapControl</span> <span class="o">|</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapControl</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a Newton control object into SapControl arrays using the public generalized-force</span>
+<span class="sd">    ordering.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">SapControl</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">control</span>
+    <span class="k">return</span> <span class="n">SapControl</span><span class="p">(</span>
+        <span class="n">joint_f</span><span class="o">=</span><span class="n">control</span><span class="o">.</span><span class="n">joint_f</span><span class="p">,</span>
+        <span class="n">joint_target_pos</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="s2">&quot;joint_target_pos&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">joint_target_vel</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="s2">&quot;joint_target_vel&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">joint_act</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="s2">&quot;joint_act&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">joint_f_order</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="sap_contacts_from_newton">
+<a class="viewcode-back" href="../../api/_generated/sim.sap_runtime.sap_contacts_from_newton.html#sim.sap_runtime.sap_contacts_from_newton">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_contacts_from_newton</span><span class="p">(</span><span class="n">contacts</span><span class="p">:</span> <span class="n">SapContacts</span> <span class="o">|</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapContacts</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert Newton contact storage into the SAP runtime contact bundle consumed by the solver.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="n">SapContacts</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">contacts</span>
+    <span class="k">if</span> <span class="n">contacts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">SapContacts</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">SapContacts</span><span class="p">(</span>
+        <span class="n">rigid_contact_count</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_count&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_shape0</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_shape0&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_shape1</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_shape1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_point0</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_point0&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_point1</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_point1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_normal</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_normal&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_margin0</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_margin0&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_margin1</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_margin1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_point0d</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_point0d&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_point1d</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_point1d&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_normald</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_normald&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_margin0d</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_margin0d&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">rigid_contact_margin1d</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_margin1d&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">hydro_contact_arrays</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="s2">&quot;hydro_contact_arrays&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="n">Model</span> <span class="o">=</span> <span class="n">SapModel</span>
+<span class="n">State</span> <span class="o">=</span> <span class="n">SapState</span>
+<span class="n">Control</span> <span class="o">=</span> <span class="n">SapControl</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

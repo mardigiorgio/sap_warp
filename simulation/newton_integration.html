@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Newton Integration &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'simulation/newton_integration';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Viser Viewer" href="../visualization/viser.html" />
+    <link rel="prev" title="Benchmarking" href="../benchmarking/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/quickstart.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../concepts/convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/loader.html">Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/collision.html">Collision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/solver.html">Solver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking/index.html">Benchmarking</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Newton Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../visualization/viser.html">Viser Viewer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sap-sim/sap_warp">GitHub</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Newton Integration</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="newton-integration">
+<h1>Newton Integration<a class="headerlink" href="#newton-integration" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">sap_with_newton.py</span></code> demonstrates the direct Newton integration path. The
+example builds a Newton cartpole model, displays it with Newton’s viewer, and
+uses <a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolverSAP</span></code></a> as the timestepper.</p>
+<p>The integration is intentionally thin: Newton still owns the model, state,
+control, viewer, and optional collision buffers. SAP Warp wraps those arrays at
+the solver boundary and writes the next Newton state in place.</p>
+<section id="run-the-example">
+<h2>Run the Example<a class="headerlink" href="#run-the-example" title="Link to this heading">#</a></h2>
+<p>Newton is an optional, on-demand dependency for this repository. Run the demo
+with <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">--with</span></code> so the package is available for this command without
+adding it to <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--frozen<span class="w"> </span>--with<span class="w"> </span><span class="s1">&#39;newton[examples]&#39;</span><span class="w"> </span>python<span class="w"> </span>sap_with_newton.py
+</pre></div>
+</div>
+<p>The defaults are the interactive GL viewer, SAP as the solver backend, and one
+Newton world. The script builds the Newton cartpole model directly in Python
+rather than loading one of the repository YAML scene files.</p>
+<p>Run a short headless smoke test:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--frozen<span class="w"> </span>--with<span class="w"> </span><span class="s1">&#39;newton[examples]&#39;</span><span class="w"> </span>python<span class="w"> </span>sap_with_newton.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--viewer<span class="w"> </span>null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-frames<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+<p>Run the same scene through Newton’s solver for comparison:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--frozen<span class="w"> </span>--with<span class="w"> </span><span class="s1">&#39;newton[examples]&#39;</span><span class="w"> </span>python<span class="w"> </span>sap_with_newton.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--viewer<span class="w"> </span>null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-frames<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--solver<span class="w"> </span>newton
+</pre></div>
+</div>
+</section>
+<section id="data-boundary">
+<h2>Data Boundary<a class="headerlink" href="#data-boundary" title="Link to this heading">#</a></h2>
+<p>The adapter functions in <code class="xref py py-mod docutils literal notranslate"><span class="pre">sim.sap_runtime</span></code> turn Newton runtime objects into
+SAP-facing containers:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../api/_generated/sim.sap_runtime.sap_model_from_newton.html#sim.sap_runtime.sap_model_from_newton" title="sim.sap_runtime.sap_model_from_newton"><code class="xref py py-func docutils literal notranslate"><span class="pre">sap_model_from_newton()</span></code></a> wraps a Newton model as a
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.html#sim.sap_runtime.SapModel" title="sim.sap_runtime.SapModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapModel</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../api/_generated/sim.sap_runtime.sap_state_from_newton.html#sim.sap_runtime.sap_state_from_newton" title="sim.sap_runtime.sap_state_from_newton"><code class="xref py py-func docutils literal notranslate"><span class="pre">sap_state_from_newton()</span></code></a> wraps a Newton state as a
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapState</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../api/_generated/sim.sap_runtime.sap_control_from_newton.html#sim.sap_runtime.sap_control_from_newton" title="sim.sap_runtime.sap_control_from_newton"><code class="xref py py-func docutils literal notranslate"><span class="pre">sap_control_from_newton()</span></code></a> wraps a Newton control object
+as a <a class="reference internal" href="../api/_generated/sim.sap_runtime.SapControl.html#sim.sap_runtime.SapControl" title="sim.sap_runtime.SapControl"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapControl</span></code></a>.</p></li>
+<li><p>Newton contact buffers can be passed directly to
+<a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>; the solver converts them with
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.sap_contacts_from_newton.html#sim.sap_runtime.sap_contacts_from_newton" title="sim.sap_runtime.sap_contacts_from_newton"><code class="xref py py-func docutils literal notranslate"><span class="pre">sap_contacts_from_newton()</span></code></a> when needed.</p></li>
+</ul>
+<p>These wrappers do not replace Newton as the owner of the simulation data. They
+record how SAP should interpret the same Warp arrays, including public Newton
+generalized velocity and force ordering. Before the solve, <code class="docutils literal notranslate"><span class="pre">SolverSAP</span></code> maps
+public Newton ordering into SAP’s internal ordering; after integration, it maps
+the output velocity back to the public state layout. The SAP runtime wrapper
+data structures are based on
+<a class="reference external" href="https://github.com/newton-physics/newton">Newton</a>’s model, state, control,
+and contact container code so this adapter can stay thin and compatible with
+Newton-owned arrays.</p>
+</section>
+<section id="minimal-pattern">
+<h2>Minimal Pattern<a class="headerlink" href="#minimal-pattern" title="Link to this heading">#</a></h2>
+<p>The core setup in <code class="docutils literal notranslate"><span class="pre">sap_with_newton.py</span></code> is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">create_newton_cartpole_model</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+<span class="n">state_0</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+<span class="n">state_1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">control</span><span class="p">()</span>
+<span class="n">contacts</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">contacts</span><span class="p">()</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">collision</span> <span class="o">==</span> <span class="s2">&quot;newton&quot;</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="n">newton</span><span class="o">.</span><span class="n">eval_fk</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">joint_q</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">joint_qd</span><span class="p">,</span> <span class="n">state_0</span><span class="p">)</span>
+<span class="n">state_1</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">state_0</span><span class="p">)</span>
+
+<span class="n">sap_model</span> <span class="o">=</span> <span class="n">sap_model_from_newton</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">SolverSAP</span><span class="p">(</span>
+    <span class="n">sap_model</span><span class="p">,</span>
+    <span class="n">max_rigid_contact</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">contact_cap</span><span class="p">,</span>
+    <span class="n">max_iterations</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">solver_iterations</span><span class="p">,</span>
+    <span class="n">contact_tau_d</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">contact_tau_d</span><span class="p">,</span>
+    <span class="n">contact_preset_variant</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">contact_preset</span><span class="p">,</span>
+    <span class="n">line_search_variant</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">line_search</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">sap_state_0</span> <span class="o">=</span> <span class="n">sap_state_from_newton</span><span class="p">(</span><span class="n">state_0</span><span class="p">)</span>
+<span class="n">sap_state_1</span> <span class="o">=</span> <span class="n">sap_state_from_newton</span><span class="p">(</span><span class="n">state_1</span><span class="p">)</span>
+<span class="n">sap_control</span> <span class="o">=</span> <span class="n">sap_control_from_newton</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">newton.eval_fk</span></code> initializes the body transforms from the Newton generalized
+coordinates before SAP takes the first step. The two Newton states remain the
+double buffers used by the viewer and by either solver backend.</p>
+</section>
+<section id="step-loop">
+<h2>Step Loop<a class="headerlink" href="#step-loop" title="Link to this heading">#</a></h2>
+<p>Each rendered frame can contain multiple simulation substeps. The SAP path keeps
+Newton’s normal frame structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">state_0</span><span class="o">.</span><span class="n">clear_forces</span><span class="p">()</span>
+<span class="n">viewer</span><span class="o">.</span><span class="n">apply_forces</span><span class="p">(</span><span class="n">state_0</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">contacts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">state_0</span><span class="p">,</span> <span class="n">contacts</span><span class="p">)</span>
+
+<span class="n">solver</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">sap_state_0</span><span class="p">,</span> <span class="n">sap_state_1</span><span class="p">,</span> <span class="n">sap_control</span><span class="p">,</span> <span class="n">contacts</span><span class="p">,</span> <span class="n">sim_dt</span><span class="p">)</span>
+<span class="n">sap_state_0</span><span class="p">,</span> <span class="n">sap_state_1</span> <span class="o">=</span> <span class="n">sap_state_1</span><span class="p">,</span> <span class="n">sap_state_0</span>
+<span class="n">state_0</span><span class="p">,</span> <span class="n">state_1</span> <span class="o">=</span> <span class="n">state_1</span><span class="p">,</span> <span class="n">state_0</span>
+</pre></div>
+</div>
+<p>The SAP state wrappers point at the same arrays as <code class="docutils literal notranslate"><span class="pre">state_0</span></code> and <code class="docutils literal notranslate"><span class="pre">state_1</span></code>.
+After every step, swap both wrapper buffers and Newton buffers together. Newton’s
+viewer can then render <code class="docutils literal notranslate"><span class="pre">state_0</span></code> without any copy back from SAP.</p>
+</section>
+<section id="contacts">
+<h2>Contacts<a class="headerlink" href="#contacts" title="Link to this heading">#</a></h2>
+<p>For the cartpole example, contacts are disabled by default because the model is
+useful as a pure articulated dynamics test:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--frozen<span class="w"> </span>--with<span class="w"> </span><span class="s1">&#39;newton[examples]&#39;</span><span class="w"> </span>python<span class="w"> </span>sap_with_newton.py<span class="w"> </span>--collision<span class="w"> </span>none
+</pre></div>
+</div>
+<p>For contact experiments, ask Newton to allocate and refresh contacts:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--frozen<span class="w"> </span>--with<span class="w"> </span><span class="s1">&#39;newton[examples]&#39;</span><span class="w"> </span>python<span class="w"> </span>sap_with_newton.py<span class="w"> </span>--collision<span class="w"> </span>newton<span class="w"> </span>--contact-cap<span class="w"> </span><span class="m">128</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--contact-cap</span></code> is the per-world rigid-contact capacity passed to
+<code class="docutils literal notranslate"><span class="pre">SolverSAP</span></code>. When using replicated Newton worlds, keep this value large enough
+for the maximum active contacts in one world; the solver sizes the total contact
+work from that per-world cap and the Newton model’s world count.</p>
+</section>
+<section id="solver-controls">
+<h2>Solver Controls<a class="headerlink" href="#solver-controls" title="Link to this heading">#</a></h2>
+<p>The example exposes the main SAP knobs without changing Newton’s outer loop:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--solver-iterations</span></code> sets the maximum SAP contact solve iterations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--contact-preset</span></code> selects the precision and contact Jacobian preset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--line-search</span></code> selects the SAP line-search variant.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--contact-tau-d</span></code> provides the fallback contact dissipation time scale.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--world-count</span></code> replicates the Newton cartpole model before conversion.</p></li>
+</ul>
+<p>Use this pattern when you want Newton’s asset loading, replication, viewer, or
+interaction utilities, but want the SAP Warp solver to advance the articulated
+state.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-example">Run the Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-boundary">Data Boundary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-pattern">Minimal Pattern</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-loop">Step Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contacts">Contacts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-controls">Solver Controls</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,891 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API Reference &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="benchmark.build_parser" href="_generated/benchmark.build_parser.html" />
+    <link rel="prev" title="Viser Viewer" href="../visualization/viser.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/quickstart.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../concepts/convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/loader.html">Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/collision.html">Collision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/solver.html">Solver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking/index.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/newton_integration.html">Newton Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../visualization/viser.html">Viser Viewer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sap-sim/sap_warp">GitHub</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">API Reference</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="api-reference">
+<span id="api-contact-jacobian-module"></span><span id="api-sap-helpers"></span><span id="api-free-motion-free-motion-joint-qd-sap"></span><span id="api-free-motion-body-f-ext-s"></span><span id="api-free-motion-joint-f-sap-input"></span><span id="api-free-motion-joint-qd-sap-input"></span><span id="api-free-motion-joint-q-input"></span><span id="api-free-motion-result-dynamics-matrix"></span><span id="api-free-motion-result-vdot"></span><span id="api-free-motion-result-v-star"></span><span id="api-free-motion-result"></span><span id="api-free-motion-assemble-dynamics-matrix"></span><span id="api-free-motion-compute"></span><span id="api-free-motion"></span><span id="api-contact-solve-solve"></span><span id="api-contact-solve"></span><span id="api-contact-jacobian-result-dynamics-matrix-env"></span><span id="api-contact-jacobian-result-contact-env-tau-d"></span><span id="api-contact-jacobian-result-contact-env-stiffness"></span><span id="api-contact-jacobian-result-contact-env-mu"></span><span id="api-contact-jacobian-result-contact-env-phi0"></span><span id="api-contact-jacobian-result-contact-env-jacobian"></span><span id="api-contact-jacobian-result"></span><span id="api-contact-jacobian-compute"></span><span id="api-contact-jacobian"></span><span id="api-solver-sap-position-integration-sap-euler"></span><span id="api-solver-sap-position-integration-midpoint"></span><span id="api-solver-sap-position-integration"></span><span id="api-solver-sap-graph-conditional"></span><span id="api-solver-sap-line-search-max-iterations"></span><span id="api-solver-sap-rho"></span><span id="api-solver-sap-armijo-c"></span><span id="api-solver-sap-line-search-exact-root"></span><span id="api-solver-sap-line-search-armijo-decay"></span><span id="api-solver-sap-line-search-monotone-decay"></span><span id="api-solver-sap-line-search-variant"></span><span id="api-solver-sap-contact-weight-mode"></span><span id="api-solver-sap-step-dt"></span><span id="api-solver-sap-step-state-out"></span><span id="api-solver-sap-step"></span><span id="api-solver-sap"></span><span id="api-sap-contacts"></span><span id="api-sap-estimate-rigid-contact-max"></span><span id="api-sap-collision-pipeline"></span><span id="api-sap-collision-state-from-state"></span><span id="api-sap-collision-model"></span><span id="api-sap-control-from-newton"></span><span id="api-sap-state-from-newton"></span><span id="api-sap-model-from-newton"></span><span id="api-sap-control-joint-f"></span><span id="api-sap-control"></span><span id="api-sap-state-body-f"></span><span id="api-sap-state-joint-qd"></span><span id="api-sap-state-joint-q"></span><span id="api-sap-state"></span><span id="api-sap-model"></span><span id="api-sap-unsupported-scene-feature"></span><span id="api-sap-loaded-scene"></span><span id="api-load-sap-scene"></span><span id="api-load-sap-scene-config"></span><span id="api-benchmark"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h1>
+<p>This page is a map of the SAP Warp surface you normally touch from Python. It
+does not try to list every Newton-derived helper or Warp kernel; those modules
+remain implementation details unless they are needed to understand the SAP
+runtime path.</p>
+<p>Read the reference in the same order as a simulation step:</p>
+<ol class="arabic simple">
+<li><p>Load a scene with <a class="reference internal" href="_generated/sim.loader.scene.load_sap_scene.html#sim.loader.scene.load_sap_scene" title="sim.loader.scene.load_sap_scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim.loader.scene.load_sap_scene()</span></code></a>.</p></li>
+<li><p>Keep the returned <a class="reference internal" href="_generated/sim.sap_runtime.SapModel.html#sim.sap_runtime.SapModel" title="sim.sap_runtime.SapModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">sim.sap_runtime.SapModel</span></code></a>,
+<a class="reference internal" href="_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-class docutils literal notranslate"><span class="pre">sim.sap_runtime.SapState</span></code></a>, and <a class="reference internal" href="_generated/sim.sap_runtime.SapControl.html#sim.sap_runtime.SapControl" title="sim.sap_runtime.SapControl"><code class="xref py py-class docutils literal notranslate"><span class="pre">sim.sap_runtime.SapControl</span></code></a>
+objects as the solver boundary data.</p></li>
+<li><p>Build <a class="reference internal" href="_generated/sim.collision.pipeline.SapCollisionPipeline.html#sim.collision.pipeline.SapCollisionPipeline" title="sim.collision.pipeline.SapCollisionPipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">sim.collision.pipeline.SapCollisionPipeline</span></code></a> from the collision
+model and call <a class="reference internal" href="_generated/sim.collision.pipeline.SapCollisionPipeline.collide.html#sim.collision.pipeline.SapCollisionPipeline.collide" title="sim.collision.pipeline.SapCollisionPipeline.collide"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sim.collision.pipeline.SapCollisionPipeline.collide()</span></code></a>
+whenever body poses change.</p></li>
+<li><p>Pass the active contacts into <a class="reference internal" href="_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sim.solver_sap.SolverSAP.step()</span></code></a>.</p></li>
+</ol>
+<p>The generated pages below give each documented object its own entry, while the
+short notes in this page explain why the object exists in the end-to-end loop.</p>
+<section id="benchmark-entry-points">
+<h2>Benchmark Entry Points<a class="headerlink" href="#benchmark-entry-points" title="Link to this heading">#</a></h2>
+<p>Use these when you want to run the repository benchmark exactly as the command
+line tool does. They are thin orchestration helpers around the same loader,
+collision, and solver APIs shown later on this page.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/benchmark.build_parser.html#benchmark.build_parser" title="benchmark.build_parser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">benchmark.build_parser</span></code></a></p></td>
+<td><p>Build the command-line parser for the benchmark entry point.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/benchmark.run_native.html#benchmark.run_native" title="benchmark.run_native"><code class="xref py py-obj docutils literal notranslate"><span class="pre">benchmark.run_native</span></code></a></p></td>
+<td><p>Run the native SAP benchmark loop from parsed command-line arguments.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="scene-loader">
+<h2>Scene Loader<a class="headerlink" href="#scene-loader" title="Link to this heading">#</a></h2>
+<p>The loader is the bridge from tutorial examples and YAML/JSON scene files into
+runtime arrays. Start here when you need a model, initial state, control, and
+collision model without constructing Warp arrays by hand.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.loader.scene.load_sap_scene_config.html#sim.loader.scene.load_sap_scene_config" title="sim.loader.scene.load_sap_scene_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.loader.scene.load_sap_scene_config</span></code></a></p></td>
+<td><p>Read a YAML or JSON scene file, validate its schema version, and return the raw configuration mapping.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.loader.scene.load_sap_scene.html#sim.loader.scene.load_sap_scene" title="sim.loader.scene.load_sap_scene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.loader.scene.load_sap_scene</span></code></a></p></td>
+<td><p>Load a scene file into SAP collision and solver runtime objects ready for benchmark or direct stepping code.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.loader.scene.SapLoadedScene.html#sim.loader.scene.SapLoadedScene" title="sim.loader.scene.SapLoadedScene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.loader.scene.SapLoadedScene</span></code></a></p></td>
+<td><p>Loaded scene bundle returned by load_sap_scene.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.loader.scene.SapUnsupportedSceneFeature.html#sim.loader.scene.SapUnsupportedSceneFeature" title="sim.loader.scene.SapUnsupportedSceneFeature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.loader.scene.SapUnsupportedSceneFeature</span></code></a></p></td>
+<td><p>Exception that reports scene features recognized by the loader but not yet supported by the SAP runtime.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="runtime-data">
+<h2>Runtime Data<a class="headerlink" href="#runtime-data" title="Link to this heading">#</a></h2>
+<p>Runtime data objects are plain containers around Warp arrays. <code class="docutils literal notranslate"><span class="pre">SapModel</span></code> is
+the immutable topology and default data, while <code class="docutils literal notranslate"><span class="pre">SapState</span></code> and <code class="docutils literal notranslate"><span class="pre">SapControl</span></code>
+are the mutable boundary objects you pass to a timestep.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapModel.html#sim.sap_runtime.SapModel" title="sim.sap_runtime.SapModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapModel</span></code></a></p></td>
+<td><p>Immutable SAP model arrays describing topology, articulated bodies, shapes, materials, limits, drives, labels, and initial state for one or more replicated worlds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapState</span></code></a></p></td>
+<td><p>Mutable SAP simulation state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapControl.html#sim.sap_runtime.SapControl" title="sim.sap_runtime.SapControl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapControl</span></code></a></p></td>
+<td><p>Mutable control input for a SAP timestep, including generalized forces, drive targets, target velocities, and actuation values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapContacts.html#sim.sap_runtime.SapContacts" title="sim.sap_runtime.SapContacts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapContacts</span></code></a></p></td>
+<td><p>Compatibility contact bundle used by solver-facing SAP runtime code.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.sap_model_from_newton.html#sim.sap_runtime.sap_model_from_newton" title="sim.sap_runtime.sap_model_from_newton"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.sap_model_from_newton</span></code></a></p></td>
+<td><p>Convert a Newton model into an immutable SapModel with SAP-owned array conventions and optional debug mirrors.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.sap_state_from_newton.html#sim.sap_runtime.sap_state_from_newton" title="sim.sap_runtime.sap_state_from_newton"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.sap_state_from_newton</span></code></a></p></td>
+<td><p>Convert a Newton state into a SapState that uses the public boundary ordering expected by high- level callers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.sap_control_from_newton.html#sim.sap_runtime.sap_control_from_newton" title="sim.sap_runtime.sap_control_from_newton"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.sap_control_from_newton</span></code></a></p></td>
+<td><p>Convert a Newton control object into SapControl arrays using the public generalized-force ordering.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.sap_contacts_from_newton.html#sim.sap_runtime.sap_contacts_from_newton" title="sim.sap_runtime.sap_contacts_from_newton"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.sap_contacts_from_newton</span></code></a></p></td>
+<td><p>Convert Newton contact storage into the SAP runtime contact bundle consumed by the solver.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="runtime-methods">
+<h2>Runtime Methods<a class="headerlink" href="#runtime-methods" title="Link to this heading">#</a></h2>
+<p>These methods allocate or reset runtime buffers. They are intentionally small,
+but they define the normal ownership pattern: create states and controls from
+the model, then clear only the buffers that should not carry over between
+steps.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapModel.state.html#sim.sap_runtime.SapModel.state" title="sim.sap_runtime.SapModel.state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapModel.state</span></code></a></p></td>
+<td><p>Create a mutable SapState initialized from the model position, velocity, body pose, and body velocity arrays.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapModel.control.html#sim.sap_runtime.SapModel.control" title="sim.sap_runtime.SapModel.control"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapModel.control</span></code></a></p></td>
+<td><p>Create a SapControl object initialized from the model force, target, and actuation arrays.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapState.clear_forces.html#sim.sap_runtime.SapState.clear_forces" title="sim.sap_runtime.SapState.clear_forces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapState.clear_forces</span></code></a></p></td>
+<td><p>Clear external body forces in place while leaving positions and velocities unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.sap_runtime.SapControl.clear.html#sim.sap_runtime.SapControl.clear" title="sim.sap_runtime.SapControl.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_runtime.SapControl.clear</span></code></a></p></td>
+<td><p>Clear direct forces, drive targets, target velocities, and actuation arrays in place.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="collision">
+<h2>Collision<a class="headerlink" href="#collision" title="Link to this heading">#</a></h2>
+<p>Collision APIs own the shape-side model and the active contact buffer. The
+pipeline is separate from the solver so callers can choose exactly when contact
+generation runs. The implementation deliberately tracks Newton’s collision data
+model for compatibility with imported assets and geometry behavior, then adapts
+the generated contacts into SAP-owned buffers. Hydroelastic contact support is
+in development; the documented API here covers the rigid-contact path.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.resources.collision_model.SapCollisionModel.html#sim.resources.collision_model.SapCollisionModel" title="sim.resources.collision_model.SapCollisionModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.resources.collision_model.SapCollisionModel</span></code></a></p></td>
+<td><p>Newton-compatible collision-side arrays consumed by SapCollisionPipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.resources.collision_model.SapCollisionState.html#sim.resources.collision_model.SapCollisionState" title="sim.resources.collision_model.SapCollisionState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.resources.collision_model.SapCollisionState</span></code></a></p></td>
+<td><p>Collision-side state containing body poses in the shape model frame expected by SapCollisionPipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.resources.collision_model.sap_collision_state_from_state.html#sim.resources.collision_model.sap_collision_state_from_state" title="sim.resources.collision_model.sap_collision_state_from_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.resources.collision_model.sap_collision_state_from_state</span></code></a></p></td>
+<td><p>Extract the collision body-pose state from a SapState for use by SapCollisionPipeline.collide.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.collision.pipeline.SapCollisionPipeline.html#sim.collision.pipeline.SapCollisionPipeline" title="sim.collision.pipeline.SapCollisionPipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.collision.pipeline.SapCollisionPipeline</span></code></a></p></td>
+<td><p>Newton-compatible collision front end that writes SAP-owned rigid contacts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.collision.pipeline.sap_estimate_rigid_contact_max.html#sim.collision.pipeline.sap_estimate_rigid_contact_max" title="sim.collision.pipeline.sap_estimate_rigid_contact_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.collision.pipeline.sap_estimate_rigid_contact_max</span></code></a></p></td>
+<td><p>Estimate a conservative rigid-contact capacity for a collision model when the caller did not provide one.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.collision.pipeline.sap_normalize_broad_phase_mode.html#sim.collision.pipeline.sap_normalize_broad_phase_mode" title="sim.collision.pipeline.sap_normalize_broad_phase_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.collision.pipeline.sap_normalize_broad_phase_mode</span></code></a></p></td>
+<td><p>Normalize a user-provided broad-phase mode string into the canonical mode used by SapCollisionPipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.collision.contacts.SapContacts.html#sim.collision.contacts.SapContacts" title="sim.collision.contacts.SapContacts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.collision.contacts.SapContacts</span></code></a></p></td>
+<td><p>Rigid contact storage consumed by SAP-owned collision generation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="collision-methods">
+<h2>Collision Methods<a class="headerlink" href="#collision-methods" title="Link to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">contacts</span></code> once to allocate the output buffer, then call <code class="docutils literal notranslate"><span class="pre">collide</span></code> each
+time current body poses should produce a new active contact set.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.collision.pipeline.SapCollisionPipeline.contacts.html#sim.collision.pipeline.SapCollisionPipeline.contacts" title="sim.collision.pipeline.SapCollisionPipeline.contacts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.collision.pipeline.SapCollisionPipeline.contacts</span></code></a></p></td>
+<td><p>Allocate a SapContacts buffer sized for this pipeline and carrying any contact attributes requested by the model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.collision.pipeline.SapCollisionPipeline.collide.html#sim.collision.pipeline.SapCollisionPipeline.collide" title="sim.collision.pipeline.SapCollisionPipeline.collide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.collision.pipeline.SapCollisionPipeline.collide</span></code></a></p></td>
+<td><p>Populate a SapContacts buffer from the current collision state by running AABB setup, broad phase, and narrow phase.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="solver">
+<h2>Solver<a class="headerlink" href="#solver" title="Link to this heading">#</a></h2>
+<p>The solver section contains the high-level timestepper and the three internal
+SAP stages that are useful when debugging or validating the solve: free motion,
+contact Jacobian assembly, and contact solve.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.solver_sap.SolverSAP</span></code></a></p></td>
+<td><p>SAP-native solver pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.contact_jacobian.SapContactJacobian.html#sim.contact_jacobian.SapContactJacobian" title="sim.contact_jacobian.SapContactJacobian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.contact_jacobian.SapContactJacobian</span></code></a></p></td>
+<td><p>Standalone Warp implementation of SAP-style contact preparation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.contact_jacobian.SapContactJacobianResult.html#sim.contact_jacobian.SapContactJacobianResult" title="sim.contact_jacobian.SapContactJacobianResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.contact_jacobian.SapContactJacobianResult</span></code></a></p></td>
+<td><p>Views into buffers owned by <cite>SapContactJacobian</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.contact_solve.SapContactSolve.html#sim.contact_solve.SapContactSolve" title="sim.contact_solve.SapContactSolve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.contact_solve.SapContactSolve</span></code></a></p></td>
+<td><p>SAP SAP stage2 contact solve in SAP-order generalized velocities.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.contact_solve.SapContactSolveResult.html#sim.contact_solve.SapContactSolveResult" title="sim.contact_solve.SapContactSolveResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.contact_solve.SapContactSolveResult</span></code></a></p></td>
+<td><p>Views into buffers owned by <cite>SapContactSolve</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.free_motion.SapFreeMotion.html#sim.free_motion.SapFreeMotion" title="sim.free_motion.SapFreeMotion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.free_motion.SapFreeMotion</span></code></a></p></td>
+<td><p>Standalone SAP-style free-motion calculation for articulated models.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.free_motion.SapFreeMotionResult.html#sim.free_motion.SapFreeMotionResult" title="sim.free_motion.SapFreeMotionResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.free_motion.SapFreeMotionResult</span></code></a></p></td>
+<td><p>Views into the mutable output buffers owned by <cite>SapFreeMotion</cite>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="solver-methods">
+<h2>Solver Methods<a class="headerlink" href="#solver-methods" title="Link to this heading">#</a></h2>
+<p>For normal use, <a class="reference internal" href="_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sim.solver_sap.SolverSAP.step()</span></code></a> is the method you call.
+The stage-specific methods are listed so advanced users can inspect the same
+data flow one stage at a time.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.solver_sap.SolverSAP.step</span></code></a></p></td>
+<td><p>Advance one SAP timestep from state_in to state_out using control inputs, active contacts, and the configured solver settings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.free_motion.SapFreeMotion.compute.html#sim.free_motion.SapFreeMotion.compute" title="sim.free_motion.SapFreeMotion.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.free_motion.SapFreeMotion.compute</span></code></a></p></td>
+<td><p>Compute SAP free motion from SAP-native state/control.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.contact_jacobian.SapContactJacobian.compute.html#sim.contact_jacobian.SapContactJacobian.compute" title="sim.contact_jacobian.SapContactJacobian.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.contact_jacobian.SapContactJacobian.compute</span></code></a></p></td>
+<td><p>Build contact Jacobians, material parameters, gap values, and per-environment dynamics blocks for the SAP contact solve.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.contact_solve.SapContactSolve.solve.html#sim.contact_solve.SapContactSolve.solve" title="sim.contact_solve.SapContactSolve.solve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.contact_solve.SapContactSolve.solve</span></code></a></p></td>
+<td><p>Solve the SAP velocity objective for the active contacts and write the next generalized velocity in SAP order.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">#</a></h2>
+<p>These modules are documented as modules because they collect helper kernels or
+stage-specific data that is easier to understand in context than as dozens of
+low-level entries.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/sim.sap_helpers.html#module-sim.sap_helpers" title="sim.sap_helpers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.sap_helpers</span></code></a></p></td>
+<td><p>Conversion and material helpers shared by the SAP runtime stages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/sim.contact_jacobian.html#module-sim.contact_jacobian" title="sim.contact_jacobian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim.contact_jacobian</span></code></a></p></td>
+<td><p>Contact Jacobian assembly for the SAP velocity solve.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="minimal-program">
+<h2>Minimal Program<a class="headerlink" href="#minimal-program" title="Link to this heading">#</a></h2>
+<p>The shortest complete program follows the same sequence as the benchmark:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.collision.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapCollisionPipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.loader.scene</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_sap_scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.resources.collision_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">sap_collision_state_from_state</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.solver_sap</span><span class="w"> </span><span class="kn">import</span> <span class="n">SolverSAP</span>
+
+<span class="n">num_worlds</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">max_rigid_contact_per_env</span> <span class="o">=</span> <span class="mi">48</span>
+<span class="n">rigid_contact_capacity</span> <span class="o">=</span> <span class="n">max_rigid_contact_per_env</span> <span class="o">*</span> <span class="n">num_worlds</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">get_device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">wp</span><span class="o">.</span><span class="n">is_cuda_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+
+<span class="n">scene</span> <span class="o">=</span> <span class="n">load_sap_scene</span><span class="p">(</span>
+    <span class="s2">&quot;assets/yaml/unitree_g1_usd.yaml&quot;</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+    <span class="n">rigid_contact_max</span><span class="o">=</span><span class="n">rigid_contact_capacity</span><span class="p">,</span>
+    <span class="n">num_worlds</span><span class="o">=</span><span class="n">num_worlds</span><span class="p">,</span>
+    <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">SolverSAP</span><span class="p">(</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">sap_model</span><span class="p">,</span>
+    <span class="n">max_rigid_contact</span><span class="o">=</span><span class="n">max_rigid_contact_per_env</span><span class="p">,</span>
+    <span class="n">contact_preset_variant</span><span class="o">=</span><span class="s2">&quot;drake&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">collision</span> <span class="o">=</span> <span class="n">SapCollisionPipeline</span><span class="p">(</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">collision_model</span><span class="p">,</span>
+    <span class="n">rigid_contact_max</span><span class="o">=</span><span class="n">rigid_contact_capacity</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">contacts</span> <span class="o">=</span> <span class="n">collision</span><span class="o">.</span><span class="n">contacts</span><span class="p">()</span>
+
+<span class="n">state_0</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">sap_state</span>
+<span class="n">state_1</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">sap_model</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">sap_control</span>
+
+<span class="n">state_0</span><span class="o">.</span><span class="n">clear_forces</span><span class="p">()</span>
+<span class="n">collision</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">sap_collision_state_from_state</span><span class="p">(</span><span class="n">state_0</span><span class="p">),</span> <span class="n">contacts</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">state_0</span><span class="p">,</span> <span class="n">state_1</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">contacts</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-entry-points">Benchmark Entry Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scene-loader">Scene Loader</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-data">Runtime Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-methods">Runtime Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collision">Collision</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collision-methods">Collision Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solver">Solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-methods">Solver Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-program">Minimal Program</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

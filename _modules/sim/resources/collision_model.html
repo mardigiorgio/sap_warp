@@ -1,0 +1,863 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sim.resources.collision_model &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/sim/resources/collision_model';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">sim.resources.collision_model</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for sim.resources.collision_model</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Collision-model resources consumed by SAP collision generation.</span>
+
+<span class="sd">Source note: the SAP modifications in this module are based on Newton&#39;s shape</span>
+<span class="sd">and collision metadata code and adapted for compatibility with</span>
+<span class="sd">Newton-authored assets and runtime data.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.collision.flags</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapShapeFlags</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.collision.heightfield</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapHeightfieldData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.collision.sdf_texture</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapTextureSDFData</span><span class="p">,</span> <span class="n">sap_create_empty_texture_sdf_data</span>
+
+
+<div class="viewcode-block" id="SapCollisionModel">
+<a class="viewcode-back" href="../../../api/_generated/sim.resources.collision_model.SapCollisionModel.html#sim.resources.collision_model.SapCollisionModel">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapCollisionModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Newton-compatible collision-side arrays consumed by SapCollisionPipeline.</span>
+
+<span class="sd">    The pipeline reads these arrays to build AABBs, candidate pairs,</span>
+<span class="sd">    narrow-phase inputs, material data, and SAP-owned rigid contacts. The layout</span>
+<span class="sd">    preserves Newton collision metadata, including hydroelastic flags used by</span>
+<span class="sd">    the Drake-style hydroelastic merge work.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">device</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">shape_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">world_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">rigid_contact_max</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="n">shape_transform</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_body</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_type</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_scale</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_collision_radius</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_source_ptr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_source_refs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span>
+    <span class="n">shape_margin</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_gap</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_flags</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_world</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_collision_group</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_sdf_index</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">texture_sdf_data</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">shape_collision_aabb_lower</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_collision_aabb_upper</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">_shape_voxel_resolution</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">shape_heightfield_index</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">heightfield_data</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">heightfield_elevations</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">shape_contact_pairs</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">shape_contact_pair_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">texture_sdf_coarse_textures</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">texture_sdf_subgrid_textures</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">texture_sdf_subgrid_start_slots</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">shape_collision_filter_pairs</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">set</span><span class="p">)</span>
+    <span class="n">requested_contact_attributes</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">set</span><span class="p">)</span>
+    <span class="n">shape_material_ke</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_material_tau</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_material_mu</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_material_restitution</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_material_mu_torsional</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_material_mu_rolling</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">shape_material_kh</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_requested_contact_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a copy of the optional per-contact attributes requested by downstream solver or viewer</span>
+<span class="sd">        code.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">requested_contact_attributes</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SapCollisionState">
+<a class="viewcode-back" href="../../../api/_generated/sim.resources.collision_model.SapCollisionState.html#sim.resources.collision_model.SapCollisionState">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapCollisionState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collision-side state containing body poses in the shape model frame expected by</span>
+<span class="sd">    SapCollisionPipeline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">body_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_array_size</span><span class="p">(</span><span class="n">arr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">arr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_required_array</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;collision model requires </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">default</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">value</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_contact_pair_count</span><span class="p">(</span><span class="n">shape_contact_pairs</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">explicit_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_contact_pair_count&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">explicit_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">explicit_count</span>
+    <span class="k">if</span> <span class="n">shape_contact_pairs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">shape_contact_pairs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sap_texture_sdf_from_row</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">void</span><span class="p">,</span> <span class="n">coarse_texture</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">subgrid_texture</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">subgrid_start_slots</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">coarse_texture</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">subgrid_texture</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">subgrid_start_slots</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sap_create_empty_texture_sdf_data</span><span class="p">()</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">SapTextureSDFData</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">coarse_texture</span> <span class="o">=</span> <span class="n">coarse_texture</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">subgrid_texture</span> <span class="o">=</span> <span class="n">subgrid_texture</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">subgrid_start_slots</span> <span class="o">=</span> <span class="n">subgrid_start_slots</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">sdf_box_lower</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;sdf_box_lower&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">sdf_box_upper</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;sdf_box_upper&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">inv_sdf_dx</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;inv_sdf_dx&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">subgrid_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;subgrid_size&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">subgrid_size_f</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;subgrid_size_f&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">subgrid_samples_f</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;subgrid_samples_f&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">fine_to_coarse</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;fine_to_coarse&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">voxel_size</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;voxel_size&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">voxel_radius</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;voxel_radius&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">subgrids_min_sdf_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;subgrids_min_sdf_value&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">subgrids_sdf_value_range</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;subgrids_sdf_value_range&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">scale_baked</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;scale_baked&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sap_texture_sdf_data_from_model</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+    <span class="n">source_data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_data&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">source_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">SapTextureSDFData</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">source_data</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">SapTextureSDFData</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="n">coarse_textures</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_coarse_textures&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[])</span>
+    <span class="n">subgrid_textures</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_subgrid_textures&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[])</span>
+    <span class="n">subgrid_start_slots</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_subgrid_start_slots&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[])</span>
+
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">source_data</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">SapTextureSDFData</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">source_data</span><span class="p">,</span> <span class="n">coarse_textures</span><span class="p">,</span> <span class="n">subgrid_textures</span><span class="p">,</span> <span class="n">subgrid_start_slots</span>
+
+    <span class="n">host_rows</span> <span class="o">=</span> <span class="n">source_data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">sap_rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sap_coarse_refs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sap_subgrid_refs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sap_slot_refs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">coarse_texture</span> <span class="o">=</span> <span class="n">coarse_textures</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">coarse_textures</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">subgrid_texture</span> <span class="o">=</span> <span class="n">subgrid_textures</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgrid_textures</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">slots</span> <span class="o">=</span> <span class="n">subgrid_start_slots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgrid_start_slots</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">sap_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_sap_texture_sdf_from_row</span><span class="p">(</span><span class="n">host_rows</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">coarse_texture</span><span class="p">,</span> <span class="n">subgrid_texture</span><span class="p">,</span> <span class="n">slots</span><span class="p">))</span>
+        <span class="n">sap_coarse_refs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coarse_texture</span><span class="p">)</span>
+        <span class="n">sap_subgrid_refs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subgrid_texture</span><span class="p">)</span>
+        <span class="n">sap_slot_refs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">slots</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sap_rows</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">SapTextureSDFData</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span>
+        <span class="n">sap_coarse_refs</span><span class="p">,</span>
+        <span class="n">sap_subgrid_refs</span><span class="p">,</span>
+        <span class="n">sap_slot_refs</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sap_heightfield_from_row</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapHeightfieldData</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">SapHeightfieldData</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">data_offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;data_offset&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">nrow</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;nrow&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">ncol</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ncol&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">hx</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;hx&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">hy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;hy&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">min_z</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;min_z&quot;</span><span class="p">])</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">max_z</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;max_z&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sap_heightfield_data_from_model</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">source_data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heightfield_data&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">source_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">source_data</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">SapHeightfieldData</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">source_data</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">SapHeightfieldData</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">source_data</span>
+
+    <span class="n">host_rows</span> <span class="o">=</span> <span class="n">source_data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">_sap_heightfield_from_row</span><span class="p">(</span><span class="n">host_rows</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">)],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">SapHeightfieldData</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_collision_model_from_model</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rigid_contact_max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapCollisionModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a SapCollisionModel from a richer model object, filling missing optional collision arrays</span>
+<span class="sd">    with safe defaults.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">shape_transform</span> <span class="o">=</span> <span class="n">_required_array</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_transform&quot;</span><span class="p">)</span>
+    <span class="n">shape_body</span> <span class="o">=</span> <span class="n">_required_array</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_body&quot;</span><span class="p">)</span>
+    <span class="n">shape_type</span> <span class="o">=</span> <span class="n">_required_array</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_type&quot;</span><span class="p">)</span>
+    <span class="n">shape_scale</span> <span class="o">=</span> <span class="n">_required_array</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_scale&quot;</span><span class="p">)</span>
+
+    <span class="n">shape_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_count&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">shape_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">shape_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">_array_size</span><span class="p">(</span><span class="n">shape_body</span><span class="p">),</span> <span class="n">_array_size</span><span class="p">(</span><span class="n">shape_type</span><span class="p">),</span> <span class="n">_array_size</span><span class="p">(</span><span class="n">shape_transform</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">shape_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;collision model requires at least one shape&quot;</span><span class="p">)</span>
+
+    <span class="n">device</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="n">shape_transform</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rigid_contact_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rigid_contact_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_max&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedDevice</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+        <span class="n">default_radius</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_source</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">uint64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_margin</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_gap</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_flags</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">SapShapeFlags</span><span class="o">.</span><span class="n">COLLIDE_SHAPES</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_world</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_group</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_sdf_index</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_aabb_lower</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_aabb_upper</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_voxel_resolution</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3i</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">default_heightfield_index</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="n">shape_contact_pairs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_contact_pairs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_collision_filter_pairs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">requested_attributes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">get_requested_contact_attributes</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;get_requested_contact_attributes&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">get_requested_contact_attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">requested_attributes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_requested_contact_attributes</span><span class="p">()</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">())</span>
+
+    <span class="n">texture_sdf_data</span><span class="p">,</span> <span class="n">texture_coarse_refs</span><span class="p">,</span> <span class="n">texture_subgrid_refs</span><span class="p">,</span> <span class="n">texture_slot_refs</span> <span class="o">=</span> <span class="n">_sap_texture_sdf_data_from_model</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">heightfield_data</span> <span class="o">=</span> <span class="n">_sap_heightfield_data_from_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">SapCollisionModel</span><span class="p">(</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+        <span class="n">shape_count</span><span class="o">=</span><span class="n">shape_count</span><span class="p">,</span>
+        <span class="n">world_count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;world_count&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">requires_grad</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;requires_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)),</span>
+        <span class="n">rigid_contact_max</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">rigid_contact_max</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">shape_transform</span><span class="o">=</span><span class="n">shape_transform</span><span class="p">,</span>
+        <span class="n">shape_body</span><span class="o">=</span><span class="n">shape_body</span><span class="p">,</span>
+        <span class="n">shape_type</span><span class="o">=</span><span class="n">shape_type</span><span class="p">,</span>
+        <span class="n">shape_scale</span><span class="o">=</span><span class="n">shape_scale</span><span class="p">,</span>
+        <span class="n">shape_collision_radius</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_collision_radius&quot;</span><span class="p">,</span> <span class="n">default_radius</span><span class="p">),</span>
+        <span class="n">shape_source_ptr</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_source_ptr&quot;</span><span class="p">,</span> <span class="n">default_source</span><span class="p">),</span>
+        <span class="n">shape_source_refs</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_source&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]),</span>
+        <span class="n">shape_margin</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_margin&quot;</span><span class="p">,</span> <span class="n">default_margin</span><span class="p">),</span>
+        <span class="n">shape_gap</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_gap&quot;</span><span class="p">,</span> <span class="n">default_gap</span><span class="p">),</span>
+        <span class="n">shape_flags</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_flags&quot;</span><span class="p">,</span> <span class="n">default_flags</span><span class="p">),</span>
+        <span class="n">shape_world</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_world&quot;</span><span class="p">,</span> <span class="n">default_world</span><span class="p">),</span>
+        <span class="n">shape_collision_group</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_collision_group&quot;</span><span class="p">,</span> <span class="n">default_group</span><span class="p">),</span>
+        <span class="n">shape_sdf_index</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_sdf_index&quot;</span><span class="p">,</span> <span class="n">default_sdf_index</span><span class="p">),</span>
+        <span class="n">texture_sdf_data</span><span class="o">=</span><span class="n">texture_sdf_data</span><span class="p">,</span>
+        <span class="n">texture_sdf_coarse_textures</span><span class="o">=</span><span class="n">texture_coarse_refs</span><span class="p">,</span>
+        <span class="n">texture_sdf_subgrid_textures</span><span class="o">=</span><span class="n">texture_subgrid_refs</span><span class="p">,</span>
+        <span class="n">texture_sdf_subgrid_start_slots</span><span class="o">=</span><span class="n">texture_slot_refs</span><span class="p">,</span>
+        <span class="n">shape_collision_aabb_lower</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_collision_aabb_lower&quot;</span><span class="p">,</span> <span class="n">default_aabb_lower</span><span class="p">),</span>
+        <span class="n">shape_collision_aabb_upper</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_collision_aabb_upper&quot;</span><span class="p">,</span> <span class="n">default_aabb_upper</span><span class="p">),</span>
+        <span class="n">_shape_voxel_resolution</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;_shape_voxel_resolution&quot;</span><span class="p">,</span> <span class="n">default_voxel_resolution</span><span class="p">),</span>
+        <span class="n">shape_heightfield_index</span><span class="o">=</span><span class="n">_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_heightfield_index&quot;</span><span class="p">,</span> <span class="n">default_heightfield_index</span><span class="p">),</span>
+        <span class="n">heightfield_data</span><span class="o">=</span><span class="n">heightfield_data</span><span class="p">,</span>
+        <span class="n">heightfield_elevations</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heightfield_elevations&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_contact_pairs</span><span class="o">=</span><span class="n">shape_contact_pairs</span><span class="p">,</span>
+        <span class="n">shape_contact_pair_count</span><span class="o">=</span><span class="n">_contact_pair_count</span><span class="p">(</span><span class="n">shape_contact_pairs</span><span class="p">,</span> <span class="n">model</span><span class="p">),</span>
+        <span class="n">shape_collision_filter_pairs</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">filters</span><span class="p">),</span>
+        <span class="n">requested_contact_attributes</span><span class="o">=</span><span class="n">requested_attributes</span><span class="p">,</span>
+        <span class="n">shape_material_ke</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_ke&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_tau</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_tau&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_mu</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_mu&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_restitution</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_restitution&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_mu_torsional</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_mu_torsional&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_mu_rolling</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_mu_rolling&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">shape_material_kh</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_material_kh&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="sap_collision_state_from_state">
+<a class="viewcode-back" href="../../../api/_generated/sim.resources.collision_model.sap_collision_state_from_state.html#sim.resources.collision_model.sap_collision_state_from_state">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_collision_state_from_state</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapCollisionState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract the collision body-pose state from a SapState for use by SapCollisionPipeline.collide.&quot;&quot;&quot;</span>
+    <span class="n">body_q</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;body_q&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">body_q</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;collision state requires body_q&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SapCollisionState</span><span class="p">(</span>
+        <span class="n">body_q</span><span class="o">=</span><span class="n">body_q</span><span class="p">,</span>
+        <span class="n">requires_grad</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;requires_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)),</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;SapCollisionModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SapCollisionState&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_collision_model_from_model&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_collision_state_from_state&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

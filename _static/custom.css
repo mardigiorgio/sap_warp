@@ -1,0 +1,85 @@
+:root {
+    --pst-color-primary: #167c80;
+    --pst-color-secondary: #2f9e44;
+    --pst-color-link: #167c80;
+    --pst-color-link-hover: #0f5f63;
+    --pst-font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html[data-theme="dark"] {
+    --pst-color-primary: #6ee7d8;
+    --pst-color-secondary: #8ce99a;
+    --pst-color-link: #6ee7d8;
+    --pst-color-link-hover: #b2f5ea;
+}
+
+.navbar-brand p.title {
+    font-weight: 700;
+}
+
+.bd-sidebar-primary {
+    border-right: 1px solid var(--pst-color-border);
+}
+
+.bd-links__title {
+    color: var(--pst-color-text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.bd-sidebar .nav > li > a,
+.bd-sidebar .nav ul li a {
+    border-radius: 0.25rem;
+}
+
+.bd-sidebar .nav > li > a:hover,
+.bd-sidebar .nav ul li a:hover {
+    background: var(--pst-color-surface);
+}
+
+.admonition.tip {
+    border-left-color: var(--pst-color-secondary);
+}
+
+.admonition.tip > .admonition-title {
+    background-color: color-mix(in srgb, var(--pst-color-secondary) 16%, transparent);
+}
+
+.highlight pre,
+pre.literal-block {
+    border-radius: 0.35rem;
+}
+
+code.literal {
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.22rem;
+}
+
+.py-attribute,
+.py-method,
+.py-property,
+.py-class {
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+
+.section > dl > dt {
+    margin-top: 0.2em !important;
+    margin-bottom: 0.2em !important;
+}
+
+.field-list .field {
+    margin-bottom: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 1em !important;
+    margin-bottom: 0.5em !important;
+}

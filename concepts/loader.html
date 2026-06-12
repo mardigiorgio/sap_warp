@@ -1,0 +1,1267 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Loader &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/loader';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Collision" href="collision.html" />
+    <link rel="prev" title="Convention" href="convention.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/quickstart.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="convention.html">Convention</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collision.html">Collision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solver.html">Solver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking/index.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/newton_integration.html">Newton Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../visualization/viser.html">Viser Viewer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sap-sim/sap_warp">GitHub</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Loader</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="loader">
+<h1>Loader<a class="headerlink" href="#loader" title="Link to this heading">#</a></h1>
+<p>Scene files are YAML or JSON documents consumed by
+<a class="reference internal" href="../api/_generated/sim.loader.scene.load_sap_scene.html#sim.loader.scene.load_sap_scene" title="sim.loader.scene.load_sap_scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_sap_scene()</span></code></a>. They describe simulation timing,
+contact capacity, solver kwargs, builder defaults, external assets, optional
+inline bodies, articulated joints, initial state edits, and deterministic
+post-build edits.</p>
+<p>The current schema version is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<section id="load-order">
+<h2>Load Order<a class="headerlink" href="#load-order" title="Link to this heading">#</a></h2>
+<p>The loader applies a scene in this order:</p>
+<ol class="arabic simple">
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">simulation.num_worlds</span></code> or <code class="docutils literal notranslate"><span class="pre">replicate.num_worlds</span></code> and optional
+replication spacing.</p></li>
+<li><p>Apply supported <code class="docutils literal notranslate"><span class="pre">builder</span></code> defaults.</p></li>
+<li><p>Import external <code class="docutils literal notranslate"><span class="pre">assets</span></code>.</p></li>
+<li><p>Add inline <code class="docutils literal notranslate"><span class="pre">bodies</span></code> and their shapes.</p></li>
+<li><p>Add inline <code class="docutils literal notranslate"><span class="pre">joints</span></code> and <code class="docutils literal notranslate"><span class="pre">articulations</span></code>.</p></li>
+<li><p>Apply <code class="docutils literal notranslate"><span class="pre">initial_joint_q</span></code>.</p></li>
+<li><p>Apply <code class="docutils literal notranslate"><span class="pre">post_build</span></code> operations.</p></li>
+<li><p>Replicate the authored world.</p></li>
+<li><p>Add the optional world <code class="docutils literal notranslate"><span class="pre">ground</span></code> plane.</p></li>
+</ol>
+<p>This order matters. For example, <code class="docutils literal notranslate"><span class="pre">post_build</span></code> edits run before replication,
+so a joint-target edit is copied into every replicated world. The ground plane
+is added after replication and remains a shared world shape.</p>
+</section>
+<section id="top-level-sections">
+<h2>Top-Level Sections<a class="headerlink" href="#top-level-sections" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">schema_version</span></code></dt><dd><p>Integer schema marker. The current loader supports <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Human-readable scene identifier.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">simulation</span></code></dt><dd><p>Runtime settings used by <code class="docutils literal notranslate"><span class="pre">benchmark.py</span></code>. Common keys are <code class="docutils literal notranslate"><span class="pre">dt</span></code>,
+<code class="docutils literal notranslate"><span class="pre">num_worlds</span></code>, <code class="docutils literal notranslate"><span class="pre">max_rigid_contact</span></code>, and <code class="docutils literal notranslate"><span class="pre">solver</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">builder</span></code></dt><dd><p>Scene builder defaults. The current loader consumes <code class="docutils literal notranslate"><span class="pre">rigid_gap</span></code>,
+<code class="docutils literal notranslate"><span class="pre">default_body_armature</span></code>, and <code class="docutils literal notranslate"><span class="pre">defaults.joint</span></code>/<code class="docutils literal notranslate"><span class="pre">defaults.shape</span></code> from
+this block. Other builder attributes can be changed with
+<code class="docutils literal notranslate"><span class="pre">post_build:</span> <span class="pre">[{op:</span> <span class="pre">set_attr,</span> <span class="pre">...}]</span></code> when supported.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ground</span></code></dt><dd><p>Optional world plane. It is enabled by default unless set to <code class="docutils literal notranslate"><span class="pre">false</span></code> or
+<code class="docutils literal notranslate"><span class="pre">enabled:</span> <span class="pre">false</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">assets</span></code></dt><dd><p>External <code class="docutils literal notranslate"><span class="pre">usd</span></code>, <code class="docutils literal notranslate"><span class="pre">urdf</span></code>, or <code class="docutils literal notranslate"><span class="pre">mjcf</span></code> assets. Sources may be local paths,
+inline URDF XML strings, or git-backed sparse checkouts.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bodies</span></code>, <code class="docutils literal notranslate"><span class="pre">joints</span></code>, and <code class="docutils literal notranslate"><span class="pre">articulations</span></code></dt><dd><p>Inline procedural bodies and generalized-coordinate structure.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">initial_joint_q</span></code></dt><dd><p>Direct initial generalized position edits by index or joint reference.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">post_build</span></code></dt><dd><p>Deterministic edits after assets and inline objects are added.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">replicate</span></code></dt><dd><p>Optional world replication settings. <code class="docutils literal notranslate"><span class="pre">simulation.num_worlds</span></code> is also
+accepted and is what the current example scenes use.</p>
+</dd>
+</dl>
+</section>
+<section id="minimal-inline-scene">
+<h2>Minimal Inline Scene<a class="headerlink" href="#minimal-inline-scene" title="Link to this heading">#</a></h2>
+<p>This is the smallest useful shape of a procedural scene: one free box, one
+ground plane, and one solver configuration.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">schema_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">single_box</span>
+
+<span class="nt">simulation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.003</span>
+<span class="w">  </span><span class="nt">num_worlds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">max_rigid_contact</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span>
+<span class="w">  </span><span class="nt">solver</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">contact_preset_variant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">approx32</span>
+<span class="w">    </span><span class="nt">line_search_variant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monotone_decay</span>
+
+<span class="nt">builder</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">rigid_gap</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.002</span>
+<span class="w">  </span><span class="nt">defaults</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">shape</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+<span class="w">      </span><span class="nt">ke</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000000.0</span>
+<span class="w">      </span><span class="nt">tau</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+<span class="w">      </span><span class="nt">mu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+
+<span class="nt">ground</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEFAULT_GROUND</span>
+
+<span class="nt">bodies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">box</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">    </span><span class="nt">transform</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">q</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identity</span>
+<span class="w">    </span><span class="nt">shapes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">box</span>
+<span class="w">        </span><span class="nt">hx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">        </span><span class="nt">hy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">        </span><span class="nt">hz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+
+<span class="nt">joints</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">box_free</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">world</span>
+<span class="w">    </span><span class="nt">child</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">box</span>
+
+<span class="nt">articulations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">box_articulation</span>
+<span class="w">    </span><span class="nt">joints</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">box_free</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Run it with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>benchmark.py<span class="w"> </span>--scene<span class="w"> </span>path/to/single_box.yaml<span class="w"> </span>--frames<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+</section>
+<section id="simulation-block">
+<h2>Simulation Block<a class="headerlink" href="#simulation-block" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">benchmark.py</span></code> reads:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.003</span>
+<span class="w">  </span><span class="nt">num_worlds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">max_rigid_contact</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">48</span>
+<span class="w">  </span><span class="nt">solver</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">contact_preset_variant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drake</span>
+<span class="w">    </span><span class="nt">line_search_variant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">armijo_decay</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dt</span></code></dt><dd><p>Default timestep. The command-line <code class="docutils literal notranslate"><span class="pre">--dt</span></code> flag overrides it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">num_worlds</span></code></dt><dd><p>Number of independent replicated worlds. The command-line <code class="docutils literal notranslate"><span class="pre">--num-worlds</span></code>
+flag overrides it.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max_rigid_contact</span></code></dt><dd><p>Per-world solver contact cap. With replicated worlds, <code class="docutils literal notranslate"><span class="pre">benchmark.py</span></code>
+allocates the flat collision contact buffer as
+<code class="docutils literal notranslate"><span class="pre">max_rigid_contact</span> <span class="pre">*</span> <span class="pre">num_worlds</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">solver</span></code></dt><dd><p>Keyword arguments passed to <a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolverSAP</span></code></a>. See
+<a class="reference internal" href="solver.html"><span class="doc">Solver</span></a> for supported solver options.</p>
+</dd>
+</dl>
+</section>
+<section id="builder-defaults">
+<h2>Builder Defaults<a class="headerlink" href="#builder-defaults" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">rigid_gap</span></code></dt><dd><p>Default shape <code class="docutils literal notranslate"><span class="pre">gap</span></code> used when a shape does not provide one. This is a
+contact candidate generation band, not a force parameter.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">default_body_armature</span></code></dt><dd><p>Default rigid-body armature for bodies created without an explicit
+per-body armature. The value is added to the diagonal of <code class="docutils literal notranslate"><span class="pre">body_inertia</span></code>;
+it is body-space rotational inertia regularization, not joint DOF
+armature. Values that are reasonable for robot links can dominate tiny
+free objects, so keep this near zero when small bodies should spin down
+from contact using their physical inertia.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">defaults.shape</span></code></dt><dd><p>Base material and collision metadata for subsequently created shapes.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">defaults.joint</span></code></dt><dd><p>Base drive, limit, armature, effort, velocity, and friction metadata for
+subsequently created joint DOFs. Joint armature is stored in
+<code class="docutils literal notranslate"><span class="pre">joint_armature</span></code> and is separate from <code class="docutils literal notranslate"><span class="pre">default_body_armature</span></code>.</p>
+</dd>
+</dl>
+<p>Numeric values may be numbers or simple expressions containing <code class="docutils literal notranslate"><span class="pre">pi</span></code> and
+<code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, or <code class="docutils literal notranslate"><span class="pre">/</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">angle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi * 0.5</span>
+</pre></div>
+</div>
+</section>
+<section id="transforms">
+<h2>Transforms<a class="headerlink" href="#transforms" title="Link to this heading">#</a></h2>
+<p>Transforms appear on assets, bodies, shapes, and joint frames.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">identity</span></code></dt><dd><p>Identity transform.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">p</span></code></dt><dd><p>Translation vector <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z]</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">q</span></code></dt><dd><p>Quaternion as <code class="docutils literal notranslate"><span class="pre">identity</span></code>, <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z,</span> <span class="pre">w]</span></code>, or an <code class="docutils literal notranslate"><span class="pre">axis_angle</span></code> mapping.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">xform</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.62</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">q</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">axis_angle</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">axis</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">angle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi * 0.5</span>
+</pre></div>
+</div>
+</section>
+<section id="asset-sources">
+<h2>Asset Sources<a class="headerlink" href="#asset-sources" title="Link to this heading">#</a></h2>
+<p>A local source is a path string or mapping with <code class="docutils literal notranslate"><span class="pre">path</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">assets</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">robot</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">usd</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/robots/robot.usda</span>
+</pre></div>
+</div>
+<p>Git sources fetch sparse checkouts into the SAP asset cache:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">assets</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">g1</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">usd</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">git</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/newton-physics/newton-assets.git</span>
+<span class="w">        </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">261cd1f429619d8ef4f546bd788ab9dea906b5e1</span>
+<span class="w">        </span><span class="nt">sparse</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unitree_g1/usd_structured</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unitree_g1/meshes</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unitree_g1/usd_structured/g1_29dof_with_hand_rev_1_0.usda</span>
+</pre></div>
+</div>
+<p>Git-backed assets are cached under <code class="docutils literal notranslate"><span class="pre">SAP_WARP_ASSET_CACHE</span></code> when set, otherwise
+under <code class="docutils literal notranslate"><span class="pre">~/.cache/sap_warp/assets</span></code>. <code class="docutils literal notranslate"><span class="pre">SAP_WARP_ASSET_OFFLINE=1</span></code> disables
+fetching and requires the cache entry to already exist.</p>
+</section>
+<section id="imported-asset-options">
+<h2>Imported Asset Options<a class="headerlink" href="#imported-asset-options" title="Link to this heading">#</a></h2>
+<p>Common options accepted by imported assets include:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">xform</span></code></dt><dd><p>Root transform with <code class="docutils literal notranslate"><span class="pre">p</span></code> and <code class="docutils literal notranslate"><span class="pre">q</span></code> fields.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cfg</span></code>, <code class="docutils literal notranslate"><span class="pre">shape</span></code>, or <code class="docutils literal notranslate"><span class="pre">physics</span></code></dt><dd><p>Shape/material overrides applied while importing the asset. <code class="docutils literal notranslate"><span class="pre">cfg</span></code> may
+contain any shape config field; <code class="docutils literal notranslate"><span class="pre">shape</span></code> and <code class="docutils literal notranslate"><span class="pre">physics</span></code> are normalized for
+common material aliases such as <code class="docutils literal notranslate"><span class="pre">ke</span></code>, <code class="docutils literal notranslate"><span class="pre">tau</span></code>, <code class="docutils literal notranslate"><span class="pre">mu</span></code>, <code class="docutils literal notranslate"><span class="pre">margin</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">gap</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">enable_self_collisions</span></code></dt><dd><p>Whether shapes from the same imported asset may collide with one another.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hide_collision_shapes</span></code> and <code class="docutils literal notranslate"><span class="pre">force_show_colliders</span></code></dt><dd><p>Visibility flags stored in shape flags. They do not disable collision.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">skip_mesh_approximation</span></code></dt><dd><p>For USD import, keep mesh shapes as meshes when possible instead of applying
+mesh approximation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore_paths</span></code></dt><dd><p>USD path patterns to skip.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">floating</span></code></dt><dd><p>URDF/MJCF option that creates a floating base when supported by that
+importer path.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">load_visual_shapes</span></code> and <code class="docutils literal notranslate"><span class="pre">parse_visuals_as_colliders</span></code></dt><dd><p>URDF/MJCF options controlling whether visual geometry is imported and
+whether it participates in collision.</p>
+</dd>
+</dl>
+<p>The current imported-asset path assumes z-up assets. Unsupported asset features
+are collected in <code class="docutils literal notranslate"><span class="pre">SapLoadedScene.unsupported_features</span></code>; with <code class="docutils literal notranslate"><span class="pre">strict=True</span></code>
+they raise <a class="reference internal" href="../api/_generated/sim.loader.scene.SapUnsupportedSceneFeature.html#sim.loader.scene.SapUnsupportedSceneFeature" title="sim.loader.scene.SapUnsupportedSceneFeature"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapUnsupportedSceneFeature</span></code></a>.</p>
+</section>
+<section id="inline-bodies-and-shapes">
+<h2>Inline Bodies and Shapes<a class="headerlink" href="#inline-bodies-and-shapes" title="Link to this heading">#</a></h2>
+<p>Inline body fields:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">id</span></code></dt><dd><p>Stable identifier used by inline joints and post-build body references.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">label</span></code></dt><dd><p>Optional runtime body label. Defaults to <code class="docutils literal notranslate"><span class="pre">id</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">transform</span></code></dt><dd><p>Initial body pose.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mass</span></code></dt><dd><p>Initial body mass. Shape density can add mass and inertia unless inertia is
+locked by an imported asset path.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shape</span></code>/<code class="docutils literal notranslate"><span class="pre">physics</span></code> fields or direct material aliases</dt><dd><p>Body-level defaults for child shapes.</p>
+</dd>
+</dl>
+<p>Inline shapes support <code class="docutils literal notranslate"><span class="pre">box</span></code>, <code class="docutils literal notranslate"><span class="pre">sphere</span></code>, <code class="docutils literal notranslate"><span class="pre">capsule</span></code>, <code class="docutils literal notranslate"><span class="pre">cylinder</span></code>, <code class="docutils literal notranslate"><span class="pre">cone</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ellipsoid</span></code>, and <code class="docutils literal notranslate"><span class="pre">mesh</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Shape</p></th>
+<th class="head"><p>Size fields</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hx</span></code>, <code class="docutils literal notranslate"><span class="pre">hy</span></code>, <code class="docutils literal notranslate"><span class="pre">hz</span></code> half-extents.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphere</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radius</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">capsule</span></code>, <code class="docutils literal notranslate"><span class="pre">cylinder</span></code>, <code class="docutils literal notranslate"><span class="pre">cone</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">half_height</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ellipsoid</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> radii.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mesh</span></code></p></td>
+<td><p>Mesh geometry fields accepted by the loader.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Shape-level <code class="docutils literal notranslate"><span class="pre">cfg</span></code> overrides body and builder defaults:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">bodies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">payload</span>
+<span class="w">    </span><span class="nt">transform</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">q</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identity</span>
+<span class="w">    </span><span class="nt">shapes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">box</span>
+<span class="w">        </span><span class="nt">hx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">        </span><span class="nt">hy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">        </span><span class="nt">hz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">        </span><span class="nt">cfg</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500.0</span>
+<span class="w">          </span><span class="nt">mu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8</span>
+<span class="w">          </span><span class="nt">gap</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.004</span>
+</pre></div>
+</div>
+</section>
+<section id="inline-joints-and-articulations">
+<h2>Inline Joints and Articulations<a class="headerlink" href="#inline-joints-and-articulations" title="Link to this heading">#</a></h2>
+<p>Inline joints support <code class="docutils literal notranslate"><span class="pre">fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">free</span></code>, <code class="docutils literal notranslate"><span class="pre">revolute</span></code>, and <code class="docutils literal notranslate"><span class="pre">prismatic</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">parent</span></code> and <code class="docutils literal notranslate"><span class="pre">child</span></code></dt><dd><p>Body ids or <code class="docutils literal notranslate"><span class="pre">world</span></code> for the parent.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parent_xform</span></code> and <code class="docutils literal notranslate"><span class="pre">child_xform</span></code></dt><dd><p>Joint frames expressed in parent and child body frames.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">axis</span></code></dt><dd><p>Revolute or prismatic axis. Use <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z]</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>/<code class="docutils literal notranslate"><span class="pre">y</span></code>/<code class="docutils literal notranslate"><span class="pre">z</span></code>-style
+tokens accepted by the loader, or the integer axis tokens used internally.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">collision_filter_parent</span></code></dt><dd><p>Defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>. When enabled, directly connected parent and child
+shapes are filtered from collision.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">articulations</span></code></dt><dd><p>Lists joint ids in each articulation. The solver requires at least one joint
+DOF; a scene with only fixed joints is not enough for
+<a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolverSAP</span></code></a>.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">joints</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hinge</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">world</span>
+<span class="w">    </span><span class="nt">child</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">link</span>
+<span class="w">    </span><span class="nt">axis</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">limit_lower</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.57</span>
+<span class="w">    </span><span class="nt">limit_upper</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.57</span>
+
+<span class="nt">articulations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hinge_articulation</span>
+<span class="w">    </span><span class="nt">joints</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">hinge</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+<section id="initial-joint-positions">
+<h2>Initial Joint Positions<a class="headerlink" href="#initial-joint-positions" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">initial_joint_q</span></code> edits entries in the generalized position array before the
+initial forward-kinematics pass:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">initial_joint_q</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute_a_b</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pi * 0.5</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">box_free</span>
+<span class="w">    </span><span class="nt">offset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.25</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">joint</span></code> or <code class="docutils literal notranslate"><span class="pre">joint_label</span></code> to select a joint, plus an optional <code class="docutils literal notranslate"><span class="pre">offset</span></code>
+inside that joint’s <code class="docutils literal notranslate"><span class="pre">q</span></code> block. Use <code class="docutils literal notranslate"><span class="pre">index</span></code> to edit an absolute
+<code class="docutils literal notranslate"><span class="pre">joint_q</span></code> index.</p>
+</section>
+<section id="shape-defaults">
+<h2>Shape Defaults<a class="headerlink" href="#shape-defaults" title="Link to this heading">#</a></h2>
+<p>Shape defaults and per-shape <code class="docutils literal notranslate"><span class="pre">cfg</span></code> blocks use the same fields. Common fields
+are:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">density</span></code></dt><dd><p>Density used when the loader computes body mass and inertia from shapes.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ke</span></code> and <code class="docutils literal notranslate"><span class="pre">tau</span></code></dt><dd><p>Contact stiffness and explicitly specified contact dissipation time scale.
+<code class="docutils literal notranslate"><span class="pre">tau</span></code> is read as material data; it is not computed from <code class="docutils literal notranslate"><span class="pre">ke</span></code> or a
+damping coefficient.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mu</span></code></dt><dd><p>Coulomb friction coefficient.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">margin</span></code> and <code class="docutils literal notranslate"><span class="pre">gap</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">margin</span></code> offsets the effective contact surface and enters the signed gap
+used by the SAP solve. <code class="docutils literal notranslate"><span class="pre">gap</span></code> is an anticipation band for generating
+potential contact candidates before penetration. A pair can be emitted when
+its margin-adjusted separation satisfies</p>
+<div class="math notranslate nohighlight">
+\[d_{ab} - (m_a + m_b) \le g_a + g_b.\]</div>
+<p>Contacts with small positive <span class="math notranslate nohighlight">\(\phi_0\)</span> are then passed to the solver,
+which decides the force/impulse through the SAP objective. Increasing
+<code class="docutils literal notranslate"><span class="pre">gap</span></code> can improve contact stability, but it can also increase contact
+count, so keep <code class="docutils literal notranslate"><span class="pre">simulation.max_rigid_contact</span></code> sized accordingly. <code class="docutils literal notranslate"><span class="pre">gap</span></code>
+defaults to the builder <code class="docutils literal notranslate"><span class="pre">rigid_gap</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">collision_group</span></code></dt><dd><p>Broad-phase group mask. Group <code class="docutils literal notranslate"><span class="pre">0</span></code> does not collide. Positive groups collide
+with matching positive groups and with negative groups according to the
+loader’s group-pair test.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">has_shape_collision</span></code> and <code class="docutils literal notranslate"><span class="pre">has_particle_collision</span></code></dt><dd><p>Collision participation flags.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">is_hydroelastic</span></code></dt><dd><p>Marks a shape for hydroelastic contact support, which is in development.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">is_visible</span></code> and <code class="docutils literal notranslate"><span class="pre">is_site</span></code></dt><dd><p>Visibility and site flags. Sites are non-colliding, zero-density shapes.</p>
+</dd>
+</dl>
+<p>Useful aliases are normalized before application:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Canonical field</p></th>
+<th class="head"><p>Accepted aliases</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">margin</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">contact_margin</span></code>, <code class="docutils literal notranslate"><span class="pre">shape_margin</span></code>, <code class="docutils literal notranslate"><span class="pre">margin</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gap</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shape_gap</span></code>, <code class="docutils literal notranslate"><span class="pre">gap</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mu</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mu</span></code>, <code class="docutils literal notranslate"><span class="pre">shape_mu</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ke</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ke</span></code>, <code class="docutils literal notranslate"><span class="pre">shape_ke</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tau</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tau</span></code>, <code class="docutils literal notranslate"><span class="pre">shape_tau</span></code>, <code class="docutils literal notranslate"><span class="pre">relaxation_time</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="joint-defaults">
+<h2>Joint Defaults<a class="headerlink" href="#joint-defaults" title="Link to this heading">#</a></h2>
+<p>Joint defaults and joint definitions can set:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">axis</span></code></dt><dd><p>Local joint axis.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">target_pos</span></code>, <code class="docutils literal notranslate"><span class="pre">target_vel</span></code>, <code class="docutils literal notranslate"><span class="pre">target_ke</span></code>, <code class="docutils literal notranslate"><span class="pre">target_kd</span></code></dt><dd><p>Joint drive target and gains.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">limit_lower</span></code>, <code class="docutils literal notranslate"><span class="pre">limit_upper</span></code>, <code class="docutils literal notranslate"><span class="pre">limit_ke</span></code>, <code class="docutils literal notranslate"><span class="pre">limit_kd</span></code></dt><dd><p>Joint limit bounds and stiffness/damping.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">armature</span></code>, <code class="docutils literal notranslate"><span class="pre">effort_limit</span></code>, <code class="docutils literal notranslate"><span class="pre">velocity_limit</span></code>, <code class="docutils literal notranslate"><span class="pre">friction</span></code></dt><dd><p>Per-DOF solver parameters. <code class="docutils literal notranslate"><span class="pre">armature</span></code> adds diagonal generalized inertia
+on the joint DOF through <code class="docutils literal notranslate"><span class="pre">joint_armature</span></code>; it does not modify
+<code class="docutils literal notranslate"><span class="pre">body_inertia</span></code>. Use <code class="docutils literal notranslate"><span class="pre">builder.default_body_armature</span></code> for rigid-body
+inertia regularization.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">actuator_mode</span></code></dt><dd><p>Integer actuator mode stored on the runtime joint DOF.</p>
+</dd>
+</dl>
+</section>
+<section id="post-build-operations">
+<h2>Post-Build Operations<a class="headerlink" href="#post-build-operations" title="Link to this heading">#</a></h2>
+<p>Supported <code class="docutils literal notranslate"><span class="pre">post_build</span></code> operations include:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">add_shape</span></code></dt><dd><p>Add another inline shape to a body or the world.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">set_array</span></code></dt><dd><p>Edit a supported builder array with a scalar <code class="docutils literal notranslate"><span class="pre">value</span></code>, explicit <code class="docutils literal notranslate"><span class="pre">values</span></code>,
+or values copied <code class="docutils literal notranslate"><span class="pre">from_array</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">copy_array</span></code></dt><dd><p>Copy entries between supported builder arrays.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scale_sphere_shapes</span></code></dt><dd><p>Multiply every sphere radius by <code class="docutils literal notranslate"><span class="pre">factor</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">approximate_meshes</span></code></dt><dd><p>Replace colliding mesh shapes with oriented bounding boxes when
+<code class="docutils literal notranslate"><span class="pre">method:</span> <span class="pre">bounding_box</span></code> is selected.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">set_attr</span></code></dt><dd><p>Set a supported builder attribute, for example <code class="docutils literal notranslate"><span class="pre">gravity</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">set_joint_targets</span></code></dt><dd><p>Set target mode and gains by index range, exact joint label, label prefix,
+or substring match.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">set_joint_q</span></code></dt><dd><p>Set one generalized position entry.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">copy_joint_q_to_joint_targets</span></code></dt><dd><p>Seed joint position targets from current <code class="docutils literal notranslate"><span class="pre">joint_q</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">set_joint_armature</span></code></dt><dd><p>Assign armature values over a selected range.</p>
+</dd>
+</dl>
+<p>Supported array names for <code class="docutils literal notranslate"><span class="pre">set_array</span></code> and <code class="docutils literal notranslate"><span class="pre">copy_array</span></code> are:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>shape_margin, shape_gap, shape_material_ke, shape_material_tau,
+shape_material_mu, shape_material_restitution,
+shape_material_mu_torsional, shape_material_mu_rolling,
+shape_material_kh, shape_collision_group, shape_flags,
+joint_q, joint_qd, joint_target_pos, joint_target_vel,
+joint_target_ke, joint_target_kd, joint_target_mode, joint_armature
+</pre></div>
+</div>
+</section>
+<section id="selectors-and-ranges">
+<h2>Selectors and Ranges<a class="headerlink" href="#selectors-and-ranges" title="Link to this heading">#</a></h2>
+<p>Array operations accept:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">index</span></code></dt><dd><p>Single index. Negative indices are relative to the end.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">range:</span> <span class="pre">all</span></code></dt><dd><p>Every entry.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">range:</span> <span class="pre">head:N</span></code></dt><dd><p>First <code class="docutils literal notranslate"><span class="pre">N</span></code> entries.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">range:</span> <span class="pre">tail:N</span></code></dt><dd><p>Last <code class="docutils literal notranslate"><span class="pre">N</span></code> entries.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">range:</span> <span class="pre">from:N</span></code></dt><dd><p>Entries from <code class="docutils literal notranslate"><span class="pre">N</span></code> to the end.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">range:</span> <span class="pre">[start,</span> <span class="pre">end]</span></code></dt><dd><p>Half-open range. <code class="docutils literal notranslate"><span class="pre">end:</span> <span class="pre">null</span></code> means the end of the array.</p>
+</dd>
+</dl>
+<p>Joint-selector operations accept:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">joint</span></code> or <code class="docutils literal notranslate"><span class="pre">joint_label</span></code></dt><dd><p>Exact joint label, or a suffix match after <code class="docutils literal notranslate"><span class="pre">/</span></code> when the imported asset
+prefixes labels.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">joints</span></code> or <code class="docutils literal notranslate"><span class="pre">joint_labels</span></code></dt><dd><p>List of joint references.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">label_prefix</span></code></dt><dd><p>Every joint label that starts with the prefix.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">match</span></code></dt><dd><p>Every joint label containing the substring.</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">post_build</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">set_array</span>
+<span class="w">    </span><span class="nt">array</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint_q</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.67</span><span class="p p-Indicator">]</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">set_joint_targets</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from:6</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">position</span>
+<span class="w">    </span><span class="nt">ke</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500.0</span>
+<span class="w">    </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">set_joint_targets</span>
+<span class="w">    </span><span class="nt">label_prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">robot/left_leg</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">position</span>
+<span class="w">    </span><span class="nt">ke</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+<span class="w">    </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20.0</span>
+</pre></div>
+</div>
+</section>
+<section id="replication">
+<h2>Replication<a class="headerlink" href="#replication" title="Link to this heading">#</a></h2>
+<p>Replicated worlds are independent copies of authored bodies, shapes, joints,
+articulations, controls, and labels. The loader offsets each world by
+<code class="docutils literal notranslate"><span class="pre">replicate.spacing</span></code>. With two non-zero spacing axes, worlds are arranged in a
+centered grid; with one non-zero axis, they are arranged in a line.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">num_worlds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+
+<span class="nt">replicate</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">spacing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">load_sap_scene(...,</span> <span class="pre">num_worlds=...)</span></code> and the benchmark <code class="docutils literal notranslate"><span class="pre">--num-worlds</span></code> flag
+override the scene value.</p>
+</section>
+<section id="existing-examples">
+<h2>Existing Examples<a class="headerlink" href="#existing-examples" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">assets/yaml/unitree_g1_usd.yaml</span></code></dt><dd><p>G1 USD scene, Drake preset, Armijo line search, high default world count for
+throughput, and mesh-to-box post-build approximation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">assets/yaml/unitree_h1_usd.yaml</span></code></dt><dd><p>H1 USD scene, Drake preset, Armijo line search, and full-position joint
+targets.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">assets/yaml/anymal_c_urdf.yaml</span></code></dt><dd><p>ANYmal C URDF scene with a floating base, sphere scaling, joint target
+setup, and per-DOF armature edits.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">assets/yaml/anymal_d_usd.yaml</span></code></dt><dd><p>ANYmal D USD scene with explicit initial base <code class="docutils literal notranslate"><span class="pre">joint_q</span></code> edits and target
+setup.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">assets/yaml/multi_joints.yaml</span></code></dt><dd><p>Small inline scene covering fixed, revolute, prismatic, and free joints.</p>
+</dd>
+</dl>
+</section>
+<section id="runtime-data">
+<h2>Runtime Data<a class="headerlink" href="#runtime-data" title="Link to this heading">#</a></h2>
+<p>SAP Warp separates authoring-time scene data from runtime arrays. Scene files
+describe assets, inline bodies, defaults, solver options, and post-build edits.
+The loader turns that description into compact Warp arrays consumed by the
+collision pipeline and solver. The runtime model, state, control, and contact
+data structures produced by the loader are based on
+<a class="reference external" href="https://github.com/newton-physics/newton">Newton</a>’s runtime code. SAP Warp
+adapts those structures so it can wrap Newton-owned Warp arrays directly where
+possible, preserve Newton-style ordering metadata at the public boundary, and
+keep imported USD/URDF/MJCF scenes close to Newton behavior.</p>
+<section id="load-result">
+<h3>Load Result<a class="headerlink" href="#load-result" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../api/_generated/sim.loader.scene.load_sap_scene.html#sim.loader.scene.load_sap_scene" title="sim.loader.scene.load_sap_scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_sap_scene()</span></code></a> returns
+<a class="reference internal" href="../api/_generated/sim.loader.scene.SapLoadedScene.html#sim.loader.scene.SapLoadedScene" title="sim.loader.scene.SapLoadedScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapLoadedScene</span></code></a> with:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">collision_model</span></code></dt><dd><p>Shape metadata for broad phase, narrow phase, and contact writing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">collision_state</span></code></dt><dd><p>Initial collision body poses.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sap_model</span></code></dt><dd><p>Articulated solver model.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sap_state</span></code></dt><dd><p>Initial generalized and body state.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sap_control</span></code></dt><dd><p>Initial joint forces, targets, and actuator arrays.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">body_labels</span></code> and <code class="docutils literal notranslate"><span class="pre">shape_labels</span></code></dt><dd><p>Stable labels useful for scene edits, diagnostics, and debugging.</p>
+</dd>
+</dl>
+</section>
+<section id="state-and-control">
+<h3>State and Control<a class="headerlink" href="#state-and-control" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.state.html#sim.sap_runtime.SapModel.state" title="sim.sap_runtime.SapModel.state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state()</span></code></a> clones the model’s initial state into a
+mutable <a class="reference internal" href="../api/_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapState</span></code></a>.
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.control.html#sim.sap_runtime.SapModel.control" title="sim.sap_runtime.SapModel.control"><code class="xref py py-meth docutils literal notranslate"><span class="pre">control()</span></code></a> clones control arrays into
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapControl.html#sim.sap_runtime.SapControl" title="sim.sap_runtime.SapControl"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapControl</span></code></a>. The benchmark uses two states and swaps
+them after every step:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">state_0</span> <span class="o">=</span> <span class="n">loaded</span><span class="o">.</span><span class="n">sap_state</span>
+<span class="n">state_1</span> <span class="o">=</span> <span class="n">loaded</span><span class="o">.</span><span class="n">sap_model</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">loaded</span><span class="o">.</span><span class="n">sap_control</span>
+
+<span class="n">solver</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">state_0</span><span class="p">,</span> <span class="n">state_1</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">contacts</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">state_0</span><span class="p">,</span> <span class="n">state_1</span> <span class="o">=</span> <span class="n">state_1</span><span class="p">,</span> <span class="n">state_0</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../api/_generated/sim.sap_runtime.SapState.clear_forces.html#sim.sap_runtime.SapState.clear_forces" title="sim.sap_runtime.SapState.clear_forces"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_forces()</span></code></a> clears external body forces.
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapControl.clear.html#sim.sap_runtime.SapControl.clear" title="sim.sap_runtime.SapControl.clear"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear()</span></code></a> clears direct joint forces and target
+arrays.</p>
+</section>
+<section id="ordering-conventions">
+<h3>Ordering Conventions<a class="headerlink" href="#ordering-conventions" title="Link to this heading">#</a></h3>
+<p>The public runtime state uses the model-facing order, while the SAP kernels use
+an angular-first, body-origin order for free and distance joints. The full
+reference-point shifts, formulas, and order flags are documented in
+<a class="reference internal" href="convention.html"><span class="doc">Convention</span></a>.</p>
+</section>
+<section id="world-replication">
+<h3>World Replication<a class="headerlink" href="#world-replication" title="Link to this heading">#</a></h3>
+<p>Scene files may replicate one authored world into many independent worlds with
+<code class="docutils literal notranslate"><span class="pre">simulation.num_worlds</span></code> or a <code class="docutils literal notranslate"><span class="pre">replicate</span></code> block. Replication duplicates
+bodies, shapes, joints, controls, and labels while preserving shared global
+objects such as the ground plane when applicable.</p>
+<p>The G1 benchmark scene uses many worlds by default for throughput measurement.
+Override <code class="docutils literal notranslate"><span class="pre">--num-worlds</span></code> during smoke tests.</p>
+</section>
+<section id="asset-resolution">
+<h3>Asset Resolution<a class="headerlink" href="#asset-resolution" title="Link to this heading">#</a></h3>
+<p>Asset sources may be local paths or git-backed sparse checkouts. Git assets are
+cached under <code class="docutils literal notranslate"><span class="pre">SAP_WARP_ASSET_CACHE</span></code> or <code class="docutils literal notranslate"><span class="pre">~/.cache/sap_warp/assets</span></code>. Set
+<code class="docutils literal notranslate"><span class="pre">SAP_WARP_ASSET_OFFLINE=1</span></code> only after the needed assets exist in the cache.</p>
+</section>
+<section id="unsupported-features">
+<h3>Unsupported Features<a class="headerlink" href="#unsupported-features" title="Link to this heading">#</a></h3>
+<p>The loader records recognized-but-unsupported scene features in
+<code class="docutils literal notranslate"><span class="pre">unsupported_features</span></code> on <a class="reference internal" href="../api/_generated/sim.loader.scene.SapLoadedScene.html#sim.loader.scene.SapLoadedScene" title="sim.loader.scene.SapLoadedScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapLoadedScene</span></code></a>. With
+<code class="docutils literal notranslate"><span class="pre">strict=True</span></code>, unsupported features raise
+<a class="reference internal" href="../api/_generated/sim.loader.scene.SapUnsupportedSceneFeature.html#sim.loader.scene.SapUnsupportedSceneFeature" title="sim.loader.scene.SapUnsupportedSceneFeature"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapUnsupportedSceneFeature</span></code></a> instead of silently
+continuing.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-order">Load Order</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-sections">Top-Level Sections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-inline-scene">Minimal Inline Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-block">Simulation Block</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#builder-defaults">Builder Defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforms">Transforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asset-sources">Asset Sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imported-asset-options">Imported Asset Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inline-bodies-and-shapes">Inline Bodies and Shapes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inline-joints-and-articulations">Inline Joints and Articulations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-joint-positions">Initial Joint Positions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-defaults">Shape Defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-defaults">Joint Defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-build-operations">Post-Build Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selectors-and-ranges">Selectors and Ranges</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replication">Replication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#existing-examples">Existing Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-data">Runtime Data</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-result">Load Result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-and-control">State and Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordering-conventions">Ordering Conventions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#world-replication">World Replication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asset-resolution">Asset Resolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupported-features">Unsupported Features</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

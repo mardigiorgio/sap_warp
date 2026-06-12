@@ -1,0 +1,1498 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Solver &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/solver';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Benchmarking" href="../benchmarking/index.html" />
+    <link rel="prev" title="Collision" href="collision.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/quickstart.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loader.html">Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collision.html">Collision</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Solver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking/index.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/newton_integration.html">Newton Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../visualization/viser.html">Viser Viewer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sap-sim/sap_warp">GitHub</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Solver</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="solver">
+<h1>Solver<a class="headerlink" href="#solver" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolverSAP</span></code></a> is the SAP-native timestepper. It requires a
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.html#sim.sap_runtime.SapModel" title="sim.sap_runtime.SapModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapModel</span></code></a> with at least one articulated joint DOF, a
+populated <a class="reference internal" href="../api/_generated/sim.sap_runtime.SapContacts.html#sim.sap_runtime.SapContacts" title="sim.sap_runtime.SapContacts"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapContacts</span></code></a> buffer, a
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapState</span></code></a> input, a
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapState</span></code></a> output, a
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapControl.html#sim.sap_runtime.SapControl" title="sim.sap_runtime.SapControl"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapControl</span></code></a> object, and a positive timestep.</p>
+<section id="timestep-pipeline">
+<h2>Timestep Pipeline<a class="headerlink" href="#timestep-pipeline" title="Link to this heading">#</a></h2>
+<p>SAP Warp follows the formulation from <a class="reference external" href="https://arxiv.org/abs/2110.10107">An Unconstrained Convex Formulation of
+Compliant Contact</a> and uses <a class="reference external" href="https://github.com/RobotLocomotion/drake">Drake</a>’s implementation as a reference. At a
+high level, each timestep computes free motion, assembles contact, actuation,
+drive, and limit terms, solves the velocity-level SAP problem, and integrates
+the resulting state.</p>
+</section>
+<section id="presets">
+<h2>Presets<a class="headerlink" href="#presets" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">contact_preset_variant</span></code> should be read as a discretization choice, not as a
+different solver. The same timestep is always organized around a free-motion
+velocity, a dynamics metric, contact Jacobians, smooth contact potentials,
+actuation terms, drive terms, and limit terms. A preset chooses how those
+objects are represented.</p>
+<p>For preset <span class="math notranslate nohighlight">\(P\)</span>, the velocity solve can be written as</p>
+<div class="math notranslate nohighlight">
+\[v_{n+1}^{(P)}
+=
+\arg\min_v
+\ell_P(v),
+\qquad
+\ell_P(v)
+=
+\frac{1}{2}(v-v_P^*)^T A_P(v-v_P^*)
++ \sum_i \ell_i(J_{i,P}v;\,w_{i,P},\mu_i,k_i,\tau_i)
++ \ell_{\mathrm{act},P}
++ \ell_{\mathrm{drive},P}
++ \ell_{\mathrm{limit},P}.\]</div>
+<p>The next configuration is then</p>
+<div class="math notranslate nohighlight">
+\[q_{n+1}^{(P)}
+=
+\Phi_P(q_n,v_n,v_{n+1}^{(P)},h).\]</div>
+<p>The three built-in presets are coherent choices for
+<span class="math notranslate nohighlight">\((v_P^*,A_P,J_{i,P},w_{i,P},\Phi_P)\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Preset</p></th>
+<th class="head"><p>Use</p></th>
+<th class="head"><p>Main defaults</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">approx32</span></code></p></td>
+<td><p>Fast mixed-precision default for large replicated worlds.</p></td>
+<td><p>fp32 free motion, fp64 contact solve, fp32 linear solve, fp32
+body-inertia contact weights, witness points, midpoint integration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">approx64</span></code></p></td>
+<td><p>High-precision ablation of the approximate path.</p></td>
+<td><p>fp64 boundary pose, fp64 free motion, fp64 contact solve, fp64 linear
+solve, fp64 body-inertia contact weights, witness points, midpoint
+integration.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">drake</span></code></p></td>
+<td><p>Drake-style rigid-contact reference mapping.</p></td>
+<td><p>fp64 boundary pose, fp64 free motion, fp64 contact solve, fp64 linear
+solve, diagonal Delassus contact weights, contact midpoints,
+<code class="docutils literal notranslate"><span class="pre">sap_euler</span></code> integration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The approximate family is</p>
+<div class="math notranslate nohighlight">
+\[P_{\mathrm{approx}}
+=
+(w_i^{\mathrm{body}},\,J_i^{\mathrm{wit}},\,\Phi_{\mathrm{mid}}),\]</div>
+<p>with <code class="docutils literal notranslate"><span class="pre">approx32</span></code> and <code class="docutils literal notranslate"><span class="pre">approx64</span></code> differing primarily in floating-point
+realization. The Drake-style family is</p>
+<div class="math notranslate nohighlight">
+\[P_{\mathrm{drake}}
+=
+(w_i^{\mathrm{delassus}},\,J_i^{\mathrm{mid}},\,\Phi_{\mathrm{sap}}).\]</div>
+<p>This distinction is useful in experiments. Compare <code class="docutils literal notranslate"><span class="pre">approx32</span></code> to
+<code class="docutils literal notranslate"><span class="pre">approx64</span></code> to measure precision sensitivity,</p>
+<div class="math notranslate nohighlight">
+\[\Delta_{\mathrm{precision}}
+=
+\|v_{n+1}^{(\mathrm{approx64})}
+  - v_{n+1}^{(\mathrm{approx32})}\|,\]</div>
+<p>and compare <code class="docutils literal notranslate"><span class="pre">approx64</span></code> to <code class="docutils literal notranslate"><span class="pre">drake</span></code> to measure the effect of the contact
+metric, contact point, and integration rule,</p>
+<div class="math notranslate nohighlight">
+\[\Delta_{\mathrm{model}}
+=
+\|v_{n+1}^{(\mathrm{drake})}
+  - v_{n+1}^{(\mathrm{approx64})}\|.\]</div>
+<p>Explicit constructor keyword arguments override preset values after the preset
+is expanded, which makes one-factor experiments possible. For example,
+<code class="docutils literal notranslate"><span class="pre">contact_preset_variant=&quot;approx64&quot;</span></code> with
+<code class="docutils literal notranslate"><span class="pre">contact_weight_mode=&quot;diag_delassus&quot;</span></code> changes only the contact-weight model
+while leaving the approximate-family contact point and integration map intact.</p>
+</section>
+<section id="preset-modes">
+<h2>Preset Modes<a class="headerlink" href="#preset-modes" title="Link to this heading">#</a></h2>
+<p>Each preset is a named bundle of mode variants. The modes can be read directly
+against the objective above.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">contact_weight_mode</span></code></dt><dd><p>The effective contact weight controls the metric scale used by the smooth
+contact potential. Through the chain rule, a single contact contributes</p>
+<div class="math notranslate nohighlight">
+\[\nabla\ell_i(v)=J_i^T g_i(J_i v;w_i),
+\qquad
+\nabla^2\ell_i(v)=J_i^T G_i(J_i v;w_i)J_i.\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">body_inertia</span></code> estimates <span class="math notranslate nohighlight">\(w_i\)</span> from the two contacted bodies. For
+contact-frame directions <span class="math notranslate nohighlight">\(C_i=\{c_{t1},c_{t2},c_n\}\)</span>, witness
+<span class="math notranslate nohighlight">\(x_b\)</span>, center of mass <span class="math notranslate nohighlight">\(o_b\)</span>, body rotation <span class="math notranslate nohighlight">\(R_b\)</span>, mass
+<span class="math notranslate nohighlight">\(m_b\)</span>, and diagonal body inertia <span class="math notranslate nohighlight">\(I_b\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\omega_b(c)
+=
+\frac{1}{m_b}
++
+\left(R_b^T((x_b-o_b)\times c)\right)^T
+I_b^{-1}
+\left(R_b^T((x_b-o_b)\times c)\right),
+\qquad
+w_i^{\mathrm{body}}
+=
+\max\left(
+   \frac{1}{3}
+   \sum_{c\in C_i}
+   \sum_b \omega_b(c),
+   10^{-12}
+\right).\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">diag_delassus</span></code> estimates a contact-space mobility from the assembled
+dynamics matrix and contact Jacobian. The current implementation uses the
+diagonal dynamics inverse:</p>
+<div class="math notranslate nohighlight">
+\[\widehat W_i
+=
+J_i\,\mathrm{diag}(A)^{-1}J_i^T,
+\qquad
+w_i^{\mathrm{delassus}}
+=
+\max\left(\frac{\|\widehat W_i\|_F}{3},10^{-12}\right).\]</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">contact_point_mode</span></code></dt><dd><p>The collision pipeline supplies two witnesses <span class="math notranslate nohighlight">\(x_0,x_1\)</span>, a normal,
+margins, and material data. <code class="docutils literal notranslate"><span class="pre">witness_point</span></code> uses those witnesses directly:</p>
+<div class="math notranslate nohighlight">
+\[J_i^{\mathrm{wit}}v
+=
+R_{WC}^T\left[V_1(x_1;v)-V_0(x_0;v)\right].\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">contact_midpoint</span></code> first computes a stiffness-weighted point</p>
+<div class="math notranslate nohighlight">
+\[p_C=\alpha_0x_0+\alpha_1x_1,
+\qquad
+\alpha_0=\frac{k_0}{k_0+k_1},
+\qquad
+\alpha_1=\frac{k_1}{k_0+k_1},\]</div>
+<p>and evaluates both body velocities at <span class="math notranslate nohighlight">\(p_C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[J_i^{\mathrm{mid}}v
+=
+R_{WC}^T\left[V_1(p_C;v)-V_0(p_C;v)\right].\]</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">position_integration</span></code></dt><dd><p>The position map runs after the velocity minimization. <code class="docutils literal notranslate"><span class="pre">midpoint</span></code> uses the
+incoming and solved SAP velocities,</p>
+<div class="math notranslate nohighlight">
+\[\bar v = \frac{v_n+v_{n+1}}{2},
+\qquad
+q_{n+1}=\Phi_{\mathrm{mid}}(q_n,\bar v,h),\]</div>
+<p>while <code class="docutils literal notranslate"><span class="pre">sap_euler</span></code> uses the solved velocity:</p>
+<div class="math notranslate nohighlight">
+\[q_{n+1}=\Phi_{\mathrm{sap}}(q_n,v_{n+1},h).\]</div>
+</dd>
+<dt>Precision Modes</dt><dd><p><code class="docutils literal notranslate"><span class="pre">free_motion_solve_precision</span></code>, <code class="docutils literal notranslate"><span class="pre">contact_solve_precision</span></code>,
+<code class="docutils literal notranslate"><span class="pre">contact_linear_solve_precision</span></code>, <code class="docutils literal notranslate"><span class="pre">sap_contact_weight_precision</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">use_f64_boundary_pose</span></code> control where fp32 or fp64 arrays are used. A
+value computed through fp32 and then stored in fp64 should be understood as</p>
+<div class="math notranslate nohighlight">
+\[x^{(32\rightarrow64)}
+=
+\mathrm{cast}_{64}(\mathrm{fl}_{32}(x)).\]</div>
+<p>The following fp64 contact solve uses this projected value; it does not
+reconstruct the precision that was discarded earlier. This is why
+<code class="docutils literal notranslate"><span class="pre">approx64</span></code> is the right comparison point when isolating the effect of
+<code class="docutils literal notranslate"><span class="pre">approx32</span></code>’s mixed-precision path.</p>
+</dd>
+</dl>
+</section>
+<section id="line-search">
+<h2>Line Search<a class="headerlink" href="#line-search" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">line_search_variant</span></code> is separate from <code class="docutils literal notranslate"><span class="pre">contact_preset_variant</span></code>. It controls
+how the contact solve accepts a Newton step after the preset has chosen the
+contact weights, contact point mode, precision path, and integration mode.</p>
+<p>The common one-dimensional problem is</p>
+<div class="math notranslate nohighlight">
+\[H_k d_k = -\nabla\ell(v_k),
+\qquad
+\varphi_k(\alpha)=\ell(v_k+\alpha d_k),
+\qquad
+v_{k+1}=v_k+\alpha d_k.\]</div>
+<p>The line search evaluates the SAP objective along <span class="math notranslate nohighlight">\(\varphi_k\)</span>, including
+the nonlinear contact, drive, and limit regularizers at the trial velocity.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">monotone_decay</span></code></dt><dd><p>Conservative default. It tests <span class="math notranslate nohighlight">\(\alpha=1,\frac{1}{2},\frac{1}{4},\ldots\)</span>
+and accepts the first candidate satisfying</p>
+<div class="math notranslate nohighlight">
+\[\varphi_k(\alpha)
+\le
+\varphi_k(0)
++ 10^{-14}
++ 10^{-12}|\varphi_k(0)|.\]</div>
+<p>It is the cheapest and most predictable path because it needs only trial
+costs and a fixed geometric decay.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">armijo_decay</span></code></dt><dd><p>Armijo-style backtracking controlled by <code class="docutils literal notranslate"><span class="pre">armijo_c</span></code>, <code class="docutils literal notranslate"><span class="pre">rho</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">line_search_relative_slop</span></code>. It first probes
+<span class="math notranslate nohighlight">\(\alpha_{\max}=1/\rho\)</span> and can accept that over-relaxed step if the
+line derivative is still negative or only slightly positive within the slop.
+If not, it tests <span class="math notranslate nohighlight">\(1,\rho,\rho^2,\ldots\)</span>. The sufficient-decrease test is</p>
+<div class="math notranslate nohighlight">
+\[\varphi_k(\alpha)
+\le
+\varphi_k(0) + c\,\alpha\,\varphi_k'(0).\]</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exact_root</span></code></dt><dd><p>Root-search variant. It brackets the stationary point on
+<span class="math notranslate nohighlight">\(0\le\alpha\le1.5\)</span> and solves</p>
+<div class="math notranslate nohighlight">
+\[\varphi_k'(\alpha)
+=
+\frac{d}{d\alpha}\ell(v_k+\alpha d_k)
+=
+0.\]</div>
+<p>It uses Newton updates when they stay inside the bracket and bisection when
+they do not. If the default maximum line-search count is still <code class="docutils literal notranslate"><span class="pre">40</span></code>, the
+solver raises it to <code class="docutils literal notranslate"><span class="pre">100</span></code> for this variant.</p>
+</dd>
+</dl>
+<p>Convergence controls include <code class="docutils literal notranslate"><span class="pre">max_iterations</span></code>, <code class="docutils literal notranslate"><span class="pre">optimality_abs_tol</span></code>,
+<code class="docutils literal notranslate"><span class="pre">optimality_rel_tol</span></code>, <code class="docutils literal notranslate"><span class="pre">cost_abs_tol</span></code>, <code class="docutils literal notranslate"><span class="pre">cost_rel_tol</span></code>,
+<code class="docutils literal notranslate"><span class="pre">line_search_max_iterations</span></code>, and <code class="docutils literal notranslate"><span class="pre">line_search_relative_slop</span></code>. The solver
+also exposes <code class="docutils literal notranslate"><span class="pre">last_line_search_iterations</span></code> for profiling accepted steps.</p>
+</section>
+<section id="objective-summary">
+<h2>Objective Summary<a class="headerlink" href="#objective-summary" title="Link to this heading">#</a></h2>
+<p>SAP advances in two stages. First, free motion predicts the unconstrained
+velocity <code class="docutils literal notranslate"><span class="pre">v_star</span></code>. Second, the solver minimizes a convex velocity objective
+that keeps the solution close to free motion in the dynamics metric while
+adding smooth terms for contact, friction, actuation, joint drives, and limits.</p>
+</section>
+<section id="solver-configuration-and-presets">
+<h2>Solver Configuration and Presets<a class="headerlink" href="#solver-configuration-and-presets" title="Link to this heading">#</a></h2>
+<p>The solver surface is <a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolverSAP</span></code></a>. It requires a
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.html#sim.sap_runtime.SapModel" title="sim.sap_runtime.SapModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapModel</span></code></a> with articulated joint DOFs and does not
+support gradient states. <code class="docutils literal notranslate"><span class="pre">benchmark.py</span></code> constructs it directly from the
+loaded scene:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">SolverSAP</span><span class="p">(</span>
+    <span class="n">loaded</span><span class="o">.</span><span class="n">sap_model</span><span class="p">,</span>
+    <span class="n">max_rigid_contact</span><span class="o">=</span><span class="n">max_rigid_contact</span><span class="p">,</span>
+    <span class="n">contact_tau_d</span><span class="o">=</span><span class="n">scene_default_shape_tau</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">simulation_solver_kwargs</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<section id="pipeline">
+<h3>Pipeline<a class="headerlink" href="#pipeline" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> performs four stages:</p>
+<ol class="arabic simple">
+<li><p>Convert public boundary state/control arrays into the solver’s SAP ordering
+when needed.</p></li>
+<li><p>Run free motion through <a class="reference internal" href="../api/_generated/sim.free_motion.SapFreeMotion.html#sim.free_motion.SapFreeMotion" title="sim.free_motion.SapFreeMotion"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapFreeMotion</span></code></a>.</p></li>
+<li><p>Build contact Jacobians and per-environment dynamics matrices through
+<a class="reference internal" href="../api/_generated/sim.contact_jacobian.SapContactJacobian.html#sim.contact_jacobian.SapContactJacobian" title="sim.contact_jacobian.SapContactJacobian"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapContactJacobian</span></code></a>.</p></li>
+<li><p>Solve the stage-2 SAP velocity problem through
+<a class="reference internal" href="../api/_generated/sim.contact_solve.SapContactSolve.html#sim.contact_solve.SapContactSolve" title="sim.contact_solve.SapContactSolve"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapContactSolve</span></code></a> and integrate <code class="docutils literal notranslate"><span class="pre">state_out</span></code>.</p></li>
+</ol>
+<p>Collision generation is separate. The caller is expected to run
+<a class="reference internal" href="../api/_generated/sim.collision.pipeline.SapCollisionPipeline.collide.html#sim.collision.pipeline.SapCollisionPipeline.collide" title="sim.collision.pipeline.SapCollisionPipeline.collide"><code class="xref py py-meth docutils literal notranslate"><span class="pre">collide()</span></code></a> and pass the
+resulting contacts into <a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p>
+</section>
+<section id="blocked-cholesky">
+<h3>Blocked Cholesky<a class="headerlink" href="#blocked-cholesky" title="Link to this heading">#</a></h3>
+<p>The blocked Cholesky kernels used for the Newton direction are based on
+<a class="reference external" href="https://github.com/NVIDIA/warp/blob/main/warp/examples/tile/example_tile_block_cholesky.py">NVIDIA Warp’s tile blocked-Cholesky example</a>
+code and adapted for SAP Warp’s batched, masked, and multi-right-hand-side
+contact solve paths. The surrounding solver assembly, precision switches, and
+contact objective are SAP Warp code.</p>
+</section>
+<section id="contact-presets">
+<h3>Contact Presets<a class="headerlink" href="#contact-presets" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">contact_preset_variant</span></code> chooses a coherent numerical discretization of the
+same SAP timestep. It is best read as a small experimental design: each preset
+selects the precision used by the free-motion and contact stages, the formula
+used for the effective contact weight, the point at which the contact Jacobian
+is evaluated, and the map that integrates the solved velocity back to
+generalized position.</p>
+<p>All presets still assemble a stage-2 velocity objective of the form</p>
+<div class="math notranslate nohighlight">
+\[\ell_P(v)
+=
+\frac{1}{2}(v - v^*_P)^T A_P (v - v^*_P)
++ \sum_{i=1}^{n_c} \ell_i(J_{i,P} v;\, w_{i,P}, \mu_i, k_i, \tau_i)
++ \ell_{\mathrm{act},P}(v)
++ \ell_{\mathrm{drive},P}(v)
++ \ell_{\mathrm{limit},P}(v),\]</div>
+<p>where <span class="math notranslate nohighlight">\(P\)</span> denotes the selected preset. The minimizer is then integrated by
+the preset’s position map:</p>
+<div class="math notranslate nohighlight">
+\[v_{n+1}^{(P)} = \arg\min_v \ell_P(v),
+\qquad
+q_{n+1}^{(P)} = \Phi_P(q_n, v_n, v_{n+1}^{(P)}, h).\]</div>
+<p>Thus <code class="docutils literal notranslate"><span class="pre">approx32</span></code>, <code class="docutils literal notranslate"><span class="pre">approx64</span></code>, and <code class="docutils literal notranslate"><span class="pre">drake</span></code> are not different contact laws.
+They are different approximations to the same discrete variational problem. The
+important question is which quantities in <span class="math notranslate nohighlight">\(\ell_P\)</span> are evaluated cheaply,
+which are evaluated in reference precision, and which geometric point defines
+the relative contact velocity.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Preset</p></th>
+<th class="head"><p>Intent</p></th>
+<th class="head"><p>Precision path</p></th>
+<th class="head"><p>Contact modes</p></th>
+<th class="head"><p>Integration</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">approx32</span></code></p></td>
+<td><p>Fast mixed-precision default for large batches.</p></td>
+<td><p>f32 boundary pose, fp32 free motion, fp64 contact solve, fp32 linear
+solve, fp32 contact weights.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">body_inertia</span></code> contact weights with <code class="docutils literal notranslate"><span class="pre">witness_point</span></code> contact points.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">midpoint</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">approx64</span></code></p></td>
+<td><p>Precision ablation of the approximate path.</p></td>
+<td><p>f64 boundary pose, fp64 free motion, fp64 contact solve, fp64 linear
+solve, fp64 contact weights.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">body_inertia</span></code> contact weights with <code class="docutils literal notranslate"><span class="pre">witness_point</span></code> contact points.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">midpoint</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">drake</span></code></p></td>
+<td><p>Drake-style reference mapping for the rigid-contact path.</p></td>
+<td><p>f64 boundary pose, fp64 free motion, fp64 contact solve, fp64 linear
+solve, fp64 contact weights.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">diag_delassus</span></code> contact weights with <code class="docutils literal notranslate"><span class="pre">contact_midpoint</span></code> contact
+points.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sap_euler</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If omitted, <a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolverSAP</span></code></a> uses <code class="docutils literal notranslate"><span class="pre">approx32</span></code>.
+<code class="docutils literal notranslate"><span class="pre">approx_32</span></code>/<code class="docutils literal notranslate"><span class="pre">approx-32</span></code> and <code class="docutils literal notranslate"><span class="pre">approx_64</span></code>/<code class="docutils literal notranslate"><span class="pre">approx-64</span></code> are normalized to
+<code class="docutils literal notranslate"><span class="pre">approx32</span></code> and <code class="docutils literal notranslate"><span class="pre">approx64</span></code>.</p>
+<section id="preset-matrix">
+<h4>Preset Matrix<a class="headerlink" href="#preset-matrix" title="Link to this heading">#</a></h4>
+<p>The table above is compact. The following matrix is the more useful way to
+read the implementation. Each row names a mathematical object in the objective
+and shows how the presets choose it.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Object</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">approx32</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">approx64</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">drake</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Boundary pose used during contact preparation</p></td>
+<td><p>Public pose converted through the f32 path.</p></td>
+<td><p>Boundary pose promoted to f64.</p></td>
+<td><p>Boundary pose promoted to f64.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Free-motion solve <span class="math notranslate nohighlight">\(v^*_P\)</span></p></td>
+<td><p>fp32 linear algebra.</p></td>
+<td><p>fp64 linear algebra.</p></td>
+<td><p>fp64 linear algebra.</p></td>
+</tr>
+<tr class="row-even"><td><p>Contact objective buffers</p></td>
+<td><p>fp64 scalar objective and derivative buffers.</p></td>
+<td><p>fp64 scalar objective and derivative buffers.</p></td>
+<td><p>fp64 scalar objective and derivative buffers.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Newton linear solve <span class="math notranslate nohighlight">\(H_k d_k=-\nabla\ell(v_k)\)</span></p></td>
+<td><p>fp32 blocked Cholesky path.</p></td>
+<td><p>fp64 blocked Cholesky path.</p></td>
+<td><p>fp64 blocked Cholesky path.</p></td>
+</tr>
+<tr class="row-even"><td><p>Effective contact weight <span class="math notranslate nohighlight">\(w_{i,P}\)</span></p></td>
+<td><p>fp32 body-inertia estimate.</p></td>
+<td><p>fp64 body-inertia estimate.</p></td>
+<td><p>fp64 diagonal-Delassus estimate.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contact Jacobian <span class="math notranslate nohighlight">\(J_{i,P}\)</span></p></td>
+<td><p>Relative velocity at the two collision witnesses.</p></td>
+<td><p>Relative velocity at the two collision witnesses.</p></td>
+<td><p>Relative velocity at a stiffness-weighted contact midpoint.</p></td>
+</tr>
+<tr class="row-even"><td><p>Position map <span class="math notranslate nohighlight">\(\Phi_P\)</span></p></td>
+<td><p>Midpoint velocity integration.</p></td>
+<td><p>Midpoint velocity integration.</p></td>
+<td><p>SAP Euler integration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This layout gives the presets a useful interpretation:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">approx32</span></code></dt><dd><p>Optimizes throughput and memory traffic while keeping the contact objective
+itself in fp64. It is the default because large replicated worlds are often
+limited by the free-motion path, contact-weight preparation, and the contact
+Newton linear solve.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">approx64</span></code></dt><dd><p>Keeps the approximate geometry and weight model but removes the deliberate
+fp32 choices. In practice it is the preset to use when a scene behaves
+differently under <code class="docutils literal notranslate"><span class="pre">approx32</span></code> and you want to know whether the difference is
+primarily numerical precision or the approximate contact model.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">drake</span></code></dt><dd><p>Uses the Drake-style rigid-contact discretization: f64 throughout the SAP
+path, a Delassus-based effective weight, midpoint contact geometry, and SAP
+Euler position integration. This is the preset to use when comparing against
+a reference SAP formulation or when stiff contact stacks are more important
+than maximum throughput.</p>
+</dd>
+</dl>
+<p>The contact solve accepts explicit keyword overrides after the preset has been
+expanded. For example, using <code class="docutils literal notranslate"><span class="pre">contact_preset_variant=&quot;approx64&quot;</span></code> and then
+setting <code class="docutils literal notranslate"><span class="pre">contact_weight_mode=&quot;diag_delassus&quot;</span></code> creates a single-mode
+experiment: precision and integration stay approximate-family, while the weight
+model changes.</p>
+</section>
+<section id="approx32">
+<h4>Approx32<a class="headerlink" href="#approx32" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">approx32</span></code> is the fast approximate member of the family. It chooses the
+body-inertia contact weight, witness-point contact Jacobian, midpoint position
+integration, fp32 free motion, fp32 contact weights, and an fp32 Newton linear
+solve. The scalar contact objective still runs in fp64, so the contact
+potential, gradient, and Hessian contributions are evaluated in the same scalar
+precision as the other presets once the approximate data have been assembled.</p>
+<p>For a contact <span class="math notranslate nohighlight">\(i\)</span>, let
+<span class="math notranslate nohighlight">\(C_i=\{c_{t1},c_{t2},c_n\}\)</span> be the orthonormal contact frame in world
+coordinates. For body <span class="math notranslate nohighlight">\(b\)</span>, contact witness <span class="math notranslate nohighlight">\(x_b\)</span>, center of mass
+<span class="math notranslate nohighlight">\(o_b\)</span>, world rotation <span class="math notranslate nohighlight">\(R_b\)</span>, mass <span class="math notranslate nohighlight">\(m_b\)</span>, and diagonal body
+inertia <span class="math notranslate nohighlight">\(I_b\)</span>, the directional body mobility used by the implementation
+is</p>
+<div class="math notranslate nohighlight">
+\[\omega_b(c)
+=
+\frac{1}{m_b}
++
+\left(R_b^T ((x_b-o_b)\times c)\right)^T
+I_b^{-1}
+\left(R_b^T ((x_b-o_b)\times c)\right).\]</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">body_inertia</span></code> weight averages these directional mobilities over the two
+tangent axes and the normal axis:</p>
+<div class="math notranslate nohighlight">
+\[w_i^{\mathrm{body}}
+=
+\max\left(
+   \frac{1}{3}
+   \sum_{c\in C_i}
+   \sum_{b\in\{0,1\}\cap \mathrm{dynamic}}
+   \omega_b(c),
+   \epsilon
+\right),
+\qquad
+\epsilon=10^{-12}.\]</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">approx32</span></code> this expression is evaluated through the fp32 path before being
+stored in the fp64 contact buffers. The approximation is intentionally local:
+it uses the inertia of the bodies that own the two shapes and the contact
+lever arms, but it does not apply the articulated dynamics matrix
+<span class="math notranslate nohighlight">\(A_P^{-1}\)</span> to the full contact Jacobian. This saves the per-contact
+matrix traversal used by the Delassus path.</p>
+<p>The contact Jacobian is evaluated at the witness points produced by collision:</p>
+<div class="math notranslate nohighlight">
+\[J_i^{\mathrm{wit}} v
+=
+R_{WC}^T
+\left[
+   V_1(x_1;v) - V_0(x_0;v)
+\right],\]</div>
+<p>where <span class="math notranslate nohighlight">\(R_{WC}\)</span> maps world velocity into the contact frame and
+<span class="math notranslate nohighlight">\(V_b(x;v)\)</span> is the world velocity of body <span class="math notranslate nohighlight">\(b\)</span> at point <span class="math notranslate nohighlight">\(x\)</span>.
+When the two witnesses are separated by a small positive gap, this measures
+relative velocity at the actual pair of geometric witnesses rather than first
+collapsing them to a common point. That is why the preset is called
+<code class="docutils literal notranslate"><span class="pre">approx</span></code>: the solve is still a SAP solve, but the contact metric and contact
+geometry are less globally coupled than the Drake-style path.</p>
+<p>After the velocity solve, position integration uses a midpoint velocity:</p>
+<div class="math notranslate nohighlight">
+\[\bar v = \frac{v_n + v_{n+1}}{2},
+\qquad
+q_{n+1} = \Phi_{\mathrm{mid}}(q_n,\bar v,h).\]</div>
+<p>For scalar joints this is the familiar
+<span class="math notranslate nohighlight">\(q_{n+1}=q_n+h\bar v\)</span>. For quaternion joints the implementation applies
+the corresponding midpoint angular increment and normalizes the result. This
+choice is useful for the approximate presets because it damps some visual
+discrepancy between the explicit state <span class="math notranslate nohighlight">\(q_n\)</span> and the solved velocity
+<span class="math notranslate nohighlight">\(v_{n+1}\)</span> when the free-motion path is intentionally lightweight.</p>
+</section>
+<section id="approx64">
+<h4>Approx64<a class="headerlink" href="#approx64" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">approx64</span></code> keeps the same mathematical approximations as <code class="docutils literal notranslate"><span class="pre">approx32</span></code> but
+changes the numerical precision of the path:</p>
+<div class="math notranslate nohighlight">
+\[J_i^{(\mathrm{approx64})} = J_i^{\mathrm{wit}},
+\qquad
+w_i^{(\mathrm{approx64})} = w_i^{\mathrm{body}},
+\qquad
+\Phi_{\mathrm{approx64}} = \Phi_{\mathrm{mid}}.\]</div>
+<p>The important difference is that boundary pose preparation, free motion,
+contact-weight evaluation, the stage-2 scalar buffers, and the blocked Newton
+linear solve all use fp64. This makes <code class="docutils literal notranslate"><span class="pre">approx64</span></code> the cleanest diagnostic
+preset. If</p>
+<div class="math notranslate nohighlight">
+\[\Delta v_{\mathrm{round}}
+=
+\|v_{n+1}^{(\mathrm{approx64})}
+  - v_{n+1}^{(\mathrm{approx32})}\|\]</div>
+<p>is small for a scene, then the approximate-family choices
+<code class="docutils literal notranslate"><span class="pre">body_inertia</span></code>/<code class="docutils literal notranslate"><span class="pre">witness_point</span></code>/<code class="docutils literal notranslate"><span class="pre">midpoint</span></code> dominate the behavior relative
+to <code class="docutils literal notranslate"><span class="pre">drake</span></code>. If <span class="math notranslate nohighlight">\(\Delta v_{\mathrm{round}}\)</span> is large, the scene is
+sensitive to fp32 free motion, fp32 contact weights, or the fp32 Newton linear
+solve. The preset is therefore useful even when it is not the intended runtime
+default: it separates floating-point sensitivity from modeling sensitivity.</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">approx64</span></code> still uses witness points, its contact Jacobian has the
+same geometric support as <code class="docutils literal notranslate"><span class="pre">approx32</span></code>. Because it still uses body-inertia
+weights, its effective contact metric remains local to the contacted bodies.
+The preset should therefore not be interpreted as “Drake in fp64”; it is the
+high-precision version of the approximate implementation.</p>
+</section>
+<section id="drake">
+<h4>Drake<a class="headerlink" href="#drake" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">drake</span></code> selects the reference-style rigid-contact path. It keeps the solver
+data in fp64, evaluates the contact Jacobian at a single contact point, computes
+the effective weight from a Delassus-style matrix, and integrates position with
+the SAP Euler map.</p>
+<p>For each contact, the implementation forms a diagonal Delassus estimate from
+the assembled per-environment dynamics matrix:</p>
+<div class="math notranslate nohighlight">
+\[\widehat W_i
+=
+J_i\,\mathrm{diag}(A_P)^{-1}J_i^T,
+\qquad
+w_i^{\mathrm{delassus}}
+=
+\max\left(\frac{\|\widehat W_i\|_F}{3}, \epsilon\right),
+\qquad
+\epsilon=10^{-12}.\]</div>
+<p>The use of <span class="math notranslate nohighlight">\(\mathrm{diag}(A_P)^{-1}\)</span> is an implementation choice: it
+captures the scale of the contact-space mobility while avoiding a dense solve
+for every candidate contact. Compared with <code class="docutils literal notranslate"><span class="pre">body_inertia</span></code>, this weight sees
+the contact Jacobian and the assembled generalized dynamics metric, so the
+regularization in <span class="math notranslate nohighlight">\(\ell_i\)</span> is tied more directly to the velocity unknowns
+used by the Newton system.</p>
+<p>The contact point is a stiffness-weighted midpoint of the two collision
+witnesses:</p>
+<div class="math notranslate nohighlight">
+\[p_C
+=
+\alpha_0 x_0 + \alpha_1 x_1,
+\qquad
+\alpha_0 = \frac{k_0}{k_0+k_1},
+\qquad
+\alpha_1 = \frac{k_1}{k_0+k_1},\]</div>
+<p>with <span class="math notranslate nohighlight">\(\alpha_0=\alpha_1=\frac{1}{2}\)</span> when the denominator is zero. The
+Jacobian then measures both body velocities at <span class="math notranslate nohighlight">\(p_C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[J_i^{\mathrm{mid}} v
+=
+R_{WC}^T
+\left[
+   V_1(p_C;v) - V_0(p_C;v)
+\right].\]</div>
+<p>This is closer to the usual point-contact abstraction: the normal gap still
+comes from the collision witnesses and margins, but the velocity constraint is
+represented at one shared contact point. For stiff contacts this tends to make
+the local contact model and the generalized dynamics metric agree more closely.</p>
+<p>Finally, SAP Euler integration advances positions using the solved velocity:</p>
+<div class="math notranslate nohighlight">
+\[q_{n+1}
+=
+\Phi_{\mathrm{sap}}(q_n, v_{n+1}, h),\]</div>
+<p>which reduces to <span class="math notranslate nohighlight">\(q_{n+1}=q_n+h\,v_{n+1}\)</span> for scalar coordinates and uses
+the corresponding SAP quaternion update for rotational coordinates. The result
+is a preset whose contact geometry, weight metric, and integration rule match
+the intended Drake-style SAP discretization more closely than the approximate
+presets.</p>
+</section>
+<section id="mode-variants">
+<h4>Mode Variants<a class="headerlink" href="#mode-variants" title="Link to this heading">#</a></h4>
+<p>Each preset is assembled from four independent mode families. Reading them
+individually is useful when you override one constructor keyword at a time.</p>
+<section id="contact-weight-mode">
+<h5>Contact Weight Mode<a class="headerlink" href="#contact-weight-mode" title="Link to this heading">#</a></h5>
+<p>The effective contact weight <span class="math notranslate nohighlight">\(w_i\)</span> scales the smooth contact potential
+for contact <span class="math notranslate nohighlight">\(i\)</span>. In the Newton system it appears through the contact
+gradient and Hessian terms</p>
+<div class="math notranslate nohighlight">
+\[\nabla\ell_i(v) = J_i^T g_i(J_i v;w_i),
+\qquad
+\nabla^2\ell_i(v) = J_i^T G_i(J_i v;w_i)J_i.\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">body_inertia</span></code> is local and cheap. It computes <span class="math notranslate nohighlight">\(w_i\)</span> from body masses,
+body-frame diagonal inertias, contact-frame directions, and witness lever arms,
+using the average formula shown in the <code class="docutils literal notranslate"><span class="pre">approx32</span></code> section. It is selected by
+<code class="docutils literal notranslate"><span class="pre">approx32</span></code> and <code class="docutils literal notranslate"><span class="pre">approx64</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">diag_delassus</span></code> is dynamics-aware. It first assembles the contact Jacobian
+and the per-environment dynamics matrix, then estimates a contact-space
+Delassus matrix with <span class="math notranslate nohighlight">\(\mathrm{diag}(A)^{-1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\widehat W_i
+=
+J_i\,\mathrm{diag}(A)^{-1}J_i^T,
+\qquad
+w_i
+=
+\max\left(\frac{\|\widehat W_i\|_F}{3},10^{-12}\right).\]</div>
+<p>It is selected by <code class="docutils literal notranslate"><span class="pre">drake</span></code>.</p>
+</section>
+<section id="contact-point-mode">
+<h5>Contact Point Mode<a class="headerlink" href="#contact-point-mode" title="Link to this heading">#</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">contact_point_mode</span></code> selects where the relative velocity in <span class="math notranslate nohighlight">\(J_i v\)</span> is
+measured. The collision record always stores two witness points <span class="math notranslate nohighlight">\(x_0\)</span> and
+<span class="math notranslate nohighlight">\(x_1\)</span>, a normal, two margins, and material data. The mode only changes
+the velocity point used by the Jacobian.</p>
+<p><code class="docutils literal notranslate"><span class="pre">witness_point</span></code> evaluates the velocity of each body at its own witness:</p>
+<div class="math notranslate nohighlight">
+\[J_i v = R_{WC}^T\{V_1(x_1;v)-V_0(x_0;v)\}.\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">contact_midpoint</span></code> first computes <span class="math notranslate nohighlight">\(p_C\)</span> and evaluates both velocities
+there:</p>
+<div class="math notranslate nohighlight">
+\[p_C = \alpha_0 x_0+\alpha_1 x_1,
+\qquad
+J_i v = R_{WC}^T\{V_1(p_C;v)-V_0(p_C;v)\}.\]</div>
+<p>The midpoint mode is paired with the Delassus weight in <code class="docutils literal notranslate"><span class="pre">drake</span></code> because both
+choices make the contact term depend on a single contact-space velocity
+measured against the assembled generalized dynamics.</p>
+</section>
+<section id="position-integration-mode">
+<h5>Position Integration Mode<a class="headerlink" href="#position-integration-mode" title="Link to this heading">#</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">position_integration</span></code> is applied after the velocity solve. It does not
+change the minimization problem already solved for <span class="math notranslate nohighlight">\(v_{n+1}\)</span>, but it
+does change the next configuration used by collision and free motion.</p>
+<p><code class="docutils literal notranslate"><span class="pre">midpoint</span></code> uses the average of the incoming SAP velocity and the solved SAP
+velocity:</p>
+<div class="math notranslate nohighlight">
+\[\bar v = \frac{v_n+v_{n+1}}{2},
+\qquad
+q_{n+1} = \Phi_{\mathrm{mid}}(q_n,\bar v,h).\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">sap_euler</span></code> uses the solved velocity directly:</p>
+<div class="math notranslate nohighlight">
+\[q_{n+1} = \Phi_{\mathrm{sap}}(q_n,v_{n+1},h).\]</div>
+</section>
+<section id="precision-modes">
+<h5>Precision Modes<a class="headerlink" href="#precision-modes" title="Link to this heading">#</a></h5>
+<p>The precision knobs choose where fp32/fp64 arrays enter the preset. They do not
+rename the physical model; they change the floating-point realization of the
+same equations.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Knob</p></th>
+<th class="head"><p>Mathematical object</p></th>
+<th class="head"><p>What changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">free_motion_solve_precision</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(v^*_P\)</span> and the dynamics data prepared by free motion.</p></td>
+<td><p>Precision of the linear algebra used before contacts are applied.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">contact_solve_precision</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(\nabla \ell\)</span>, <span class="math notranslate nohighlight">\(H\)</span></p></td>
+<td><p>Scalar precision used by the stage-2 Newton solve.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">contact_linear_solve_precision</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(H d = -\nabla \ell\)</span></p></td>
+<td><p>Precision of the blocked Cholesky linear solve for the Newton direction.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sap_contact_weight_precision</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(w_i\)</span></p></td>
+<td><p>Precision used to compute the effective contact weight.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">contact_weight_mode</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(w_i\)</span></p></td>
+<td><p>Formula used for the scalar effective weight in contact regularization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">contact_point_mode</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(J_i\)</span></p></td>
+<td><p>Point where the contact Jacobian measures relative velocity.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">position_integration</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(q_{n+1}\)</span></p></td>
+<td><p>Formula used to integrate positions after <span class="math notranslate nohighlight">\(v_{n+1}\)</span> is solved.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="precision-knobs">
+<h4>Precision Knobs<a class="headerlink" href="#precision-knobs" title="Link to this heading">#</a></h4>
+<p>Each preset can be overridden with explicit constructor kwargs. These are the
+same knobs described above, exposed directly for controlled comparisons:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">free_motion_solve_precision</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">fp32</span></code>/<code class="docutils literal notranslate"><span class="pre">f32</span></code> or <code class="docutils literal notranslate"><span class="pre">fp64</span></code>/<code class="docutils literal notranslate"><span class="pre">f64</span></code> for the free-motion solve that prepares
+<span class="math notranslate nohighlight">\(v^*_P\)</span>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">contact_solve_precision</span></code></dt><dd><p>Scalar dtype used by the stage-2 contact objective buffers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">contact_linear_solve_precision</span></code></dt><dd><p>Linear solve dtype used by the blocked Cholesky path for
+<span class="math notranslate nohighlight">\(H_k d_k=-\nabla\ell(v_k)\)</span>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sap_contact_weight_precision</span></code></dt><dd><p>Precision used while computing <span class="math notranslate nohighlight">\(w_i\)</span>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">use_f64_boundary_pose</span></code></dt><dd><p>Convert boundary poses to f64 for contact preparation.</p>
+</dd>
+</dl>
+<p>When a value is computed through fp32 and later stored in an fp64 buffer, it is
+useful to think of a projection</p>
+<div class="math notranslate nohighlight">
+\[x^{(32\rightarrow64)} = \mathrm{cast}_{64}(\mathrm{fl}_{32}(x)).\]</div>
+<p>The subsequent fp64 contact solve cannot recover information lost by the
+earlier projection. This is the main distinction between <code class="docutils literal notranslate"><span class="pre">approx32</span></code> and
+<code class="docutils literal notranslate"><span class="pre">approx64</span></code>.</p>
+</section>
+</section>
+<section id="contact-capacity">
+<h3>Contact Capacity<a class="headerlink" href="#contact-capacity" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">max_rigid_contact</span></code> is the per-world contact capacity used by
+<a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.html#sim.solver_sap.SolverSAP" title="sim.solver_sap.SolverSAP"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolverSAP</span></code></a> and its env-local contact buffers.
+<code class="docutils literal notranslate"><span class="pre">benchmark.py</span></code> reads
+<code class="docutils literal notranslate"><span class="pre">simulation.max_rigid_contact</span></code> as this per-env cap, then sizes the flat
+<a class="reference internal" href="../api/_generated/sim.collision.pipeline.SapCollisionPipeline.html#sim.collision.pipeline.SapCollisionPipeline" title="sim.collision.pipeline.SapCollisionPipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapCollisionPipeline</span></code></a> contact buffer as
+<code class="docutils literal notranslate"><span class="pre">simulation.max_rigid_contact</span> <span class="pre">*</span> <span class="pre">num_worlds</span></code>.</p>
+<p>If generated contacts exceed capacity, the extra contacts are dropped and
+<code class="docutils literal notranslate"><span class="pre">solver.last_truncated_contact_count</span></code> records the truncated count reported by
+<a class="reference internal" href="../api/_generated/sim.contact_jacobian.SapContactJacobian.html#sim.contact_jacobian.SapContactJacobian" title="sim.contact_jacobian.SapContactJacobian"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapContactJacobian</span></code></a>.</p>
+</section>
+<section id="id1">
+<h3>Line Search<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">line_search_variant</span></code> is independent from <code class="docutils literal notranslate"><span class="pre">contact_preset_variant</span></code>. A scene
+can use <code class="docutils literal notranslate"><span class="pre">contact_preset_variant=&quot;drake&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">line_search_variant=&quot;armijo_decay&quot;</span></code>,
+or an approximate preset with <code class="docutils literal notranslate"><span class="pre">exact_root</span></code>. The line search controls how the
+contact solve accepts a Newton direction after the stage-2 objective has been
+assembled.</p>
+<p>At Newton iteration <span class="math notranslate nohighlight">\(k\)</span>, define the one-dimensional objective</p>
+<div class="math notranslate nohighlight">
+\[\varphi_k(\alpha)
+=
+\ell(v_k+\alpha d_k).\]</div>
+<p>The Newton direction is computed from</p>
+<div class="math notranslate nohighlight">
+\[H_k d_k = -\nabla \ell(v_k),\]</div>
+<p>so a valid active Newton environment should have
+<span class="math notranslate nohighlight">\(\varphi_k'(0)=\nabla\ell(v_k)^Td_k&lt;0\)</span>. The line search chooses
+<span class="math notranslate nohighlight">\(\alpha\)</span> and commits</p>
+<div class="math notranslate nohighlight">
+\[v_{k+1} = v_k + \alpha d_k.\]</div>
+<p>The implementation evaluates the SAP cost along this line, not only a quadratic
+model. The dynamics term is updated from precomputed line coefficients,</p>
+<div class="math notranslate nohighlight">
+\[m_k(\alpha)
+=
+m_k(0)
++ \alpha\,m'_k(0)
++ \frac{1}{2}\alpha^2 m''_k,\]</div>
+<p>while contact, drive, and limit regularizers are recomputed at the trial
+velocity. This matters for contact because the SAP regularizers are smooth but
+nonlinear in <span class="math notranslate nohighlight">\(J_i(v_k+\alpha d_k)\)</span>.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">monotone_decay</span></code></dt><dd><p>Conservative default. It tries the sequence</p>
+<div class="math notranslate nohighlight">
+\[\alpha_j = 2^{-j},
+\qquad j=0,1,\ldots,\]</div>
+<p>and accepts the first candidate whose trial cost is monotone up to the
+fixed device-side relaxation</p>
+<div class="math notranslate nohighlight">
+\[\varphi_k(\alpha_j)
+\le
+\varphi_k(0)
++ 10^{-14}
++ 10^{-12}\,|\varphi_k(0)|.\]</div>
+<p>If the step falls below <span class="math notranslate nohighlight">\(10^{-8}\)</span> before satisfying the test, the
+line search reports a failure status for that environment. This variant does
+not use the directional slope in its acceptance rule, which makes it simple
+and cheap. It is the runtime default because it is stable for batched scenes
+and has predictable work: one fused kernel evaluates the candidate cost,
+accepts the step, and writes the committed velocity.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">armijo_decay</span></code></dt><dd><p>Armijo-style backtracking with an over-relaxed first probe. <code class="docutils literal notranslate"><span class="pre">rho</span></code> must lie
+in <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code> and <code class="docutils literal notranslate"><span class="pre">armijo_c</span></code> controls sufficient decrease. The first trial
+is</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{\max} = \frac{1}{\rho},\]</div>
+<p>so with the default <code class="docutils literal notranslate"><span class="pre">rho=0.8</span></code> the solver first tests
+<span class="math notranslate nohighlight">\(\alpha_{\max}=1.25\)</span>. If the derivative at that point is still
+negative, or only positive within the line-search slop, the over-relaxed
+step is accepted. Otherwise the candidate sequence becomes</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{\max},\; 1,\; \rho,\; \rho^2,\ldots .\]</div>
+<p>A candidate is accepted using the Armijo condition</p>
+<div class="math notranslate nohighlight">
+\[\varphi_k(\alpha)
+\le
+\varphi_k(0) + c\,\alpha\,\varphi_k'(0),\]</div>
+<p>together with a finite-difference slope check between consecutive candidate
+costs. If both the current and previous candidates satisfy Armijo near the
+bracketed turn in the line, the previous larger step can be selected. The
+<code class="docutils literal notranslate"><span class="pre">line_search_relative_slop</span></code> parameter defaults to
+<span class="math notranslate nohighlight">\(1000\,\epsilon_{\mathrm{dtype}}\)</span> and is scaled by the local cost
+magnitude before these near-flat tests are applied.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exact_root</span></code></dt><dd><p>Exact-root search path. If <code class="docutils literal notranslate"><span class="pre">line_search_max_iterations</span></code> is left at the
+constructor default <code class="docutils literal notranslate"><span class="pre">40</span></code>, the solver raises it to <code class="docutils literal notranslate"><span class="pre">100</span></code> for this variant.
+It searches for the stationary point of <span class="math notranslate nohighlight">\(\varphi_k\)</span> along the Newton
+direction:</p>
+<div class="math notranslate nohighlight">
+\[\varphi_k'(\alpha)
+=
+\frac{d}{d\alpha}\ell(v_k + \alpha d_k)
+=
+0.\]</div>
+<p>The search interval is</p>
+<div class="math notranslate nohighlight">
+\[0 \le \alpha \le \alpha_{\max},
+\qquad
+\alpha_{\max}=1.5.\]</div>
+<p>If <span class="math notranslate nohighlight">\(\varphi_k'(\alpha_{\max})\le 0\)</span>, the cost is still decreasing at
+the upper end and the solver accepts <span class="math notranslate nohighlight">\(\alpha_{\max}\)</span>. Otherwise it
+brackets the root between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\alpha_{\max}\)</span> and starts from
+the Newton estimate</p>
+<div class="math notranslate nohighlight">
+\[\alpha_0
+=
+\mathrm{clip}
+\left(
+   \frac{-\varphi_k'(0)}{\varphi_k''(\alpha_{\max})},
+   0,
+   \alpha_{\max}
+\right).\]</div>
+<p>Each iteration tries a Newton update, but falls back to bisection whenever
+the Newton point leaves the bracket, becomes non-finite, or is judged too
+slow. The normalized derivative tolerance is <span class="math notranslate nohighlight">\(10^{-8}\)</span>. This variant
+evaluates the trial derivative and second derivative, including contact
+Hessian terms, so it is more expensive than the decay variants. It is useful
+for solver comparisons and stiff scenes where the accepted step length is
+important enough to justify the additional work.</p>
+</dd>
+</dl>
+<p>Convergence and diagnostic controls:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">line_search_max_iterations</span></code></dt><dd><p>Maximum number of candidate line-search iterations. <code class="docutils literal notranslate"><span class="pre">exact_root</span></code> promotes
+the constructor default from <code class="docutils literal notranslate"><span class="pre">40</span></code> to <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">armijo_c</span></code> and <code class="docutils literal notranslate"><span class="pre">rho</span></code></dt><dd><p>Armijo sufficient-decrease coefficient and geometric decay factor for
+<code class="docutils literal notranslate"><span class="pre">armijo_decay</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">line_search_relative_slop</span></code></dt><dd><p>Near-flat tolerance used by the Armijo-style path. If unset, it is
+<span class="math notranslate nohighlight">\(1000\,\epsilon_{\mathrm{dtype}}\)</span>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cost_abs_tol</span></code> and <code class="docutils literal notranslate"><span class="pre">cost_rel_tol</span></code></dt><dd><p>Outer Newton cost-convergence tolerances. If unset, <code class="docutils literal notranslate"><span class="pre">monotone_decay</span></code> uses
+<code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">5.0e-3</span></code>; <code class="docutils literal notranslate"><span class="pre">armijo_decay</span></code> and <code class="docutils literal notranslate"><span class="pre">exact_root</span></code> use
+<code class="docutils literal notranslate"><span class="pre">1.0e-30</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0e-15</span></code>. <code class="docutils literal notranslate"><span class="pre">exact_root</span></code> also uses these values to accept
+a unit step when the initial directional decrease is already below the cost
+tolerance.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">last_line_search_iterations</span></code></dt><dd><p>The solver records the total accepted line-search iterations from the last
+step for profiling and comparisons.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timestep-pipeline">Timestep Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presets">Presets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preset-modes">Preset Modes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#line-search">Line Search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective-summary">Objective Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-configuration-and-presets">Solver Configuration and Presets</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline">Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blocked-cholesky">Blocked Cholesky</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contact-presets">Contact Presets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preset-matrix">Preset Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#approx32">Approx32</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#approx64">Approx64</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#drake">Drake</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mode-variants">Mode Variants</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#contact-weight-mode">Contact Weight Mode</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#contact-point-mode">Contact Point Mode</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#position-integration-mode">Position Integration Mode</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-modes">Precision Modes</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-knobs">Precision Knobs</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contact-capacity">Contact Capacity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Line Search</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

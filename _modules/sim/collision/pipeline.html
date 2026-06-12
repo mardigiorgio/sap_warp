@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sim.collision.pipeline &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/sim/collision/pipeline';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">sim.collision.pipeline</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for sim.collision.pipeline</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Collision pipeline that writes SAP contacts from Newton-compatible data.</span>
+
+<span class="sd">Source note: the SAP modifications in this module are based on Newton&#39;s</span>
+<span class="sd">collision pipeline code and adapted for SAP Warp contact buffers and solver</span>
+<span class="sd">boundaries.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeviceLike</span> <span class="k">as</span> <span class="n">SapDeviceLike</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.broad_phase_nxn</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapBroadPhaseAllPairs</span><span class="p">,</span> <span class="n">SapBroadPhaseExplicit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.broad_phase_sap</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapBroadPhaseSAP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.contact_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapContactData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.contacts</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapContacts</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">sap_compute_tight_aabb_from_support</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.narrow_phase</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapNarrowPhase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.support</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapGenericShapeData</span><span class="p">,</span> <span class="n">SapSupportMapDataProvider</span><span class="p">,</span> <span class="n">sap_pack_mesh_ptr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapGeoType</span>
+
+
+<span class="nd">@wp</span><span class="o">.</span><span class="n">struct</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapCollisionContactWriterData</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Warp struct passed to narrow-phase writers so contact kernels can append contacts into the</span>
+<span class="sd">    active SapContacts buffer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">contact_max</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">body_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+    <span class="n">shape_body</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">shape_gap</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">contact_count</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">out_shape0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">out_shape1</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">out_point0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+    <span class="n">out_point1</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+    <span class="n">out_offset0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+    <span class="n">out_offset1</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+    <span class="n">out_normal</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">)</span>
+    <span class="n">out_margin0</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">out_margin1</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">out_tids</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">out_stiffness</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">out_damping</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">out_friction</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+
+<span class="nd">@wp</span><span class="o">.</span><span class="n">func</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_write_contact</span><span class="p">(</span>
+    <span class="n">contact_data</span><span class="p">:</span> <span class="n">SapContactData</span><span class="p">,</span>
+    <span class="n">writer_data</span><span class="p">:</span> <span class="n">SapCollisionContactWriterData</span><span class="p">,</span>
+    <span class="n">output_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write one generated rigid contact into the output contact buffer with witness points, normal,</span>
+<span class="sd">    margins, and optional material values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total_separation_needed</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">contact_data</span><span class="o">.</span><span class="n">radius_eff_a</span> <span class="o">+</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">radius_eff_b</span> <span class="o">+</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">margin_a</span> <span class="o">+</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">margin_b</span>
+    <span class="p">)</span>
+
+    <span class="n">offset_mag_a</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">radius_eff_a</span> <span class="o">+</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">margin_a</span>
+    <span class="n">offset_mag_b</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">radius_eff_b</span> <span class="o">+</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">margin_b</span>
+
+    <span class="n">contact_normal_a_to_b</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">contact_data</span><span class="o">.</span><span class="n">contact_normal_a_to_b</span><span class="p">)</span>
+
+    <span class="n">a_contact_world</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">contact_point_center</span> <span class="o">-</span> <span class="n">contact_normal_a_to_b</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="mf">0.5</span> <span class="o">*</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">contact_distance</span> <span class="o">+</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">radius_eff_a</span>
+    <span class="p">)</span>
+    <span class="n">b_contact_world</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">contact_point_center</span> <span class="o">+</span> <span class="n">contact_normal_a_to_b</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="mf">0.5</span> <span class="o">*</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">contact_distance</span> <span class="o">+</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">radius_eff_b</span>
+    <span class="p">)</span>
+
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">b_contact_world</span> <span class="o">-</span> <span class="n">a_contact_world</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">contact_normal_a_to_b</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">-</span> <span class="n">total_separation_needed</span>
+
+    <span class="n">gap_a</span> <span class="o">=</span> <span class="n">writer_data</span><span class="o">.</span><span class="n">shape_gap</span><span class="p">[</span><span class="n">contact_data</span><span class="o">.</span><span class="n">shape_a</span><span class="p">]</span>
+    <span class="n">gap_b</span> <span class="o">=</span> <span class="n">writer_data</span><span class="o">.</span><span class="n">shape_gap</span><span class="p">[</span><span class="n">contact_data</span><span class="o">.</span><span class="n">shape_b</span><span class="p">]</span>
+    <span class="n">contact_gap</span> <span class="o">=</span> <span class="n">gap_a</span> <span class="o">+</span> <span class="n">gap_b</span>
+
+    <span class="n">index</span> <span class="o">=</span> <span class="n">output_index</span>
+
+    <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">contact_gap</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">atomic_add</span><span class="p">(</span><span class="n">writer_data</span><span class="o">.</span><span class="n">contact_count</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">writer_data</span><span class="o">.</span><span class="n">contact_max</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_shape0</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">shape_a</span>
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_shape1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">shape_b</span>
+
+    <span class="n">body0</span> <span class="o">=</span> <span class="n">writer_data</span><span class="o">.</span><span class="n">shape_body</span><span class="p">[</span><span class="n">contact_data</span><span class="o">.</span><span class="n">shape_a</span><span class="p">]</span>
+    <span class="n">body1</span> <span class="o">=</span> <span class="n">writer_data</span><span class="o">.</span><span class="n">shape_body</span><span class="p">[</span><span class="n">contact_data</span><span class="o">.</span><span class="n">shape_b</span><span class="p">]</span>
+
+    <span class="n">X_bw_a</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_identity</span><span class="p">()</span> <span class="k">if</span> <span class="n">body0</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_inverse</span><span class="p">(</span><span class="n">writer_data</span><span class="o">.</span><span class="n">body_q</span><span class="p">[</span><span class="n">body0</span><span class="p">])</span>
+    <span class="n">X_bw_b</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_identity</span><span class="p">()</span> <span class="k">if</span> <span class="n">body1</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_inverse</span><span class="p">(</span><span class="n">writer_data</span><span class="o">.</span><span class="n">body_q</span><span class="p">[</span><span class="n">body1</span><span class="p">])</span>
+
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_point0</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_point</span><span class="p">(</span><span class="n">X_bw_a</span><span class="p">,</span> <span class="n">a_contact_world</span><span class="p">)</span>
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_point1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_point</span><span class="p">(</span><span class="n">X_bw_b</span><span class="p">,</span> <span class="n">b_contact_world</span><span class="p">)</span>
+
+    <span class="n">contact_normal</span> <span class="o">=</span> <span class="n">contact_normal_a_to_b</span>
+
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_offset0</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_vector</span><span class="p">(</span><span class="n">X_bw_a</span><span class="p">,</span> <span class="n">offset_mag_a</span> <span class="o">*</span> <span class="n">contact_normal</span><span class="p">)</span>
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_offset1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_vector</span><span class="p">(</span><span class="n">X_bw_b</span><span class="p">,</span> <span class="o">-</span><span class="n">offset_mag_b</span> <span class="o">*</span> <span class="n">contact_normal</span><span class="p">)</span>
+
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_normal</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">contact_normal</span>
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_margin0</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">offset_mag_a</span>
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_margin1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">offset_mag_b</span>
+    <span class="n">writer_data</span><span class="o">.</span><span class="n">out_tids</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">writer_data</span><span class="o">.</span><span class="n">out_stiffness</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_stiffness</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">contact_stiffness</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_damping</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">contact_damping</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_friction</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">contact_data</span><span class="o">.</span><span class="n">contact_friction_scale</span>
+
+
+<span class="nd">@wp</span><span class="o">.</span><span class="n">kernel</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_compute_shape_aabbs</span><span class="p">(</span>
+    <span class="n">body_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">transform</span><span class="p">),</span>
+    <span class="n">shape_transform</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">transform</span><span class="p">),</span>
+    <span class="n">shape_body</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+    <span class="n">shape_type</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+    <span class="n">shape_scale</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">),</span>
+    <span class="n">shape_collision_radius</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">shape_source_ptr</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">uint64</span><span class="p">),</span>
+    <span class="n">shape_margin</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">shape_gap</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">aabb_lower</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">),</span>
+    <span class="n">aabb_upper</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">),</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute world-space shape AABBs from body poses, shape transforms, scales, margins, and geometry</span>
+<span class="sd">    metadata.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">shape_id</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">tid</span><span class="p">()</span>
+
+    <span class="n">rigid_id</span> <span class="o">=</span> <span class="n">shape_body</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span>
+    <span class="n">geo_type</span> <span class="o">=</span> <span class="n">shape_type</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">rigid_id</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">X_ws</span> <span class="o">=</span> <span class="n">shape_transform</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_ws</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_multiply</span><span class="p">(</span><span class="n">body_q</span><span class="p">[</span><span class="n">rigid_id</span><span class="p">],</span> <span class="n">shape_transform</span><span class="p">[</span><span class="n">shape_id</span><span class="p">])</span>
+
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_get_translation</span><span class="p">(</span><span class="n">X_ws</span><span class="p">)</span>
+    <span class="n">orientation</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_get_rotation</span><span class="p">(</span><span class="n">X_ws</span><span class="p">)</span>
+
+    <span class="n">effective_gap</span> <span class="o">=</span> <span class="n">shape_margin</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span> <span class="o">+</span> <span class="n">shape_gap</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span>
+    <span class="n">margin_vec</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">effective_gap</span><span class="p">,</span> <span class="n">effective_gap</span><span class="p">,</span> <span class="n">effective_gap</span><span class="p">)</span>
+
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">shape_scale</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span>
+    <span class="n">is_infinite_plane</span> <span class="o">=</span> <span class="p">(</span><span class="n">geo_type</span> <span class="o">==</span> <span class="n">SapGeoType</span><span class="o">.</span><span class="n">PLANE</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">is_mesh</span> <span class="o">=</span> <span class="n">geo_type</span> <span class="o">==</span> <span class="n">SapGeoType</span><span class="o">.</span><span class="n">MESH</span>
+    <span class="n">is_hfield</span> <span class="o">=</span> <span class="n">geo_type</span> <span class="o">==</span> <span class="n">SapGeoType</span><span class="o">.</span><span class="n">HFIELD</span>
+
+    <span class="k">if</span> <span class="n">is_infinite_plane</span> <span class="ow">or</span> <span class="n">is_mesh</span> <span class="ow">or</span> <span class="n">is_hfield</span><span class="p">:</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">shape_collision_radius</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span>
+        <span class="n">half_extents</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+        <span class="n">aabb_lower</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="n">half_extents</span> <span class="o">-</span> <span class="n">margin_vec</span>
+        <span class="n">aabb_upper</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">half_extents</span> <span class="o">+</span> <span class="n">margin_vec</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">shape_data</span> <span class="o">=</span> <span class="n">SapGenericShapeData</span><span class="p">()</span>
+        <span class="n">shape_data</span><span class="o">.</span><span class="n">shape_type</span> <span class="o">=</span> <span class="n">geo_type</span>
+        <span class="n">shape_data</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="n">shape_data</span><span class="o">.</span><span class="n">auxiliary</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">geo_type</span> <span class="o">==</span> <span class="n">SapGeoType</span><span class="o">.</span><span class="n">CONVEX_MESH</span><span class="p">:</span>
+            <span class="n">shape_data</span><span class="o">.</span><span class="n">auxiliary</span> <span class="o">=</span> <span class="n">sap_pack_mesh_ptr</span><span class="p">(</span><span class="n">shape_source_ptr</span><span class="p">[</span><span class="n">shape_id</span><span class="p">])</span>
+
+        <span class="n">data_provider</span> <span class="o">=</span> <span class="n">SapSupportMapDataProvider</span><span class="p">()</span>
+        <span class="n">aabb_min_world</span><span class="p">,</span> <span class="n">aabb_max_world</span> <span class="o">=</span> <span class="n">sap_compute_tight_aabb_from_support</span><span class="p">(</span>
+            <span class="n">shape_data</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">data_provider</span>
+        <span class="p">)</span>
+
+        <span class="n">aabb_lower</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">aabb_min_world</span> <span class="o">-</span> <span class="n">margin_vec</span>
+        <span class="n">aabb_upper</span><span class="p">[</span><span class="n">shape_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">aabb_max_world</span> <span class="o">+</span> <span class="n">margin_vec</span>
+
+
+<span class="nd">@wp</span><span class="o">.</span><span class="n">kernel</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_prepare_geom_data_kernel</span><span class="p">(</span>
+    <span class="n">shape_transform</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">transform</span><span class="p">),</span>
+    <span class="n">shape_body</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+    <span class="n">shape_type</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+    <span class="n">shape_scale</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">),</span>
+    <span class="n">shape_margin</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">body_q</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">transform</span><span class="p">),</span>
+    <span class="n">geom_data</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec4</span><span class="p">),</span>
+    <span class="n">geom_transform</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">transform</span><span class="p">),</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prepare per-shape geometry helper data used by broad-phase and narrow-phase collision kernels.&quot;&quot;&quot;</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">tid</span><span class="p">()</span>
+
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">shape_scale</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">margin</span> <span class="o">=</span> <span class="n">shape_margin</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">geom_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">vec4</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scale</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">margin</span><span class="p">)</span>
+
+    <span class="n">body_idx</span> <span class="o">=</span> <span class="n">shape_body</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">body_idx</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">geom_transform</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">transform_multiply</span><span class="p">(</span><span class="n">body_q</span><span class="p">[</span><span class="n">body_idx</span><span class="p">],</span> <span class="n">shape_transform</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">geom_transform</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">shape_transform</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="sap_estimate_rigid_contact_max">
+<a class="viewcode-back" href="../../../api/_generated/sim.collision.pipeline.sap_estimate_rigid_contact_max.html#sim.collision.pipeline.sap_estimate_rigid_contact_max">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_estimate_rigid_contact_max</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate a conservative rigid-contact capacity for a collision model when the caller did not</span>
+<span class="sd">    provide one.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_type&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1000</span>
+
+    <span class="n">shape_types</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_type</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+    <span class="n">primitive_cpp</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">mesh_cpp</span> <span class="o">=</span> <span class="mi">40</span>
+    <span class="n">max_neighbors_per_shape</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="n">mesh_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape_types</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">MESH</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">shape_types</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">HFIELD</span><span class="p">))</span>
+    <span class="n">plane_mask</span> <span class="o">=</span> <span class="n">shape_types</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">PLANE</span><span class="p">)</span>
+    <span class="n">non_plane_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">plane_mask</span>
+    <span class="n">num_meshes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">mesh_mask</span><span class="p">))</span>
+    <span class="n">num_non_planes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">non_plane_mask</span><span class="p">))</span>
+    <span class="n">num_primitives</span> <span class="o">=</span> <span class="n">num_non_planes</span> <span class="o">-</span> <span class="n">num_meshes</span>
+    <span class="n">num_planes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">plane_mask</span><span class="p">))</span>
+
+    <span class="n">non_plane_contacts</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">num_primitives</span> <span class="o">*</span> <span class="n">max_neighbors_per_shape</span> <span class="o">*</span> <span class="n">primitive_cpp</span> <span class="o">+</span> <span class="n">num_meshes</span> <span class="o">*</span> <span class="n">max_neighbors_per_shape</span> <span class="o">*</span> <span class="n">mesh_cpp</span>
+    <span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="n">avg_cpp</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">num_primitives</span> <span class="o">*</span> <span class="n">primitive_cpp</span> <span class="o">+</span> <span class="n">num_meshes</span> <span class="o">*</span> <span class="n">mesh_cpp</span><span class="p">)</span> <span class="o">//</span> <span class="nb">max</span><span class="p">(</span><span class="n">num_non_planes</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_non_planes</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="k">else</span> <span class="mi">0</span>
+    <span class="p">)</span>
+
+    <span class="n">plane_contacts</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">num_planes</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">num_non_planes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">has_world_info</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_world&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_world</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;world_count&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">model</span><span class="o">.</span><span class="n">world_count</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="n">shape_world</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_world</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">if</span> <span class="n">has_world_info</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">shape_world</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape_world</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape_types</span><span class="p">):</span>
+            <span class="n">global_mask</span> <span class="o">=</span> <span class="n">shape_world</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">local_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">global_mask</span>
+            <span class="n">n_worlds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">world_count</span>
+
+            <span class="n">global_planes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">global_mask</span> <span class="o">&amp;</span> <span class="n">plane_mask</span><span class="p">))</span>
+            <span class="n">global_non_planes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">global_mask</span> <span class="o">&amp;</span> <span class="n">non_plane_mask</span><span class="p">))</span>
+
+            <span class="n">local_plane_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">shape_world</span><span class="p">[</span><span class="n">local_mask</span> <span class="o">&amp;</span> <span class="n">plane_mask</span><span class="p">],</span> <span class="n">minlength</span><span class="o">=</span><span class="n">n_worlds</span><span class="p">)[:</span><span class="n">n_worlds</span><span class="p">]</span>
+            <span class="n">local_non_plane_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">shape_world</span><span class="p">[</span><span class="n">local_mask</span> <span class="o">&amp;</span> <span class="n">non_plane_mask</span><span class="p">],</span> <span class="n">minlength</span><span class="o">=</span><span class="n">n_worlds</span><span class="p">)[</span>
+                <span class="p">:</span><span class="n">n_worlds</span>
+            <span class="p">]</span>
+
+            <span class="n">per_world_planes</span> <span class="o">=</span> <span class="n">local_plane_counts</span> <span class="o">+</span> <span class="n">global_planes</span>
+            <span class="n">per_world_non_planes</span> <span class="o">=</span> <span class="n">local_non_plane_counts</span> <span class="o">+</span> <span class="n">global_non_planes</span>
+
+            <span class="n">plane_pair_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">per_world_planes</span> <span class="o">*</span> <span class="n">per_world_non_planes</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">n_worlds</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">plane_pair_count</span> <span class="o">-=</span> <span class="p">(</span><span class="n">n_worlds</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">global_planes</span> <span class="o">*</span> <span class="n">global_non_planes</span>
+            <span class="n">plane_contacts</span> <span class="o">=</span> <span class="n">plane_pair_count</span> <span class="o">*</span> <span class="n">avg_cpp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plane_contacts</span> <span class="o">=</span> <span class="n">num_planes</span> <span class="o">*</span> <span class="p">(</span><span class="n">num_primitives</span> <span class="o">*</span> <span class="n">primitive_cpp</span> <span class="o">+</span> <span class="n">num_meshes</span> <span class="o">*</span> <span class="n">mesh_cpp</span><span class="p">)</span>
+
+    <span class="n">total_contacts</span> <span class="o">=</span> <span class="n">non_plane_contacts</span> <span class="o">+</span> <span class="n">plane_contacts</span>
+
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_contact_pair_count&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_contact_pair_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">weighted_cpp</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">avg_cpp</span><span class="p">,</span> <span class="n">primitive_cpp</span><span class="p">)</span>
+        <span class="n">pair_contacts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">shape_contact_pair_count</span><span class="p">)</span> <span class="o">*</span> <span class="n">weighted_cpp</span>
+        <span class="n">total_contacts</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">total_contacts</span><span class="p">,</span> <span class="n">pair_contacts</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">total_contacts</span><span class="p">)</span></div>
+
+
+
+<span class="n">SAP_BROAD_PHASE_MODES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nxn&quot;</span><span class="p">,</span> <span class="s2">&quot;sap&quot;</span><span class="p">,</span> <span class="s2">&quot;explicit&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="sap_normalize_broad_phase_mode">
+<a class="viewcode-back" href="../../../api/_generated/sim.collision.pipeline.sap_normalize_broad_phase_mode.html#sim.collision.pipeline.sap_normalize_broad_phase_mode">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_normalize_broad_phase_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalize a user-provided broad-phase mode string into the canonical mode used by</span>
+<span class="sd">    SapCollisionPipeline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mode_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">mode_str</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SAP_BROAD_PHASE_MODES</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported broad phase mode: </span><span class="si">{</span><span class="n">mode</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mode_str</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sap_infer_broad_phase_mode_from_instance</span><span class="p">(</span>
+    <span class="n">broad_phase</span><span class="p">:</span> <span class="n">SapBroadPhaseAllPairs</span> <span class="o">|</span> <span class="n">SapBroadPhaseSAP</span> <span class="o">|</span> <span class="n">SapBroadPhaseExplicit</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Infer the broad-phase mode name from an existing broad-phase implementation instance.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">broad_phase</span><span class="p">,</span> <span class="n">SapBroadPhaseAllPairs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;nxn&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">broad_phase</span><span class="p">,</span> <span class="n">SapBroadPhaseSAP</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;sap&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">broad_phase</span><span class="p">,</span> <span class="n">SapBroadPhaseExplicit</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;explicit&quot;</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported broad phase instance: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">broad_phase</span><span class="p">)</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sap_array_or_default</span><span class="p">(</span><span class="n">owner</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">default</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">value</span>
+
+
+<div class="viewcode-block" id="SapCollisionPipeline">
+<a class="viewcode-back" href="../../../api/_generated/sim.collision.pipeline.SapCollisionPipeline.html#sim.collision.pipeline.SapCollisionPipeline">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SapCollisionPipeline</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Newton-compatible collision front end that writes SAP-owned rigid contacts.</span>
+
+<span class="sd">    The broad-phase, narrow-phase, and geometry data layout intentionally track</span>
+<span class="sd">    Newton&#39;s collision implementation for asset and behavior compatibility.</span>
+<span class="sd">    Drake-style hydroelastic support is being merged; this class documents and</span>
+<span class="sd">    exposes the rigid-contact path used by the SAP solver today.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SapCollisionPipeline.__init__">
+<a class="viewcode-back" href="../../../api/_generated/sim.collision.pipeline.SapCollisionPipeline.html#sim.collision.pipeline.SapCollisionPipeline.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">reduce_contacts</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">rigid_contact_max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_triangle_pairs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">,</span>
+        <span class="n">shape_pairs_filtered</span><span class="p">:</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec2i</span><span class="p">)</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">broad_phase</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;nxn&quot;</span><span class="p">,</span> <span class="s2">&quot;sap&quot;</span><span class="p">,</span> <span class="s2">&quot;explicit&quot;</span><span class="p">]</span>
+        <span class="o">|</span> <span class="n">SapBroadPhaseAllPairs</span>
+        <span class="o">|</span> <span class="n">SapBroadPhaseSAP</span>
+        <span class="o">|</span> <span class="n">SapBroadPhaseExplicit</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">narrow_phase</span><span class="p">:</span> <span class="n">SapNarrowPhase</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mode_from_broad_phase</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">broad_phase_instance</span><span class="p">:</span> <span class="n">SapBroadPhaseAllPairs</span> <span class="o">|</span> <span class="n">SapBroadPhaseSAP</span> <span class="o">|</span> <span class="n">SapBroadPhaseExplicit</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">broad_phase</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">broad_phase</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">mode_from_broad_phase</span> <span class="o">=</span> <span class="n">sap_normalize_broad_phase_mode</span><span class="p">(</span><span class="n">broad_phase</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">broad_phase_instance</span> <span class="o">=</span> <span class="n">broad_phase</span>
+
+        <span class="n">shape_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">shape_count</span><span class="p">)</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">device</span>
+
+        <span class="k">if</span> <span class="n">rigid_contact_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model_rigid_contact_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;rigid_contact_max&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">model_rigid_contact_max</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">rigid_contact_max</span> <span class="o">=</span> <span class="n">model_rigid_contact_max</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rigid_contact_max</span> <span class="o">=</span> <span class="n">sap_estimate_rigid_contact_max</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rigid_contact_max</span> <span class="o">=</span> <span class="n">rigid_contact_max</span>
+
+        <span class="k">if</span> <span class="n">max_triangle_pairs</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;max_triangle_pairs must be &gt; 0&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">rigid_contact_max</span> <span class="o">=</span> <span class="n">rigid_contact_max</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="n">requires_grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">requires_grad</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;requires_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+
+        <span class="n">shape_world</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_world&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">shape_flags</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_flags&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedDevice</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+            <span class="n">shape_aabb_lower</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">shape_aabb_upper</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_source</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">uint64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_sdf_index</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_heightfield_index</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_flags</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_collision_group</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_world</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_collision_aabb_lower</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_collision_aabb_upper</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_voxel_resolution</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec3i</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape_count</span> <span class="o">=</span> <span class="n">shape_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reduce_contacts</span> <span class="o">=</span> <span class="n">reduce_contacts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span>
+
+        <span class="n">using_expert_components</span> <span class="o">=</span> <span class="n">broad_phase_instance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">narrow_phase</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">using_expert_components</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">broad_phase_instance</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">narrow_phase</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provide both broad_phase and narrow_phase for expert component construction&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_mode</span> <span class="o">=</span> <span class="n">sap_infer_broad_phase_mode_from_instance</span><span class="p">(</span><span class="n">broad_phase_instance</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span> <span class="o">=</span> <span class="n">broad_phase_instance</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_mode</span> <span class="o">==</span> <span class="s2">&quot;explicit&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shape_pairs_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">shape_pairs_filtered</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_contact_pairs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">shape_pairs_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;shape_pairs_filtered must be provided for explicit broad phase&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_filtered</span> <span class="o">=</span> <span class="n">shape_pairs_filtered</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape_pairs_filtered</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_filtered</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape_count</span> <span class="o">*</span> <span class="p">(</span><span class="n">shape_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_excluded_pairs</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded_count</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">narrow_phase</span><span class="o">.</span><span class="n">max_candidate_pairs</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Provided narrow_phase.max_candidate_pairs is too small for this model and broad phase mode &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;(required at least </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">max_candidate_pairs</span><span class="si">}</span><span class="s2">)&quot;</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span> <span class="o">=</span> <span class="n">narrow_phase</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_mode</span> <span class="o">=</span> <span class="n">mode_from_broad_phase</span> <span class="k">if</span> <span class="n">mode_from_broad_phase</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;explicit&quot;</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_mode</span> <span class="o">==</span> <span class="s2">&quot;explicit&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shape_pairs_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">shape_pairs_filtered</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_contact_pairs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">shape_pairs_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;shape_pairs_filtered must be provided for broad_phase=explicit&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span> <span class="o">=</span> <span class="n">SapBroadPhaseExplicit</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_filtered</span> <span class="o">=</span> <span class="n">shape_pairs_filtered</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape_pairs_filtered</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_mode</span> <span class="o">==</span> <span class="s2">&quot;nxn&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shape_world</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;model.shape_world is required for broad_phase=nxn&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span> <span class="o">=</span> <span class="n">SapBroadPhaseAllPairs</span><span class="p">(</span><span class="n">shape_world</span><span class="p">,</span> <span class="n">shape_flags</span><span class="o">=</span><span class="n">shape_flags</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_filtered</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape_count</span> <span class="o">*</span> <span class="p">(</span><span class="n">shape_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_excluded_pairs</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded_count</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_mode</span> <span class="o">==</span> <span class="s2">&quot;sap&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shape_world</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;model.shape_world is required for broad_phase=sap&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span> <span class="o">=</span> <span class="n">SapBroadPhaseSAP</span><span class="p">(</span><span class="n">shape_world</span><span class="p">,</span> <span class="n">shape_flags</span><span class="o">=</span><span class="n">shape_flags</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_filtered</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape_count</span> <span class="o">*</span> <span class="p">(</span><span class="n">shape_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_excluded_pairs</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded_count</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported broad phase mode: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">has_meshes</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">has_heightfields</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">use_lean_gjk_mpr</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_type&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">shape_types</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_type</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+                <span class="n">has_heightfields</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">((</span><span class="n">shape_types</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">HFIELD</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
+                <span class="n">has_meshes</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">((</span><span class="n">shape_types</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">MESH</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
+                <span class="n">lean_unsupported</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">CAPSULE</span><span class="p">),</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">ELLIPSOID</span><span class="p">),</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">CYLINDER</span><span class="p">),</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">SapGeoType</span><span class="o">.</span><span class="n">CONE</span><span class="p">),</span>
+                <span class="p">}</span>
+                <span class="n">use_lean_gjk_mpr</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">lean_unsupported</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">shape_types</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
+
+            <span class="n">shape_voxel_resolution</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;_shape_voxel_resolution&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">shape_voxel_resolution</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">shape_voxel_resolution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_voxel_resolution</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span> <span class="o">=</span> <span class="n">SapNarrowPhase</span><span class="p">(</span>
+                <span class="n">max_candidate_pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span><span class="p">,</span>
+                <span class="n">max_triangle_pairs</span><span class="o">=</span><span class="n">max_triangle_pairs</span><span class="p">,</span>
+                <span class="n">reduce_contacts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reduce_contacts</span><span class="p">,</span>
+                <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">shape_aabb_lower</span><span class="o">=</span><span class="n">shape_aabb_lower</span><span class="p">,</span>
+                <span class="n">shape_aabb_upper</span><span class="o">=</span><span class="n">shape_aabb_upper</span><span class="p">,</span>
+                <span class="n">contact_writer_warp_func</span><span class="o">=</span><span class="n">sap_write_contact</span><span class="p">,</span>
+                <span class="n">shape_voxel_resolution</span><span class="o">=</span><span class="n">shape_voxel_resolution</span><span class="p">,</span>
+                <span class="n">has_meshes</span><span class="o">=</span><span class="n">has_meshes</span><span class="p">,</span>
+                <span class="n">has_heightfields</span><span class="o">=</span><span class="n">has_heightfields</span><span class="p">,</span>
+                <span class="n">use_lean_gjk_mpr</span><span class="o">=</span><span class="n">use_lean_gjk_mpr</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">wp</span><span class="o">.</span><span class="n">ScopedDevice</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_pair_count</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_shape_pairs</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_max</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec2i</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geom_data</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec4</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geom_transform</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="p">,</span> <span class="s2">&quot;shape_aabb_lower&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="p">,</span> <span class="s2">&quot;shape_aabb_upper&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;narrow_phase must expose shape_aabb_lower and shape_aabb_upper arrays&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">shape_count</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;narrow_phase.shape_aabb_lower must have one entry per model shape &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;(expected </span><span class="si">{</span><span class="n">shape_count</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">shape_count</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;narrow_phase.shape_aabb_upper must have one entry per model shape &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;(expected </span><span class="si">{</span><span class="n">shape_count</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rigid_contact_max</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the configured flat rigid-contact capacity for this collision pipeline.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rigid_contact_max</span>
+
+<div class="viewcode-block" id="SapCollisionPipeline.contacts">
+<a class="viewcode-back" href="../../../api/_generated/sim.collision.pipeline.SapCollisionPipeline.contacts.html#sim.collision.pipeline.SapCollisionPipeline.contacts">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contacts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SapContacts</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allocate a SapContacts buffer sized for this pipeline and carrying any contact attributes</span>
+<span class="sd">        requested by the model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">requested_attributes</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">get_requested_contact_attributes</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;get_requested_contact_attributes&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">get_requested_contact_attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">requested_attributes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_requested_contact_attributes</span><span class="p">()</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">SapContacts</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rigid_contact_max</span><span class="p">,</span>
+            <span class="n">requires_grad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+            <span class="n">per_contact_shape_properties</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">requested_attributes</span><span class="o">=</span><span class="n">requested_attributes</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_excluded_pairs</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec2i</span><span class="p">)</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_collision_filter_pairs&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_collision_filter_pairs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">filters</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">sorted_pairs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sorted_pairs</span><span class="p">),</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">wp</span><span class="o">.</span><span class="n">vec2i</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="SapCollisionPipeline.collide">
+<a class="viewcode-back" href="../../../api/_generated/sim.collision.pipeline.SapCollisionPipeline.collide.html#sim.collision.pipeline.SapCollisionPipeline.collide">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">collide</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">contacts</span><span class="p">:</span> <span class="n">SapContacts</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Populate a SapContacts buffer from the current collision state by running AABB setup, broad</span>
+<span class="sd">        phase, and narrow phase.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">contacts</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_pair_count</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">shape_source_ptr</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_source_ptr&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_source</span><span class="p">)</span>
+        <span class="n">shape_flags</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_flags&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_flags</span><span class="p">)</span>
+        <span class="n">shape_collision_group</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="s2">&quot;shape_collision_group&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_collision_group</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">shape_world</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_world&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_world</span><span class="p">)</span>
+        <span class="n">shape_sdf_index</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;shape_sdf_index&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_sdf_index</span><span class="p">)</span>
+        <span class="n">shape_collision_aabb_lower</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="s2">&quot;shape_collision_aabb_lower&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_collision_aabb_lower</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">shape_collision_aabb_upper</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="s2">&quot;shape_collision_aabb_upper&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_collision_aabb_upper</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">shape_voxel_resolution</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="p">,</span> <span class="s2">&quot;shape_voxel_resolution&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">shape_voxel_resolution</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">shape_voxel_resolution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_voxel_resolution</span>
+        <span class="n">shape_heightfield_index</span> <span class="o">=</span> <span class="n">_sap_array_or_default</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="s2">&quot;shape_heightfield_index&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_empty_shape_heightfield_index</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">wp</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span>
+            <span class="n">kernel</span><span class="o">=</span><span class="n">sap_compute_shape_aabbs</span><span class="p">,</span>
+            <span class="n">dim</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">shape_count</span><span class="p">,</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">state</span><span class="o">.</span><span class="n">body_q</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_transform</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_body</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_type</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_scale</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_collision_radius</span><span class="p">,</span>
+                <span class="n">shape_source_ptr</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_margin</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_gap</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_lower</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_upper</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span><span class="p">,</span> <span class="n">SapBroadPhaseAllPairs</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_lower</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_upper</span><span class="p">,</span>
+                <span class="kc">None</span><span class="p">,</span>
+                <span class="n">shape_collision_group</span><span class="p">,</span>
+                <span class="n">shape_world</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_count</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_shape_pairs</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_pair_count</span><span class="p">,</span>
+                <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">filter_pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span><span class="p">,</span>
+                <span class="n">num_filter_pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded_count</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span><span class="p">,</span> <span class="n">SapBroadPhaseSAP</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_lower</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_upper</span><span class="p">,</span>
+                <span class="kc">None</span><span class="p">,</span>
+                <span class="n">shape_collision_group</span><span class="p">,</span>
+                <span class="n">shape_world</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_count</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_shape_pairs</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_pair_count</span><span class="p">,</span>
+                <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">filter_pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded</span><span class="p">,</span>
+                <span class="n">num_filter_pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_excluded_count</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_lower</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">shape_aabb_upper</span><span class="p">,</span>
+                <span class="kc">None</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_filtered</span><span class="p">,</span>
+                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_pairs_filtered</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_shape_pairs</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_pair_count</span><span class="p">,</span>
+                <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">wp</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span>
+            <span class="n">kernel</span><span class="o">=</span><span class="n">sap_prepare_geom_data_kernel</span><span class="p">,</span>
+            <span class="n">dim</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">shape_count</span><span class="p">,</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_transform</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_body</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_type</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_scale</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">shape_margin</span><span class="p">,</span>
+                <span class="n">state</span><span class="o">.</span><span class="n">body_q</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">geom_data</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">geom_transform</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">writer_data</span> <span class="o">=</span> <span class="n">SapCollisionContactWriterData</span><span class="p">()</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">contact_max</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_max</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">body_q</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">body_q</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">shape_body</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_body</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">shape_gap</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_gap</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">contact_count</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_count</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_shape0</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_shape0</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_shape1</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_shape1</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_point0</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_point0</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_point1</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_point1</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_offset0</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_offset0</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_offset1</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_offset1</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_normal</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_normal</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_margin0</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_margin0</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_margin1</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_margin1</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_tids</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_tids</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_stiffness</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_stiffness</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_damping</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_damping</span>
+        <span class="n">writer_data</span><span class="o">.</span><span class="n">out_friction</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="n">rigid_contact_friction</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">narrow_phase</span><span class="o">.</span><span class="n">launch_custom_write</span><span class="p">(</span>
+            <span class="n">candidate_pair</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_shape_pairs</span><span class="p">,</span>
+            <span class="n">candidate_pair_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">broad_phase_pair_count</span><span class="p">,</span>
+            <span class="n">shape_types</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">shape_type</span><span class="p">,</span>
+            <span class="n">shape_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">geom_data</span><span class="p">,</span>
+            <span class="n">shape_transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">geom_transform</span><span class="p">,</span>
+            <span class="n">shape_source</span><span class="o">=</span><span class="n">shape_source_ptr</span><span class="p">,</span>
+            <span class="n">shape_sdf_index</span><span class="o">=</span><span class="n">shape_sdf_index</span><span class="p">,</span>
+            <span class="n">texture_sdf_data</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;texture_sdf_data&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="n">shape_gap</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">shape_gap</span><span class="p">,</span>
+            <span class="n">shape_collision_radius</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">shape_collision_radius</span><span class="p">,</span>
+            <span class="n">shape_flags</span><span class="o">=</span><span class="n">shape_flags</span><span class="p">,</span>
+            <span class="n">shape_collision_aabb_lower</span><span class="o">=</span><span class="n">shape_collision_aabb_lower</span><span class="p">,</span>
+            <span class="n">shape_collision_aabb_upper</span><span class="o">=</span><span class="n">shape_collision_aabb_upper</span><span class="p">,</span>
+            <span class="n">shape_voxel_resolution</span><span class="o">=</span><span class="n">shape_voxel_resolution</span><span class="p">,</span>
+            <span class="n">shape_heightfield_index</span><span class="o">=</span><span class="n">shape_heightfield_index</span><span class="p">,</span>
+            <span class="n">heightfield_data</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heightfield_data&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="n">heightfield_elevations</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heightfield_elevations&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="n">writer_data</span><span class="o">=</span><span class="n">writer_data</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;SAP_BROAD_PHASE_MODES&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SapCollisionContactWriterData&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SapCollisionPipeline&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_compute_shape_aabbs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_estimate_rigid_contact_max&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_infer_broad_phase_mode_from_instance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_normalize_broad_phase_mode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_prepare_geom_data_kernel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sap_write_contact&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

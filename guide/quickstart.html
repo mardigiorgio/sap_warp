@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quick Start &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/quickstart';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Convention" href="../concepts/convention.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/convention.html">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../concepts/solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../concepts/convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/loader.html">Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/collision.html">Collision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/solver.html">Solver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking/index.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/newton_integration.html">Newton Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../visualization/viser.html">Viser Viewer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sap-sim/sap_warp">GitHub</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Quick Start</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h1>
+<p>This page walks through the shortest supported path: inspect a scene in the
+Viser viewer, then step the same runtime objects directly from Python.</p>
+<section id="before-you-run">
+<h2>Before You Run<a class="headerlink" href="#before-you-run" title="Link to this heading">#</a></h2>
+<p>The default G1 scene is configured for throughput benchmarking with
+<code class="docutils literal notranslate"><span class="pre">simulation.num_worlds:</span> <span class="pre">1024</span></code>. For interactive viewing, override it to one
+world. The first run may also populate the git-backed asset cache under
+<code class="docutils literal notranslate"><span class="pre">~/.cache/sap_warp/assets</span></code> unless <code class="docutils literal notranslate"><span class="pre">SAP_WARP_ASSET_CACHE</span></code> points somewhere
+else.</p>
+</section>
+<section id="run-a-scene">
+<h2>Run a Scene<a class="headerlink" href="#run-a-scene" title="Link to this heading">#</a></h2>
+<p>Launch the shipped G1 scene in the Viser viewer:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>viewer.viser.sap_viewer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>assets/yaml/unitree_g1_usd.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-worlds<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>The command prints a local URL such as <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code>. Open that URL
+in a browser to inspect the simulation. Leave <code class="docutils literal notranslate"><span class="pre">--duration</span></code> and <code class="docutils literal notranslate"><span class="pre">--frames</span></code>
+unset for an interactive run.</p>
+<p>For a bounded viewer smoke run, add an exact frame count:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>viewer.viser.sap_viewer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>assets/yaml/unitree_g1_usd.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--frames<span class="w"> </span><span class="m">120</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-worlds<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="choose-runtime-parameters">
+<h2>Choose Runtime Parameters<a class="headerlink" href="#choose-runtime-parameters" title="Link to this heading">#</a></h2>
+<p>The viewer reads defaults from the scene file and lets command-line flags
+override the most common runtime values:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>viewer.viser.sap_viewer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>assets/yaml/unitree_g1_usd.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-worlds<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dt<span class="w"> </span><span class="m">0</span>.003<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--viewer-fps<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--device<span class="w"> </span>cuda:0
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--duration</span></code> sets simulated time. <code class="docutils literal notranslate"><span class="pre">--num-worlds</span></code> overrides
+<code class="docutils literal notranslate"><span class="pre">simulation.num_worlds</span></code> from the scene, and <code class="docutils literal notranslate"><span class="pre">--dt</span></code> overrides
+<code class="docutils literal notranslate"><span class="pre">simulation.dt</span></code>. <code class="docutils literal notranslate"><span class="pre">--frames</span></code> can be used instead of <code class="docutils literal notranslate"><span class="pre">--duration</span></code> when you
+want an exact step count. <code class="docutils literal notranslate"><span class="pre">--viewer-fps</span></code> controls the display update target.
+The solver keyword arguments still come from <code class="docutils literal notranslate"><span class="pre">simulation.solver</span></code> in the scene
+file.</p>
+<p>Contact capacity is split into two related numbers:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">simulation.max_rigid_contact</span></code></dt><dd><p>Per-world solver contact cap.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">simulation.max_rigid_contact</span> <span class="pre">*</span> <span class="pre">num_worlds</span></code></dt><dd><p>Flat collision buffer capacity used by the viewer and benchmark paths.</p>
+</dd>
+</dl>
+<p>If the collision stage produces more contacts than the configured capacity,
+extra contacts are dropped and
+<code class="docutils literal notranslate"><span class="pre">solver.last_truncated_contact_count</span></code> reports the most recent truncation
+count.</p>
+</section>
+<section id="step-from-python">
+<h2>Step from Python<a class="headerlink" href="#step-from-python" title="Link to this heading">#</a></h2>
+<p>The minimal Python loop mirrors the benchmark:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wp</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.collision.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">SapCollisionPipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.loader.scene</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_sap_scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.resources.collision_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">sap_collision_state_from_state</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sim.solver_sap</span><span class="w"> </span><span class="kn">import</span> <span class="n">SolverSAP</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">get_device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">wp</span><span class="o">.</span><span class="n">is_cuda_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="n">num_worlds</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">max_rigid_contact_per_env</span> <span class="o">=</span> <span class="mi">48</span>
+<span class="n">rigid_contact_capacity</span> <span class="o">=</span> <span class="n">max_rigid_contact_per_env</span> <span class="o">*</span> <span class="n">num_worlds</span>
+
+<span class="n">scene</span> <span class="o">=</span> <span class="n">load_sap_scene</span><span class="p">(</span>
+    <span class="s2">&quot;assets/yaml/unitree_g1_usd.yaml&quot;</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+    <span class="n">rigid_contact_max</span><span class="o">=</span><span class="n">rigid_contact_capacity</span><span class="p">,</span>
+    <span class="n">num_worlds</span><span class="o">=</span><span class="n">num_worlds</span><span class="p">,</span>
+    <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">SolverSAP</span><span class="p">(</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">sap_model</span><span class="p">,</span>
+    <span class="n">max_rigid_contact</span><span class="o">=</span><span class="n">max_rigid_contact_per_env</span><span class="p">,</span>
+    <span class="n">contact_preset_variant</span><span class="o">=</span><span class="s2">&quot;drake&quot;</span><span class="p">,</span>
+    <span class="n">line_search_variant</span><span class="o">=</span><span class="s2">&quot;armijo_decay&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">collision</span> <span class="o">=</span> <span class="n">SapCollisionPipeline</span><span class="p">(</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">collision_model</span><span class="p">,</span>
+    <span class="n">rigid_contact_max</span><span class="o">=</span><span class="n">rigid_contact_capacity</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">contacts</span> <span class="o">=</span> <span class="n">collision</span><span class="o">.</span><span class="n">contacts</span><span class="p">()</span>
+
+<span class="n">state_0</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">sap_state</span>
+<span class="n">state_1</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">sap_model</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">sap_control</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.003</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">state_0</span><span class="o">.</span><span class="n">clear_forces</span><span class="p">()</span>
+    <span class="n">collision</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">sap_collision_state_from_state</span><span class="p">(</span><span class="n">state_0</span><span class="p">),</span> <span class="n">contacts</span><span class="p">)</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">state_0</span><span class="p">,</span> <span class="n">state_1</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">contacts</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">state_0</span><span class="p">,</span> <span class="n">state_1</span> <span class="o">=</span> <span class="n">state_1</span><span class="p">,</span> <span class="n">state_0</span>
+</pre></div>
+</div>
+<p>Read the loop as a data-flow story:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Object</p></th>
+<th class="head"><p>Role in the step</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">scene.sap_model</span></code></p></td>
+<td><p>Immutable topology, material, drive, limit, and default state arrays.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state_0</span></code></p></td>
+<td><p>Current generalized positions, velocities, body poses, and external
+forces.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">state_1</span></code></p></td>
+<td><p>Output state written by the solver.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control</span></code></p></td>
+<td><p>Joint forces, drive targets, target velocities, and actuation values.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">contacts</span></code></p></td>
+<td><p>Preallocated contact buffer filled by the collision pipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">solver</span></code></p></td>
+<td><p>SAP timestepper that consumes state, control, contacts, and <code class="docutils literal notranslate"><span class="pre">dt</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Important details:</p>
+<ul class="simple">
+<li><p>Collision is explicit. Run
+<a class="reference internal" href="../api/_generated/sim.collision.pipeline.SapCollisionPipeline.collide.html#sim.collision.pipeline.SapCollisionPipeline.collide" title="sim.collision.pipeline.SapCollisionPipeline.collide"><code class="xref py py-meth docutils literal notranslate"><span class="pre">collide()</span></code></a> before each
+solver step when contacts may change.</p></li>
+<li><p><a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> writes into <code class="docutils literal notranslate"><span class="pre">state_out</span></code> and returns
+that output state.</p></li>
+<li><p>State buffers are swapped after each step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_rigid_contact</span></code> is the per-world solver cap. The flat collision buffer
+must be large enough for all generated contacts. Dropped contacts are
+reported through <code class="docutils literal notranslate"><span class="pre">solver.last_truncated_contact_count</span></code>.</p></li>
+</ul>
+</section>
+<section id="try-another-scene">
+<h2>Try Another Scene<a class="headerlink" href="#try-another-scene" title="Link to this heading">#</a></h2>
+<p>The repository includes both imported-asset and inline-procedural examples:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>viewer.viser.sap_viewer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>assets/yaml/multi_joints.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-worlds<span class="w"> </span><span class="m">1</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>viewer.viser.sap_viewer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>assets/yaml/unitree_h1_usd.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-worlds<span class="w"> </span><span class="m">1</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>viewer.viser.sap_viewer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>assets/yaml/anymal_c_urdf.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-worlds<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--device</span> <span class="pre">cpu</span></code> when CUDA is not available. Imported USD/URDF scenes need
+the external assets to be fetched or already present in the asset cache.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-run">Before You Run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-scene">Run a Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-runtime-parameters">Choose Runtime Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-from-python">Step from Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-another-scene">Try Another Scene</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

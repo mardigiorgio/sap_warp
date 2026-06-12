@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Convention &#8212; SAP Warp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=17e0b620" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/convention';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Loader" href="loader.html" />
+    <link rel="prev" title="Quick Start" href="../guide/quickstart.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAP Warp <span style='font-size: 0.8em; color: #888;'>(0.1.0)</span></p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="loader.html">
+    Loader
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Convention
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="loader.html">
+    Loader
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="collision.html">
+    Collision
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="solver.html">
+    Solver
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking/index.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../simulation/newton_integration.html">
+    Newton Integration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../visualization/viser.html">
+    Viser Viewer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/sap-sim/sap_warp">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/sap-sim/sap_warp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/quickstart.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loader.html">Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collision.html">Collision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solver.html">Solver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking/index.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/newton_integration.html">Newton Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../visualization/viser.html">Viser Viewer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sap-sim/sap_warp">GitHub</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Convention</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="convention">
+<h1>Convention<a class="headerlink" href="#convention" title="Link to this heading">#</a></h1>
+<p>SAP Warp uses two closely related conventions at the solver boundary. The
+<code class="docutils literal notranslate"><span class="pre">public</span></code> convention is the one scene loaders, benchmark loops, and user code
+should normally see. The <code class="docutils literal notranslate"><span class="pre">sap</span></code> convention is the angular-first,
+body-origin convention consumed by the SAP kernels.</p>
+<section id="generalized-position-storage">
+<h2>Generalized Position Storage<a class="headerlink" href="#generalized-position-storage" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">joint_q</span></code> is a packed generalized-position array. Joint <code class="docutils literal notranslate"><span class="pre">j</span></code> stores its
+position coordinates starting at <code class="docutils literal notranslate"><span class="pre">joint_q_start[j]</span></code>; the next entry in
+<code class="docutils literal notranslate"><span class="pre">joint_q_start</span></code> gives the end of the segment. These position coordinates have
+fixed storage and do not have a <code class="docutils literal notranslate"><span class="pre">public</span></code>/<code class="docutils literal notranslate"><span class="pre">sap</span></code> order flag.</p>
+<p>Quaternions are stored in Warp’s <code class="docutils literal notranslate"><span class="pre">xyzw</span></code> layout:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[x, y, z, w]
+</pre></div>
+</div>
+<p>The per-joint <code class="docutils literal notranslate"><span class="pre">joint_q</span></code> segment is:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Joint type</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">joint_q</span></code> segment</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">prismatic</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[q]</span></code></p></td>
+<td><p>Translation along the joint axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">revolute</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[q]</span></code></p></td>
+<td><p>Rotation angle about the joint axis, in radians.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ball</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[q_x,</span> <span class="pre">q_y,</span> <span class="pre">q_z,</span> <span class="pre">q_w]</span></code></p></td>
+<td><p>Quaternion rotation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixed</span></code></p></td>
+<td><p>empty</p></td>
+<td><p>No position coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">free</span></code> / <code class="docutils literal notranslate"><span class="pre">distance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[p_x,</span> <span class="pre">p_y,</span> <span class="pre">p_z,</span> <span class="pre">q_x,</span> <span class="pre">q_y,</span> <span class="pre">q_z,</span> <span class="pre">q_w]</span></code></p></td>
+<td><p>Translation followed by quaternion rotation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">D6</span></code> / general multi-axis</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[q_l0,</span> <span class="pre">...,</span> <span class="pre">q_lN,</span> <span class="pre">q_a0,</span> <span class="pre">...,</span> <span class="pre">q_aM]</span></code></p></td>
+<td><p>Linear-axis coordinates first, then angular-axis coordinates, in the
+model’s stored axis order.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For example, free-joint positions store translation followed by the quaternion:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[p_x, p_y, p_z, q_x, q_y, q_z, q_w]
+</pre></div>
+</div>
+<p>Ball-joint positions store only the quaternion:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[q_x, q_y, q_z, q_w]
+</pre></div>
+</div>
+<p>The quaternion storage order is independent of velocity ordering. For example,
+<code class="docutils literal notranslate"><span class="pre">sap</span></code> velocity order for a free joint is angular-first, but the free-joint
+position still stores translation first and quaternion second. During
+integration, the solver maps the solved SAP velocity back through the joint
+kinematics before writing <code class="docutils literal notranslate"><span class="pre">state_out.joint_q</span></code> and <code class="docutils literal notranslate"><span class="pre">state_out.joint_qd</span></code>.</p>
+<p>Consequently, <code class="docutils literal notranslate"><span class="pre">joint_q</span></code> and <code class="docutils literal notranslate"><span class="pre">joint_qd</span></code> do not always have the same segment
+length. Ball joints store four position scalars but have three velocity DOFs;
+free and distance joints store seven position scalars but have six velocity
+DOFs.</p>
+</section>
+<section id="generalized-velocity-and-force-storage">
+<h2>Generalized Velocity and Force Storage<a class="headerlink" href="#generalized-velocity-and-force-storage" title="Link to this heading">#</a></h2>
+<p>The distinction matters only for joints whose generalized velocity represents a
+free rigid-body twist: free joints and distance joints. Scalar joints
+(<code class="docutils literal notranslate"><span class="pre">revolute</span></code> and <code class="docutils literal notranslate"><span class="pre">prismatic</span></code>), ball joints, fixed joints, and general
+multi-axis joints keep their stored DOF order. They may still be copied into
+temporary fp64 buffers, but they do not need the reference-point transformation
+derived below.</p>
+<section id="unchanged-dof-segments">
+<h3>Unchanged DOF Segments<a class="headerlink" href="#unchanged-dof-segments" title="Link to this heading">#</a></h3>
+<p>For these joints, the public boundary adapter does not reorder the per-DOF
+arrays. Entry <code class="docutils literal notranslate"><span class="pre">k</span></code> in a joint’s <code class="docutils literal notranslate"><span class="pre">joint_qd</span></code> segment is copied to entry <code class="docutils literal notranslate"><span class="pre">k</span></code>
+in the SAP buffer, and the matching <code class="docutils literal notranslate"><span class="pre">joint_f</span></code>, target, limit, and armature
+entries keep the same meaning.</p>
+<p>Inside the solver, each scalar DOF is then expanded into a spatial-vector
+column using the joint axis and current pose. That internal spatial vector uses
+SAP’s angular-first layout, but this expansion does not change the order of the
+packed per-DOF arrays.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Joint type</p></th>
+<th class="head"><p>Stored DOF segment</p></th>
+<th class="head"><p>Boundary treatment</p></th>
+<th class="head"><p>Why no reference-point shift is needed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">prismatic</span></code></p></td>
+<td><p>One linear-axis scalar.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">public[i]</span></code> is copied to <code class="docutils literal notranslate"><span class="pre">sap[i]</span></code>.</p></td>
+<td><p>The value is a speed or force along one declared axis, not a 6D
+rigid-body twist.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">revolute</span></code></p></td>
+<td><p>One angular-axis scalar.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">public[i]</span></code> is copied to <code class="docutils literal notranslate"><span class="pre">sap[i]</span></code>.</p></td>
+<td><p>The value is an angular speed or torque about one declared axis, with no
+linear component to move between COM and body origin.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ball</span></code></p></td>
+<td><p>Three angular scalars.</p></td>
+<td><p>The three entries are copied in their stored order.</p></td>
+<td><p>The segment contains only angular velocity or torque components. There
+is no paired linear velocity or force component whose reference point can
+change.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixed</span></code></p></td>
+<td><p>Empty.</p></td>
+<td><p>Nothing is copied.</p></td>
+<td><p>The joint has no velocity or force DOFs.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">D6</span></code> / general multi-axis</p></td>
+<td><p>Linear-axis scalars first, then angular-axis scalars, matching
+<code class="docutils literal notranslate"><span class="pre">joint_dof_dim</span></code> and <code class="docutils literal notranslate"><span class="pre">joint_axis</span></code>.</p></td>
+<td><p>Every entry is copied at the same offset; linear entries are not moved
+after angular entries.</p></td>
+<td><p>Each scalar is tied to its declared axis, and the motion subspace maps
+that scalar into the internal spatial-vector layout.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The angular-first SAP convention applies after the solver has assembled an
+actual spatial vector. It does not reorder these packed generalized-coordinate
+segments at the public boundary.</p>
+</section>
+<section id="changed-dof-segments">
+<h3>Changed DOF Segments<a class="headerlink" href="#changed-dof-segments" title="Link to this heading">#</a></h3>
+<p>Free and distance joints do change at the public/SAP boundary. Their six
+velocity or generalized-force entries form a complete rigid-body twist or
+wrench, so conversion must both reorder the angular and linear blocks and shift
+the linear velocity or moment between the center of mass and body origin.</p>
+<section id="notation">
+<h4>Notation<a class="headerlink" href="#notation" title="Link to this heading">#</a></h4>
+<p>For one child body, let:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(W\)</span></p></td>
+<td><p>World frame. All vector components in this page are expressed in
+<span class="math notranslate nohighlight">\(W\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(O\)</span></p></td>
+<td><p>Child body origin, i.e. the body frame origin stored by runtime body
+poses.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
+<td><p>Child body center of mass.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(r_{OC}^W\)</span></p></td>
+<td><p>Vector from <span class="math notranslate nohighlight">\(O\)</span> to <span class="math notranslate nohighlight">\(C\)</span>, expressed in world coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(v_O^W\)</span>, <span class="math notranslate nohighlight">\(v_C^W\)</span></p></td>
+<td><p>Linear velocity of the body origin and center of mass.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\omega^W\)</span></p></td>
+<td><p>Angular velocity.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f^W\)</span></p></td>
+<td><p>Applied force.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\tau_O^W\)</span>, <span class="math notranslate nohighlight">\(\tau_C^W\)</span></p></td>
+<td><p>Moment measured about <span class="math notranslate nohighlight">\(O\)</span> or <span class="math notranslate nohighlight">\(C\)</span>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Define the skew operator <span class="math notranslate nohighlight">\([a]_\times\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[a]_\times b = a \times b,
+\qquad
+[a]_\times
+=
+\begin{bmatrix}
+0 &amp; -a_z &amp; a_y \\
+a_z &amp; 0 &amp; -a_x \\
+-a_y &amp; a_x &amp; 0
+\end{bmatrix}.\end{split}\]</div>
+<p>The only geometric operation in the convention conversion is a reference-point
+shift. It is not a frame rotation. Because every component is already expressed
+in <span class="math notranslate nohighlight">\(W\)</span>, changing from <span class="math notranslate nohighlight">\(C\)</span> to <span class="math notranslate nohighlight">\(O\)</span> only adds cross-product terms.</p>
+</section>
+<section id="velocity-reference-point-shift">
+<h4>Velocity Reference-Point Shift<a class="headerlink" href="#velocity-reference-point-shift" title="Link to this heading">#</a></h4>
+<p>Rigid-body linear velocity at two points on the same body satisfies</p>
+<div class="math notranslate nohighlight">
+\[v_C^W = v_O^W + \omega^W \times r_{OC}^W.\]</div>
+<p>Equivalently,</p>
+<div class="math notranslate nohighlight">
+\[v_O^W
+=
+v_C^W - \omega^W \times r_{OC}^W
+=
+v_C^W + [r_{OC}^W]_\times \omega^W.\]</div>
+<p>The public free-joint velocity is stored with linear COM velocity first:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u_{\mathrm{public}}
+=
+\begin{bmatrix}
+v_C^W \\
+\omega^W
+\end{bmatrix}.\end{split}\]</div>
+<p>The SAP free-joint velocity is stored with angular velocity first, and its
+linear component is measured at the body origin:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u_{\mathrm{sap}}
+=
+\begin{bmatrix}
+\omega^W \\
+v_O^W
+\end{bmatrix}.\end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u_{\mathrm{sap}}
+=
+P_v(r_{OC}^W) u_{\mathrm{public}},
+\qquad
+P_v(r)
+=
+\begin{bmatrix}
+0 &amp; I \\
+I &amp; [r]_\times
+\end{bmatrix}.\end{split}\]</div>
+<p>The inverse conversion used when writing a public <code class="docutils literal notranslate"><span class="pre">state_out</span></code> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u_{\mathrm{public}}
+=
+P_v(r_{OC}^W)^{-1} u_{\mathrm{sap}},
+\qquad
+P_v(r)^{-1}
+=
+\begin{bmatrix}
+-[r]_\times &amp; I \\
+I &amp; 0
+\end{bmatrix},\end{split}\]</div>
+<p>or, in vector form,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+v_C^W \\
+\omega^W
+\end{bmatrix}
+=
+\begin{bmatrix}
+v_O^W + \omega^W \times r_{OC}^W \\
+\omega^W
+\end{bmatrix}.\end{split}\]</div>
+</section>
+<section id="force-and-wrench-duality">
+<h4>Force and Wrench Duality<a class="headerlink" href="#force-and-wrench-duality" title="Link to this heading">#</a></h4>
+<p>Forces and velocities must transform as dual coordinates: the instantaneous
+power must not depend on whether the twist is represented at <span class="math notranslate nohighlight">\(C\)</span> or
+<span class="math notranslate nohighlight">\(O\)</span>. The public wrench is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g_{\mathrm{public}}
+=
+\begin{bmatrix}
+f^W \\
+\tau_C^W
+\end{bmatrix},\end{split}\]</div>
+<p>while the SAP generalized force stores moment first, measured about the body
+origin:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g_{\mathrm{sap}}
+=
+\begin{bmatrix}
+\tau_O^W \\
+f^W
+\end{bmatrix}.\end{split}\]</div>
+<p>The moment shift is</p>
+<div class="math notranslate nohighlight">
+\[\tau_O^W
+=
+\tau_C^W + r_{OC}^W \times f^W
+=
+\tau_C^W + [r_{OC}^W]_\times f^W.\]</div>
+<p>Thus</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g_{\mathrm{sap}}
+=
+P_f(r_{OC}^W) g_{\mathrm{public}},
+\qquad
+P_f(r)
+=
+\begin{bmatrix}
+[r]_\times &amp; I \\
+I &amp; 0
+\end{bmatrix}.\end{split}\]</div>
+<p>This force transform is the inverse transpose of the velocity transform:</p>
+<div class="math notranslate nohighlight">
+\[P_f(r) = P_v(r)^{-T}.\]</div>
+<p>That identity gives the power check:</p>
+<div class="math notranslate nohighlight">
+\[g_{\mathrm{public}}^T u_{\mathrm{public}}
+=
+f^W \cdot v_C^W + \tau_C^W \cdot \omega^W
+=
+\tau_O^W \cdot \omega^W + f^W \cdot v_O^W
+=
+g_{\mathrm{sap}}^T u_{\mathrm{sap}}.\]</div>
+<p>This is the reason SAP Warp shifts both velocity and force. Changing only the
+array order would produce the right shape but the wrong generalized work.</p>
+</section>
+<section id="free-and-distance-joint-arrays">
+<h4>Free and Distance Joint Arrays<a class="headerlink" href="#free-and-distance-joint-arrays" title="Link to this heading">#</a></h4>
+<p>For free and distance joints, the six velocity entries are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{public}
+=
+\begin{bmatrix}
+v_C^W \\
+\omega^W
+\end{bmatrix},
+\qquad
+\mathrm{sap}
+=
+\begin{bmatrix}
+\omega^W \\
+v_C^W - \omega^W \times r_{OC}^W
+\end{bmatrix}.\end{split}\]</div>
+<p>The corresponding force entries are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{public}
+=
+\begin{bmatrix}
+f^W \\
+\tau_C^W
+\end{bmatrix},
+\qquad
+\mathrm{sap}
+=
+\begin{bmatrix}
+\tau_C^W + r_{OC}^W \times f^W \\
+f^W
+\end{bmatrix}.\end{split}\]</div>
+<p>For all other joint types, SAP Warp treats the joint-space arrays as already in
+the model’s stored order:</p>
+<div class="math notranslate nohighlight">
+\[u_{\mathrm{sap}} = u_{\mathrm{public}},
+\qquad
+g_{\mathrm{sap}} = g_{\mathrm{public}}.\]</div>
+</section>
+<section id="external-body-forces">
+<h4>External Body Forces<a class="headerlink" href="#external-body-forces" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">SapState.body_f</span></code> uses the same physical public wrench convention as
+free-joint generalized forces:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{\mathrm{body,public}}
+=
+\begin{bmatrix}
+f^W \\
+\tau_C^W
+\end{bmatrix}.\end{split}\]</div>
+<p>The free-motion kernels assemble an inverse-dynamics residual. In that residual
+the applied external wrench enters with a negative sign, and the internal body
+force buffer is angular-first and body-origin:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{\mathrm{body,sap}}
+=
+-P_f(r_{OC}^W)
+F_{\mathrm{body,public}}
+=
+\begin{bmatrix}
+-(\tau_C^W + r_{OC}^W \times f^W) \\
+-f^W
+\end{bmatrix}.\end{split}\]</div>
+<p>The negative sign is not a user-facing sign convention. It is an internal
+residual convention used by the free-motion solve. Callers should normally keep
+<code class="docutils literal notranslate"><span class="pre">SapState.body_f</span></code> in public order and let
+<a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> build the internal buffer.</p>
+</section>
+</section>
+<section id="boundary-flags">
+<h3>Boundary Flags<a class="headerlink" href="#boundary-flags" title="Link to this heading">#</a></h3>
+<p>The boundary dataclasses store explicit flags so the solver knows whether a
+buffer is already SAP-native or should be converted:</p>
+<p>Pose and generalized-position buffers do not have a <code class="docutils literal notranslate"><span class="pre">public</span></code>/<code class="docutils literal notranslate"><span class="pre">sap</span></code> order
+flag. Their storage is fixed; only velocity and force-like buffers need the
+boundary convention below.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Buffer</p></th>
+<th class="head"><p>Flag</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">&quot;public&quot;</span></code> means</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">&quot;sap&quot;</span></code> means</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapState</span></code></a> <code class="docutils literal notranslate"><span class="pre">joint_qd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">joint_qd_order</span></code></p></td>
+<td><p>Free/distance joints store <span class="math notranslate nohighlight">\([v_C^W,\omega^W]\)</span>.</p></td>
+<td><p>Free/distance joints store <span class="math notranslate nohighlight">\([\omega^W,v_O^W]\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/_generated/sim.sap_runtime.SapControl.html#sim.sap_runtime.SapControl" title="sim.sap_runtime.SapControl"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapControl</span></code></a> <code class="docutils literal notranslate"><span class="pre">joint_f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">joint_f_order</span></code></p></td>
+<td><p>Free/distance joints store <span class="math notranslate nohighlight">\([f^W,\tau_C^W]\)</span>.</p></td>
+<td><p>Free/distance joints store <span class="math notranslate nohighlight">\([\tau_O^W,f^W]\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_generated/sim.sap_runtime.SapState.html#sim.sap_runtime.SapState" title="sim.sap_runtime.SapState"><code class="xref py py-class docutils literal notranslate"><span class="pre">SapState</span></code></a> <code class="docutils literal notranslate"><span class="pre">body_f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">body_f_order</span></code></p></td>
+<td><p>Body wrenches store <span class="math notranslate nohighlight">\([f^W,\tau_C^W]\)</span>.</p></td>
+<td><p>Body wrenches are already internal angular-first residual forces.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.state.html#sim.sap_runtime.SapModel.state" title="sim.sap_runtime.SapModel.state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state()</span></code></a> and
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.control.html#sim.sap_runtime.SapModel.control" title="sim.sap_runtime.SapModel.control"><code class="xref py py-meth docutils literal notranslate"><span class="pre">control()</span></code></a> return public-order buffers. The raw
+dataclass defaults are <code class="docutils literal notranslate"><span class="pre">&quot;sap&quot;</span></code> because internal kernels also construct
+temporary dataclass views after conversion.</p>
+</section>
+<section id="solver-boundary-algorithm">
+<h3>Solver Boundary Algorithm<a class="headerlink" href="#solver-boundary-algorithm" title="Link to this heading">#</a></h3>
+<p>At a timestep boundary, <a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> follows this
+sequence:</p>
+<ol class="arabic simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">state_in.joint_qd_order</span> <span class="pre">==</span> <span class="pre">&quot;public&quot;</span></code>, convert free and distance joint
+velocities with <span class="math notranslate nohighlight">\(P_v(r)\)</span>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">control.joint_f_order</span> <span class="pre">==</span> <span class="pre">&quot;public&quot;</span></code>, convert free and distance joint
+forces with <span class="math notranslate nohighlight">\(P_f(r)\)</span>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">state_in.body_f_order</span> <span class="pre">==</span> <span class="pre">&quot;public&quot;</span></code>, convert external body forces with
+<span class="math notranslate nohighlight">\(-P_f(r)\)</span>.</p></li>
+<li><p>Run free motion, contact Jacobian assembly, and contact solve in SAP order.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">state_out.joint_qd_order</span> <span class="pre">==</span> <span class="pre">&quot;public&quot;</span></code>, convert solved velocities back
+with <span class="math notranslate nohighlight">\(P_v(r)^{-1}\)</span>.</p></li>
+</ol>
+<p>The conversion is repeated each step because <span class="math notranslate nohighlight">\(r_{OC}^W\)</span> depends on the
+current body orientation:</p>
+<div class="math notranslate nohighlight">
+\[r_{OC}^W = R_{WB}\,r_{OC}^B.\]</div>
+</section>
+</section>
+<section id="practical-rule">
+<h2>Practical Rule<a class="headerlink" href="#practical-rule" title="Link to this heading">#</a></h2>
+<p>For application code, use <a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.state.html#sim.sap_runtime.SapModel.state" title="sim.sap_runtime.SapModel.state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state()</span></code></a> and
+<a class="reference internal" href="../api/_generated/sim.sap_runtime.SapModel.control.html#sim.sap_runtime.SapModel.control" title="sim.sap_runtime.SapModel.control"><code class="xref py py-meth docutils literal notranslate"><span class="pre">control()</span></code></a>, leave <code class="docutils literal notranslate"><span class="pre">joint_qd_order</span></code>,
+<code class="docutils literal notranslate"><span class="pre">joint_f_order</span></code>, and <code class="docutils literal notranslate"><span class="pre">body_f_order</span></code> as <code class="docutils literal notranslate"><span class="pre">&quot;public&quot;</span></code>, and let
+<a class="reference internal" href="../api/_generated/sim.solver_sap.SolverSAP.step.html#sim.solver_sap.SolverSAP.step" title="sim.solver_sap.SolverSAP.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> perform the boundary conversion. Use
+<code class="docutils literal notranslate"><span class="pre">&quot;sap&quot;</span></code> only when an array has already been converted into angular-first,
+body-origin form and you want to bypass the public boundary adapter.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-position-storage">Generalized Position Storage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-velocity-and-force-storage">Generalized Velocity and Force Storage</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unchanged-dof-segments">Unchanged DOF Segments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changed-dof-segments">Changed DOF Segments</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-reference-point-shift">Velocity Reference-Point Shift</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#force-and-wrench-duality">Force and Wrench Duality</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#free-and-distance-joint-arrays">Free and Distance Joint Arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#external-body-forces">External Body Forces</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-flags">Boundary Flags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-boundary-algorithm">Solver Boundary Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-rule">Practical Rule</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
