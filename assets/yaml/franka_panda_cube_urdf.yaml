@@ -1,0 +1,108 @@
+schema_version: 1
+name: franka_panda_cube_urdf
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+control:
+  source: ../control/franka_panda_cube_pick_place.json
+  loop: false
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  default_body_armature: 0.0
+  defaults:
+    joint:
+      armature: 0.1
+      target_ke: 5000.0
+      target_kd: 200.0
+    shape:
+      density: 1000.0
+      ke: 10000.0
+      tau: 0.03
+      mu: 0.75
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: franka
+    type: urdf
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton-assets.git
+        rev: 261cd1f429619d8ef4f546bd788ab9dea906b5e1
+        sparse:
+          - franka_emika_panda/urdf
+          - franka_emika_panda/meshes
+        path: franka_emika_panda/urdf/fr3_franka_hand.urdf
+    xform:
+      p: [0.0, 0.0, 0.0]
+      q: identity
+    floating: false
+    enable_self_collisions: false
+    force_show_colliders: false
+
+bodies:
+  - id: cube
+    label: small_cube
+    transform:
+      p: [0.35, -0.15, 0.02]
+      q: identity
+    shapes:
+      - type: box
+        hx: 0.02
+        hy: 0.02
+        hz: 0.02
+        color: [1.0, 0.45, 0.05]
+        cfg:
+          density: 1500.0
+          mu: 1.0
+
+joints:
+  - id: cube_free
+    type: free
+    parent: world
+    child: cube
+
+articulations:
+  - id: cube_articulation
+    joints: [cube_free]
+
+post_build:
+  - op: set_joint_targets
+    range: head:9
+    mode: position
+    ke: 5000.0
+    kd: 200.0
+  - op: set_joint_armature
+    range: head:9
+    value: 0.1
+  - op: set_array
+    array: joint_armature
+    range: [7, 9]
+    values: [0.5, 0.5]
+  - op: set_array
+    array: joint_q
+    range: head:9
+    values: [-0.0036802115, 0.023901723, 0.003680411, -2.3683236, -0.00012918962, 2.3922248, 0.785492, 0.04, 0.04]
+  - op: set_array
+    array: joint_target_pos
+    range: head:9
+    from_array: joint_q
+  - op: set_joint_targets
+    range: [-3, null]
+    mode: velocity
+    ke: 0.0
+    kd: 0.05

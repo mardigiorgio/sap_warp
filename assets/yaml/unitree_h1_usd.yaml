@@ -1,0 +1,60 @@
+schema_version: 1
+name: h1_usd
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  defaults:
+    joint:
+      limit_ke: 100.0
+      limit_kd: 10.0
+      friction: 1.0e-5
+    shape:
+      ke: 1000000.0
+      tau: 0.01
+      mu: 0.75
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: h1
+    type: usd
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton-assets.git
+        rev: 261cd1f429619d8ef4f546bd788ab9dea906b5e1
+        sparse:
+          - unitree_h1/usd_structured
+          - unitree_h1/meshes
+        path: unitree_h1/usd_structured/h1.usda
+    xform:
+      p: [0.0, 0.0, 0.0]
+      q: identity
+    ignore_paths: ["/GroundPlane"]
+    collapse_fixed_joints: false
+    enable_self_collisions: false
+    hide_collision_shapes: true
+
+post_build:
+  - op: set_attr
+    name: gravity
+    value: -9.81
+  - op: set_joint_targets
+    range: all
+    mode: position
+    ke: 1000.0
+    kd: 50.0

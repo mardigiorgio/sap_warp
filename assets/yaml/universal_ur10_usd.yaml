@@ -1,0 +1,75 @@
+schema_version: 1
+name: universal_ur10_usd
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  default_body_armature: 0.0
+  defaults:
+    joint:
+      armature: 0.05
+      target_ke: 10000.0
+      target_kd: 400.0
+    shape:
+      ke: 1000000.0
+      tau: 0.01
+      mu: 0.75
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: ur10
+    type: usd
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton-assets.git
+        rev: 261cd1f429619d8ef4f546bd788ab9dea906b5e1
+        sparse:
+          - universal_robots_ur10/usd
+        path: universal_robots_ur10/usd/ur10_instanceable.usda
+    xform:
+      p: [0.0, 0.0, 0.0]
+      q: identity
+    collapse_fixed_joints: false
+    enable_self_collisions: false
+    hide_collision_shapes: true
+
+post_build:
+  - op: set_attr
+    name: gravity
+    value: -9.81
+  - op: approximate_meshes
+    method: bounding_box
+  - op: set_joint_targets
+    range: all
+    mode: position
+    ke: 10000.0
+    kd: 400.0
+  - op: set_joint_armature
+    range: all
+    value: 0.05
+  - op: set_array
+    array: joint_q
+    index: 0
+    value: 0.0
+  - op: set_array
+    array: joint_q
+    index: 1
+    value: -pi * 0.5
+  - op: set_array
+    array: joint_target_pos
+    from_array: joint_q

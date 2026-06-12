@@ -1,0 +1,58 @@
+schema_version: 1
+name: g1_usd
+
+simulation:
+  dt: 0.003
+  num_worlds: 1
+  max_rigid_contact: 48
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  defaults:
+    joint:
+      limit_ke: 1000.0
+      limit_kd: 10.0
+      friction: 1.0e-5
+    shape:
+      ke: 1000000.0
+      tau: 0.01
+      mu: 0.75
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: g1
+    type: usd
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton-assets.git
+        rev: 261cd1f429619d8ef4f546bd788ab9dea906b5e1
+        sparse:
+          - unitree_g1/usd_structured
+          - unitree_g1/meshes
+        path: unitree_g1/usd_structured/g1_29dof_with_hand_rev_1_0.usda
+    xform:
+      p: [0.0, 0.0, 0.2]
+      q: identity
+    enable_self_collisions: false
+    hide_collision_shapes: true
+    skip_mesh_approximation: true
+
+post_build:
+  - op: set_joint_targets
+    range: from:6
+    mode: position
+    ke: 500.0
+    kd: 10.0
+  - op: approximate_meshes
+    method: bounding_box

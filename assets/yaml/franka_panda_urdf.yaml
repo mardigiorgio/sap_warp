@@ -1,0 +1,71 @@
+schema_version: 1
+name: franka_panda_urdf
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  default_body_armature: 0.0
+  defaults:
+    joint:
+      armature: 0.1
+      target_ke: 5000.0
+      target_kd: 200.0
+    shape:
+      ke: 1000000.0
+      tau: 0.01
+      mu: 0.75
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: franka
+    type: urdf
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton-assets.git
+        rev: 261cd1f429619d8ef4f546bd788ab9dea906b5e1
+        sparse:
+          - franka_emika_panda/urdf
+          - franka_emika_panda/meshes
+        path: franka_emika_panda/urdf/fr3_franka_hand.urdf
+    xform:
+      p: [0.0, 0.0, 0.0]
+      q: identity
+    floating: false
+    enable_self_collisions: false
+    force_show_colliders: false
+
+post_build:
+  - op: set_joint_targets
+    range: all
+    mode: position
+    ke: 5000.0
+    kd: 200.0
+  - op: set_joint_armature
+    range: all
+    value: 0.1
+  - op: set_array
+    array: joint_armature
+    range: tail:2
+    values: [0.5, 0.5]
+  - op: set_array
+    array: joint_q
+    range: all
+    values: [-0.0036802115, 0.023901723, 0.003680411, -2.3683236, -0.00012918962, 2.3922248, 0.785492, 0.04, 0.04]
+  - op: set_array
+    array: joint_target_pos
+    from_array: joint_q

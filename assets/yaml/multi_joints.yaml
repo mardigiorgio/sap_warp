@@ -1,0 +1,180 @@
+schema_version: 1
+name: multi_joints
+
+simulation:
+  dt: 0.01
+  num_worlds: 1
+  max_rigid_contact: 32
+  solver:
+    contact_preset_variant: approx32
+    line_search_variant: monotone_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.02
+  defaults:
+    joint:
+      target_ke: 0.0
+      target_kd: 0.0
+      limit_ke: 100.0
+      limit_kd: 10.0
+    shape:
+      ke: 500000.0
+      tau: 0.01
+      mu: 0.75
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+bodies:
+  - id: a_rev
+    transform:
+      p: [0.0, -3.0, 2.1875]
+      q: identity
+    shapes:
+      - type: box
+        hx: 0.1
+        hy: 0.1
+        hz: 0.1875
+        color: [0.2, 0.45, 1.0]
+
+  - id: b_rev
+    label: b_rev
+    transform:
+      p: [0.0, -3.0, 1.25]
+      q:
+        axis_angle:
+          axis: [1.0, 0.0, 0.0]
+          angle: 0.15
+    shapes:
+      - type: box
+        hx: 0.1
+        hy: 0.1
+        hz: 0.75
+        color: [0.1, 0.75, 1.0]
+
+  - id: a_pri
+    transform:
+      p: [0.0, 0.0, 2.1875]
+      q: identity
+    shapes:
+      - type: box
+        hx: 0.1
+        hy: 0.1
+        hz: 0.1875
+        color: [1.0, 0.55, 0.1]
+
+  - id: b_pri
+    label: b_prismatic
+    transform:
+      p: [0.0, 0.0, 1.25]
+      q:
+        axis_angle:
+          axis: [0.0, 1.0, 0.0]
+          angle: 0.12
+    shapes:
+      - type: box
+        hx: 0.1
+        hy: 0.1
+        hz: 0.75
+        color: [1.0, 0.8, 0.15]
+
+  - id: rb1
+    transform:
+      p: [0.0, -2.0, 3.2]
+      q: identity
+    shapes:
+      - type: box
+        hx: 0.5
+        hy: 0.5
+        hz: 0.5
+        color: [0.25, 0.8, 0.35]
+        cfg:
+          density: 10.0
+
+  - id: rb2
+    transform:
+      p: [0.0, -1.5, 0.6]
+      q: identity
+    shapes:
+      - type: box
+        hx: 0.5
+        hy: 0.5
+        hz: 0.5
+        color: [0.75, 0.45, 1.0]
+        cfg:
+          density: 10.0
+
+joints:
+  - id: fixed_revolute_anchor
+    type: fixed
+    parent: world
+    child: a_rev
+    parent_xform:
+      p: [0.0, -3.0, 2.1875]
+      q: identity
+    child_xform: identity
+
+  - id: revolute_a_b
+    type: revolute
+    parent: a_rev
+    child: b_rev
+    axis: [1.0, 0.0, 0.0]
+    parent_xform:
+      p: [0.0, 0.0, -0.1875]
+      q: identity
+    child_xform:
+      p: [0.0, 0.0, 0.75]
+      q: identity
+
+  - id: fixed_prismatic_anchor
+    type: fixed
+    parent: world
+    child: a_pri
+    parent_xform:
+      p: [0.0, 0.0, 2.1875]
+      q: identity
+    child_xform: identity
+
+  - id: prismatic_a_b
+    type: prismatic
+    parent: a_pri
+    child: b_pri
+    axis: [0.0, 0.0, 1.0]
+    parent_xform:
+      p: [0.0, 0.0, -0.1875]
+      q: identity
+    child_xform:
+      p: [0.0, 0.0, 0.75]
+      q: identity
+    limit_lower: -0.3
+    limit_upper: 0.3
+
+  - id: rb1_free
+    type: free
+    parent: world
+    child: rb1
+
+  - id: rb2_free
+    type: free
+    parent: world
+    child: rb2
+
+articulations:
+  - id: revolute_articulation
+    joints: [fixed_revolute_anchor, revolute_a_b]
+  - id: prismatic_articulation
+    joints: [fixed_prismatic_anchor, prismatic_a_b]
+  - id: rb1_free_articulation
+    joints: [rb1_free]
+  - id: rb2_free_articulation
+    joints: [rb2_free]
+
+initial_joint_q:
+  - joint: revolute_a_b
+    value: pi * 0.5

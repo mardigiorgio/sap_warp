@@ -1,0 +1,87 @@
+schema_version: 1
+name: agilex_piper_urdf
+
+simulation:
+  dt: 0.01
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: 0.0
+  rigid_gap: 0.0
+  default_body_armature: 0.01
+  defaults:
+    joint:
+      armature: 0.01
+      target_ke: 10000.0
+      target_kd: 200.0
+    shape:
+      ke: 25000.0
+      tau: 0.01
+      mu: 0.8
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: false
+    has_particle_collision: false
+
+assets:
+  - id: piper
+    type: urdf
+    source:
+      path: assets/robot/urdf/piper_description/piper.urdf
+    xform:
+      p: [0.0, 0.0, 0.0]
+      q: identity
+    floating: false
+    enable_self_collisions: false
+    ignore_inertial_definitions: false
+    force_show_colliders: false
+
+post_build:
+  - op: set_joint_targets
+    range: all
+    mode: position
+    ke: 10000.0
+    kd: 200.0
+  - op: set_array
+    array: joint_q
+    index: 0
+    value: 0.0
+  - op: set_array
+    array: joint_q
+    index: 1
+    value: 0.8
+  - op: set_array
+    array: joint_q
+    index: 2
+    value: -1.2
+  - op: set_array
+    array: joint_q
+    index: 3
+    value: 0.0
+  - op: set_array
+    array: joint_q
+    index: 4
+    value: 0.7
+  - op: set_array
+    array: joint_q
+    index: 5
+    value: 0.0
+  - op: set_array
+    array: joint_q
+    index: 6
+    value: 0.025
+  - op: set_array
+    array: joint_q
+    index: 7
+    value: -0.025
+  - op: set_array
+    array: joint_target_pos
+    from_array: joint_q

@@ -1,0 +1,69 @@
+schema_version: 1
+name: anymal_d_usd
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  register_mujoco_custom_attributes: true
+  defaults:
+    joint:
+      limit_ke: 100000.0
+      limit_kd: 10.0
+      friction: 1.0e-5
+    shape:
+      ke: 1000000.0
+      tau: 0.01
+      mu: 0.75
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: anymal_d
+    type: usd
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton-assets.git
+        rev: 261cd1f429619d8ef4f546bd788ab9dea906b5e1
+        sparse:
+          - anybotics_anymal_d/usd
+        path: anybotics_anymal_d/usd/anymal_d.usda
+    collapse_fixed_joints: false
+    enable_self_collisions: false
+    hide_collision_shapes: true
+
+post_build:
+  - op: set_attr
+    name: gravity
+    value: -9.81
+  - op: set_array
+    array: joint_q
+    range: [0, 3]
+    values: [0.0, 0.0, 0.67]
+  - op: set_array
+    array: joint_q
+    range: [3, 7]
+    values: [0.0, 0.0, 0.0, 1.0]
+  - op: set_joint_targets
+    range: all
+    mode: position
+    ke: 2000.0
+    kd: 10.0
+  - op: set_joint_targets
+    range: head:6
+    mode: none
+    ke: 0.0
+    kd: 0.0

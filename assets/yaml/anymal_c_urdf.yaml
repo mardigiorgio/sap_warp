@@ -1,0 +1,72 @@
+schema_version: 1
+name: anymal_c_urdf
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 128
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  default_body_armature: 0.0
+  defaults:
+    joint:
+      armature: 0.0
+      target_ke: 5000.0
+      target_kd: 50.0
+    shape:
+      ke: 1000000.0
+      tau: 0.01
+      mu: 1.0
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: anymal_c
+    type: urdf
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton-assets.git
+        rev: 261cd1f429619d8ef4f546bd788ab9dea906b5e1
+        sparse:
+          - anybotics_anymal_c/urdf
+          - anybotics_anymal_c/meshes
+        path: anybotics_anymal_c/urdf/anymal.urdf
+    xform:
+      p: [0.0, 0.0, 0.62]
+      q:
+        axis_angle:
+          axis: [0.0, 0.0, 1.0]
+          angle: pi * 0.5
+    floating: true
+    enable_self_collisions: false
+    collapse_fixed_joints: false
+    ignore_inertial_definitions: false
+    force_show_colliders: false
+
+post_build:
+  - op: scale_sphere_shapes
+    factor: 2.0
+  - op: set_joint_targets
+    range: all
+    mode: position
+    ke: 5000.0
+    kd: 50.0
+  - op: set_joint_targets
+    range: head:6
+    mode: none
+    ke: 0.0
+    kd: 0.0
+  - op: set_joint_armature
+    range: from:6
+    value: 0.02

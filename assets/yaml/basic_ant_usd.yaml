@@ -1,0 +1,57 @@
+schema_version: 1
+name: basic_ant_usd
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  defaults:
+    joint:
+      armature: 0.01
+      target_ke: 0.0
+      target_kd: 0.0
+    shape:
+      ke: 100000.0
+      tau: 0.05
+      mu: 1.0
+
+ground:
+  enabled: true
+  label: DEFAULT_GROUND
+  cfg:
+    is_visible: true
+    has_shape_collision: true
+    has_particle_collision: false
+
+assets:
+  - id: ant
+    type: usd
+    source:
+      git:
+        repo: https://github.com/newton-physics/newton.git
+        rev: f9f6412afb3e5a32e611b173d7a6e718a9527376
+        sparse:
+          - newton/examples/assets
+        path: newton/examples/assets/ant.usda
+    xform:
+      p: [0.0, 0.0, 0.0]
+      q: identity
+    enable_self_collisions: false
+    hide_collision_shapes: true
+
+post_build:
+  - op: set_joint_targets
+    range: all
+    mode: none
+    ke: 0.0
+    kd: 0.0
+  - op: set_joint_armature
+    range: all
+    value: 0.01

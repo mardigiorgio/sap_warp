@@ -1,0 +1,120 @@
+schema_version: 1
+name: basic_cartpole_usd
+
+simulation:
+  dt: 0.005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  default_body_armature: 0.01
+  defaults:
+    joint:
+      armature: 0.01
+      target_ke: 0.0
+      target_kd: 0.0
+      limit_ke: 1000.0
+      limit_kd: 20.0
+    shape:
+      density: 100.0
+      ke: 500000.0
+      tau: 0.01
+      mu: 0.75
+
+ground:
+  enabled: false
+
+bodies:
+  - id: rail
+    transform:
+      p: [0.0, 0.0, 0.35]
+      q: identity
+    shapes:
+      - type: box
+        hx: 2.0
+        hy: 0.04
+        hz: 0.04
+        color: [0.18, 0.20, 0.24]
+        cfg:
+          density: 0.0
+          has_shape_collision: false
+
+  - id: cart
+    transform:
+      p: [0.0, 0.0, 0.55]
+      q: identity
+    shapes:
+      - type: box
+        hx: 0.28
+        hy: 0.18
+        hz: 0.14
+        color: [0.86, 0.28, 0.20]
+        cfg:
+          density: 250.0
+
+  - id: pole
+    transform:
+      p: [0.0, 0.0, 1.25]
+      q: identity
+    shapes:
+      - type: capsule
+        radius: 0.04
+        half_height: 0.55
+        color: [0.95, 0.72, 0.24]
+        cfg:
+          density: 80.0
+
+joints:
+  - id: fixed_rail
+    type: fixed
+    parent: world
+    child: rail
+    parent_xform:
+      p: [0.0, 0.0, 0.35]
+      q: identity
+    child_xform: identity
+
+  - id: cart_slider
+    type: prismatic
+    parent: rail
+    child: cart
+    axis: [1.0, 0.0, 0.0]
+    parent_xform:
+      p: [0.0, 0.0, 0.20]
+      q: identity
+    child_xform: identity
+    limit_lower: -1.5
+    limit_upper: 1.5
+    limit_ke: 1000.0
+    limit_kd: 20.0
+
+  - id: pole_hinge
+    type: revolute
+    parent: cart
+    child: pole
+    axis: [0.0, 1.0, 0.0]
+    parent_xform:
+      p: [0.0, 0.0, 0.20]
+      q: identity
+    child_xform:
+      p: [0.0, 0.0, -0.55]
+      q: identity
+    limit_lower: -pi
+    limit_upper: pi
+    limit_ke: 0.0
+    limit_kd: 0.0
+
+articulations:
+  - id: cartpole_articulation
+    joints: [fixed_rail, cart_slider, pole_hinge]
+
+initial_joint_q:
+  - joint: cart_slider
+    value: 0.0
+  - joint: pole_hinge
+    value: 0.0
