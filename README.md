@@ -45,7 +45,7 @@ For detailed SAP Warp documentation, see the
 ## Integrating Sap Warp in Newton
 SAP Warp is fully compatible with
 [Newton](https://github.com/newton-physics/newton). See this
-[example](sap_with_newton.py) and the documentation for more details.
+[example](sap_with_newton.py) and the [documentation](https://sap-sim.github.io/sap_warp/simulation/newton_integration.html) for more details.
 
 ```shell
 uv run --frozen --with 'newton[examples]' python sap_with_newton.py
