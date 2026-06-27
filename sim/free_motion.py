@@ -74,18 +74,20 @@ def _assemble_sap_free_motion_outputs_kernel(
     joint_dof_dim: wp.array(dtype=int, ndim=2),
     sap_v0: wp.array(dtype=wp.float64),
     sap_vdot_solve: wp.array(dtype=wp.float64),
-    dt: wp.float64,
+    dof_per_env: int,
+    dt: wp.array(dtype=wp.float64),
     sap_v_star: wp.array(dtype=wp.float64),
     sap_vdot: wp.array(dtype=wp.float64),
 ):
     joint = wp.tid()
     dof_start = joint_qd_start[joint]
+    world = dof_start // dof_per_env
     axis_count = joint_dof_dim[joint, 0] + joint_dof_dim[joint, 1]
 
     for axis in range(axis_count):
         vdot = sap_vdot_solve[dof_start + axis]
         sap_vdot[dof_start + axis] = vdot
-        sap_v_star[dof_start + axis] = sap_v0[dof_start + axis] + dt * vdot
+        sap_v_star[dof_start + axis] = sap_v0[dof_start + axis] + dt[world] * vdot
 
 
 @wp.kernel
@@ -1445,6 +1447,13 @@ class SapFreeMotion:
             raise ValueError("SapFreeMotion requires a model with articulated joint DOFs.")
 
         self.model = model
+        # Per-world timestep buffer for the free-motion v_star kernel.  Filled
+        # from this step's dt by _set_dt_world (a scalar fills uniformly ->
+        # bit-identical to the legacy float(dt) path).  Regular env grid, so a
+        # joint's world is dof_start // dof_per_env.
+        self.num_envs = int(getattr(model, "world_count", 1))
+        self.dof_per_env = int(model.joint_dof_count) // max(self.num_envs, 1)
+        self._dt_world = wp.zeros(max(self.num_envs, 1), dtype=wp.float64, device=model.device)
         self.use_f64_boundary_pose = bool(use_f64_boundary_pose)
         self.linear_solve_precision = self._normalize_linear_solve_precision(linear_solve_precision)
         self._compute_articulation_indices(model)
@@ -1475,6 +1484,24 @@ class SapFreeMotion:
     def device(self):
         """Return the Warp device that owns the free-motion work buffers."""
         return self.model.device
+
+    def _set_dt_world(self, dt) -> None:
+        """Fill self._dt_world (shape [num_envs], f64) from this step's dt.
+
+        A scalar fills uniformly -- bit-identical to the legacy float(dt) the
+        v_star kernel received.  A per-world wp.array (length num_envs) gives
+        each env its own dt (cast to f64 when the caller's array is f32).
+        """
+        if isinstance(dt, wp.array):
+            n = int(self.num_envs)
+            if int(dt.shape[0]) != n:
+                raise ValueError(f"per-world dt length {int(dt.shape[0])} != num_envs {n}")
+            if dt.dtype == wp.float64:
+                wp.copy(self._dt_world, dt)
+            else:
+                wp.launch(_copy_f32_to_f64, dim=n, inputs=[dt, self._dt_world], device=self.model.device)
+            return
+        self._dt_world.fill_(float(dt))
 
     @staticmethod
     def _normalize_linear_solve_precision(value: str) -> str:
@@ -2077,6 +2104,8 @@ class SapFreeMotion:
         `joint_f_sap_input`.  Spatial buffers follow SAP's body-origin,
         world-expressed convention.
         """
+        # Per-world timestep source for the free-motion v_star kernel.
+        self._set_dt_world(dt)
         model = self.model
         self.body_f_s.zero_()
         self._launch_rigid_id(state_in)
@@ -2137,7 +2166,8 @@ class SapFreeMotion:
                 model.joint_dof_dim,
                 self.joint_qd_sap_input,
                 self.joint_qdd_sap_solve,
-                float(dt),
+                self.dof_per_env,
+                self._dt_world,
                 self.free_motion_joint_qd_sap,
                 self.free_motion_joint_qdd_sap,
             ],

@@ -497,7 +497,7 @@ def _make_contact_solve_kernel_table(scalar):
         joint_target_vel: wp.array(dtype=float),
         joint_act: wp.array(dtype=float),
         a_inv_diag: wp.array(dtype=scalar, ndim=2),
-        dt: scalar,
+        dt: wp.array(dtype=scalar),
         mode_none: int,
         pd_active: wp.array(dtype=int, ndim=2),
         pd_a: wp.array(dtype=scalar, ndim=2),
@@ -533,10 +533,10 @@ def _make_contact_solve_kernel_table(scalar):
         if coord < 0 and kp > scalar(0.0):
             return
 
-        eff = compute_effective_pd_gains(kp, kd, scalar(dt), a_inv_diag[env, i])
+        eff = compute_effective_pd_gains(kp, kd, scalar(dt[env]), a_inv_diag[env, i])
         kp_eff = eff[0]
         kd_eff = eff[1]
-        gain = scalar(dt) * kp_eff + kd_eff
+        gain = scalar(dt[env]) * kp_eff + kd_eff
         if gain <= scalar(0.0):
             return
 
@@ -566,7 +566,7 @@ def _make_contact_solve_kernel_table(scalar):
         pd_gain: wp.array(dtype=scalar, ndim=2),
         pd_limit: wp.array(dtype=scalar, ndim=2),
         v: wp.array(dtype=scalar, ndim=2),
-        dt: scalar,
+        dt: wp.array(dtype=scalar),
         pd_y: wp.array(dtype=scalar, ndim=2),
         pd_gamma: wp.array(dtype=scalar, ndim=2),
         pd_hdiag: wp.array(dtype=scalar, ndim=2),
@@ -584,11 +584,11 @@ def _make_contact_solve_kernel_table(scalar):
 
         gain = pd_gain[env, i]
         y = pd_a[env, i] - gain * v[env, i]
-        gamma = scalar(dt) * clamp_scalar(y, pd_limit[env, i])
-        hdiag = scalar(dt) * gain * clamp_derivative(y, pd_limit[env, i])
+        gamma = scalar(dt[env]) * clamp_scalar(y, pd_limit[env, i])
+        hdiag = scalar(dt[env]) * gain * clamp_derivative(y, pd_limit[env, i])
         cost = scalar(0.0)
         if gain > scalar(0.0):
-            cost = (scalar(dt) / gain) * clamp_antiderivative(y, pd_limit[env, i])
+            cost = (scalar(dt[env]) / gain) * clamp_antiderivative(y, pd_limit[env, i])
 
         pd_y[env, i] = y
         pd_gamma[env, i] = gamma
@@ -611,7 +611,7 @@ def _make_contact_solve_kernel_table(scalar):
         v0: wp.array(dtype=scalar, ndim=2),
         v_star: wp.array(dtype=scalar, ndim=2),
         a_inv_diag: wp.array(dtype=scalar, ndim=2),
-        dt: scalar,
+        dt: wp.array(dtype=scalar),
         lower_active: wp.array(dtype=int, ndim=2),
         upper_active: wp.array(dtype=int, ndim=2),
         lower_vhat: wp.array(dtype=scalar, ndim=2),
@@ -646,7 +646,7 @@ def _make_contact_solve_kernel_table(scalar):
         lower = scalar(joint_limit_lower[dof])
         upper = scalar(joint_limit_upper[dof])
         speed_scale = wp.max(wp.abs(v0[env, i]), wp.abs(v_star[env, i]))
-        window = scalar(_SAP_LIMIT_WINDOW_FACTOR) * scalar(dt) * speed_scale
+        window = scalar(_SAP_LIMIT_WINDOW_FACTOR) * scalar(dt[env]) * speed_scale
 
         kd = scalar(joint_limit_kd[dof])
         tau_d = scalar(0.0)
@@ -656,7 +656,7 @@ def _make_contact_solve_kernel_table(scalar):
         beta_factor = beta * beta / (scalar(4.0) * scalar(_PI) * scalar(_PI))
         r_nr = beta_factor * wp.max(a_inv_diag[env, i], scalar(1.0e-12))
         r_soft = scalar(1.0) / (
-            scalar(dt) * ke * (scalar(dt) + tau_d)
+            scalar(dt[env]) * ke * (scalar(dt[env]) + tau_d)
         )
         r = wp.max(r_nr, r_soft)
         rinv = scalar(1.0) / r
@@ -665,7 +665,7 @@ def _make_contact_solve_kernel_table(scalar):
             g = q0 - lower
             if g <= window:
                 lower_active[env, i] = 1
-                lower_vhat[env, i] = -g / (scalar(dt) + tau_d)
+                lower_vhat[env, i] = -g / (scalar(dt[env]) + tau_d)
                 lower_r[env, i] = r
                 lower_rinv[env, i] = rinv
 
@@ -673,7 +673,7 @@ def _make_contact_solve_kernel_table(scalar):
             g = upper - q0
             if g <= window:
                 upper_active[env, i] = 1
-                upper_vhat[env, i] = -g / (scalar(dt) + tau_d)
+                upper_vhat[env, i] = -g / (scalar(dt[env]) + tau_d)
                 upper_r[env, i] = r
                 upper_rinv[env, i] = rinv
 
@@ -750,7 +750,7 @@ def _make_contact_solve_kernel_table(scalar):
         v: wp.array(dtype=scalar, ndim=2),
         beta: scalar,
         sigma: scalar,
-        dt: scalar,
+        dt: wp.array(dtype=scalar),
         contact_gamma: wp.array(dtype=vec3, ndim=2),
         contact_g: wp.array(dtype=mat33, ndim=2),
         contact_vc: wp.array(dtype=vec3, ndim=2),
@@ -796,7 +796,7 @@ def _make_contact_solve_kernel_table(scalar):
         if k_c <= scalar(0.0) or not wp.isfinite(k_c):
             k_c = scalar(1.0)
         rn_soft = scalar(1.0) / (
-            scalar(dt) * k_c * (scalar(dt) + wp.max(contact_tau_d[env, c], scalar(0.0)))
+            scalar(dt[env]) * k_c * (scalar(dt[env]) + wp.max(contact_tau_d[env, c], scalar(0.0)))
         )
         rn = wp.max(rn_hard, rn_soft)
         rt = scalar(sigma) * wi
@@ -808,7 +808,7 @@ def _make_contact_solve_kernel_table(scalar):
         rt_inv = scalar(1.0) / rt
         rn_inv = scalar(1.0) / rn
         tau_c = wp.max(contact_tau_d[env, c], scalar(0.0))
-        vhat_n = -contact_phi0[env, c] / (scalar(dt) + tau_c)
+        vhat_n = -contact_phi0[env, c] / (scalar(dt[env]) + tau_c)
         y = vec3(-rt_inv * vc.x, -rt_inv * vc.y, rn_inv * (vhat_n - vc.z))
 
         mu = contact_mu[env, c]
@@ -932,7 +932,7 @@ def _make_contact_solve_kernel_table(scalar):
         dv: wp.array(dtype=scalar, ndim=2),
         beta: scalar,
         sigma: scalar,
-        dt: scalar,
+        dt: wp.array(dtype=scalar),
         contact_cost: wp.array(dtype=scalar, ndim=2),
         total_cost: wp.array(dtype=scalar),
     ):
@@ -958,7 +958,7 @@ def _make_contact_solve_kernel_table(scalar):
             scalar(0.0),
             beta,
             sigma,
-            dt,
+            dt[env],
         )
         contact_cost[env, c] = cost
         wp.atomic_add(total_cost, env, cost)
@@ -979,7 +979,7 @@ def _make_contact_solve_kernel_table(scalar):
         v: wp.array(dtype=scalar, ndim=2),
         beta: scalar,
         sigma: scalar,
-        dt: scalar,
+        dt: wp.array(dtype=scalar),
         contact_gamma: wp.array(dtype=vec3, ndim=2),
         contact_vc: wp.array(dtype=vec3, ndim=2),
         contact_cost: wp.array(dtype=scalar, ndim=2),
@@ -1014,7 +1014,7 @@ def _make_contact_solve_kernel_table(scalar):
         if k_c <= scalar(0.0) or not wp.isfinite(k_c):
             k_c = scalar(1.0)
         tau_c = wp.max(contact_tau_d[env, c], scalar(0.0))
-        rn_soft = scalar(1.0) / (dt * k_c * (dt + tau_c))
+        rn_soft = scalar(1.0) / (dt[env] * k_c * (dt[env] + tau_c))
         rn = wp.max(rn_hard, rn_soft)
         rt = sigma * wi
         if rt < scalar(1.0e-30):
@@ -1024,7 +1024,7 @@ def _make_contact_solve_kernel_table(scalar):
 
         rt_inv = scalar(1.0) / rt
         rn_inv = scalar(1.0) / rn
-        vhat_n = -contact_phi0[env, c] / (dt + tau_c)
+        vhat_n = -contact_phi0[env, c] / (dt[env] + tau_c)
         y = vec3(-rt_inv * vc.x, -rt_inv * vc.y, rn_inv * (vhat_n - vc.z))
 
         mu = contact_mu[env, c]
@@ -1076,7 +1076,7 @@ def _make_contact_solve_kernel_table(scalar):
         contact_vc: wp.array(dtype=vec3, ndim=2),
         beta: scalar,
         sigma: scalar,
-        dt: scalar,
+        dt: wp.array(dtype=scalar),
         contact_g: wp.array(dtype=mat33, ndim=2),
         contact_y: wp.array(dtype=vec3, ndim=2),
         contact_rt: wp.array(dtype=scalar, ndim=2),
@@ -1106,7 +1106,7 @@ def _make_contact_solve_kernel_table(scalar):
         if k_c <= scalar(0.0) or not wp.isfinite(k_c):
             k_c = scalar(1.0)
         tau_c = wp.max(contact_tau_d[env, c], scalar(0.0))
-        rn_soft = scalar(1.0) / (scalar(dt) * k_c * (scalar(dt) + tau_c))
+        rn_soft = scalar(1.0) / (scalar(dt[env]) * k_c * (scalar(dt[env]) + tau_c))
         rn = wp.max(rn_hard, rn_soft)
         rt = scalar(sigma) * wi
         if rt < scalar(1.0e-30):
@@ -1116,7 +1116,7 @@ def _make_contact_solve_kernel_table(scalar):
 
         rt_inv = scalar(1.0) / rt
         rn_inv = scalar(1.0) / rn
-        vhat_n = -contact_phi0[env, c] / (scalar(dt) + tau_c)
+        vhat_n = -contact_phi0[env, c] / (scalar(dt[env]) + tau_c)
         vc = contact_vc[env, c]
         y = vec3(-rt_inv * vc.x, -rt_inv * vc.y, rn_inv * (vhat_n - vc.z))
 
@@ -1499,7 +1499,7 @@ def _make_contact_solve_kernel_table(scalar):
             pd_a: wp.array(dtype=scalar, ndim=2),
             pd_gain: wp.array(dtype=scalar, ndim=2),
             pd_limit: wp.array(dtype=scalar, ndim=2),
-            dt: scalar,
+            dt: wp.array(dtype=scalar),
             pd_y: wp.array(dtype=scalar, ndim=2),
             pd_gamma: wp.array(dtype=scalar, ndim=2),
             pd_hdiag: wp.array(dtype=scalar, ndim=2),
@@ -1570,10 +1570,10 @@ def _make_contact_solve_kernel_table(scalar):
                 if add_pd == 1 and pd_active[env, i] == 1:
                     gain = pd_gain[env, i]
                     pd_y_value = pd_a[env, i] - gain * vi
-                    pd_gamma_value = scalar(dt) * clamp_scalar(pd_y_value, pd_limit[env, i])
-                    pd_hdiag_value = scalar(dt) * gain * clamp_derivative(pd_y_value, pd_limit[env, i])
+                    pd_gamma_value = scalar(dt[env]) * clamp_scalar(pd_y_value, pd_limit[env, i])
+                    pd_hdiag_value = scalar(dt[env]) * gain * clamp_derivative(pd_y_value, pd_limit[env, i])
                     if gain > scalar(0.0):
-                        pd_cost_value = (scalar(dt) / gain) * clamp_antiderivative(
+                        pd_cost_value = (scalar(dt[env]) / gain) * clamp_antiderivative(
                             pd_y_value, pd_limit[env, i]
                         )
                     model_cost = model_cost + pd_cost_value
@@ -2510,7 +2510,7 @@ def _make_contact_solve_kernel_table(scalar):
             line_base_quadratic: wp.array(dtype=scalar),
             beta: scalar,
             sigma: scalar,
-            dt: scalar,
+            dt: wp.array(dtype=scalar),
             has_contact_terms: int,
             has_pd_terms: int,
             has_limit_terms: int,
@@ -2585,7 +2585,7 @@ def _make_contact_solve_kernel_table(scalar):
                             contact_tau_d,
                             beta,
                             sigma,
-                            dt,
+                            dt[env],
                         )
                         c = c + stride
 
@@ -2598,7 +2598,7 @@ def _make_contact_solve_kernel_table(scalar):
                             y = pd_a[env, i] - gain * vi
                             local_regularizer = (
                                 local_regularizer
-                                + (dt / gain) * clamp_antiderivative(y, pd_limit[env, i])
+                                + (dt[env] / gain) * clamp_antiderivative(y, pd_limit[env, i])
                             )
 
                     if has_limit_terms != 0:
@@ -3391,6 +3391,11 @@ class SapContactSolve:
         self._has_pd_terms = False
         self._has_limit_terms = False
 
+        # Per-world timestep buffer for the contact-solve kernels.  _set_dt_world
+        # fills it each solve() from the step's dt (a scalar fills uniformly,
+        # reproducing the legacy scalar(dt) the kernels received).  solve_dtype
+        # so dt[env] is the kernels' `scalar` type with no extra cast.
+        self._dt_world = wp.zeros((self.num_envs,), dtype=self.solve_dtype, device=self.device)
         self.zero_control = wp.zeros((self.dof_count,), dtype=self.solve_dtype, device=self.device)
         self.joint_q_input = wp.zeros((model.joint_coord_count,), dtype=self.solve_dtype, device=self.device)
         self.joint_limit_lower_solve = wp.array(
@@ -3524,6 +3529,10 @@ class SapContactSolve:
         self.active_count = wp.zeros((1,), dtype=int, device=self.device)
         self.newton_loop_iteration = wp.zeros((1,), dtype=int, device=self.device)
         self.newton_max_reached = wp.zeros((1,), dtype=int, device=self.device)
+        # Hessian-factorization counter (CENIC Sec. V-C reuse diagnostic): incremented
+        # once per actual factorization pass in _solve_newton_direction. Zero it before a
+        # solve and read after (one host sync; diagnostic only, never in the hot loop).
+        self.factorization_count = wp.zeros((1,), dtype=int, device=self.device)
 
         self.grad_norm2 = wp.zeros((self.num_envs,), dtype=self.solve_dtype, device=self.device)
         self.p_norm2 = wp.zeros((self.num_envs,), dtype=self.solve_dtype, device=self.device)
@@ -3888,7 +3897,7 @@ class SapContactSolve:
                 self.pd_a,
                 self.pd_gain,
                 self.pd_limit,
-                float(dt),
+                self._dt_world,
                 pd_y,
                 pd_gamma,
                 pd_hdiag,
@@ -4344,7 +4353,7 @@ class SapContactSolve:
                 self._as_control_array(getattr(control, "joint_target_vel", None)),
                 self._as_control_array(getattr(control, "joint_act", None)),
                 self.a_inv_diag,
-                float(dt),
+                self._dt_world,
                 self._mode_none,
                 self.pd_active,
                 self.pd_a,
@@ -4372,7 +4381,7 @@ class SapContactSolve:
                 self.v0_env,
                 self.v_star_env,
                 self.a_inv_diag,
-                float(dt),
+                self._dt_world,
                 self.limit_lower_active,
                 self.limit_upper_active,
                 self.limit_lower_vhat,
@@ -4483,7 +4492,7 @@ class SapContactSolve:
                 self.contact_vc,
                 self.contact_beta,
                 self.contact_sigma,
-                float(dt),
+                self._dt_world,
                 self.contact_g,
                 self.contact_y,
                 self.contact_rt,
@@ -4544,7 +4553,7 @@ class SapContactSolve:
                 v,
                 self.contact_beta,
                 self.contact_sigma,
-                float(dt),
+                self._dt_world,
                 contact_gamma,
                 contact_g,
                 contact_vc,
@@ -4569,7 +4578,7 @@ class SapContactSolve:
                 self.pd_gain,
                 self.pd_limit,
                 v,
-                float(dt),
+                self._dt_world,
                 pd_y,
                 pd_gamma,
                 pd_hdiag,
@@ -4650,7 +4659,7 @@ class SapContactSolve:
                 v,
                 self.contact_beta,
                 self.contact_sigma,
-                float(dt),
+                self._dt_world,
                 contact_gamma,
                 contact_vc,
                 contact_cost,
@@ -4670,7 +4679,7 @@ class SapContactSolve:
                 self.pd_gain,
                 self.pd_limit,
                 v,
-                float(dt),
+                self._dt_world,
                 pd_y,
                 pd_gamma,
                 pd_hdiag,
@@ -4761,7 +4770,7 @@ class SapContactSolve:
                         v,
                         self.contact_beta,
                         self.contact_sigma,
-                        float(dt),
+                        self._dt_world,
                         contact_gamma,
                         contact_g,
                         contact_vc,
@@ -4792,7 +4801,7 @@ class SapContactSolve:
                         v,
                         self.contact_beta,
                         self.contact_sigma,
-                        float(dt),
+                        self._dt_world,
                         contact_gamma,
                         contact_vc,
                         contact_cost,
@@ -5039,6 +5048,7 @@ class SapContactSolve:
             device=self.device,
         )
         self.block_solver.factorize_masked(self.chol_a, self.dof_per_env, self.newton_active)
+        wp.launch(self.k._increment_scalar_i32, dim=1, inputs=[self.factorization_count], device=self.device)
         self.block_solver.solve_masked(self.chol_rhs, self.chol_x, self.newton_active)
         if store_first_dv:
             wp.launch(
@@ -5073,6 +5083,7 @@ class SapContactSolve:
         max_iterations: int,
         relative_slop: float,
         check_errors: bool = True,
+        static_loop: bool = False,
     ) -> None:
         if int(max_iterations) <= 0:
             return
@@ -5159,15 +5170,30 @@ class SapContactSolve:
 
         if int(max_iterations) > 1:
             self.ls_loop_iteration.fill_(1)
-            wp.capture_while(
-                self.ls_active_count,
-                while_body=self._run_sap_backtracking_body,
-                contact_result=contact_result,
-                dt=float(dt),
-                armijo_c=float(armijo_c),
-                rho=float(rho),
-                max_iterations=int(max_iterations),
-            )
+            if static_loop:
+                # Fixed-iteration, NON-conditional backtracking: run exactly
+                # (max_iterations - 1) bodies (accepted envs are masked to no-ops inside
+                # via ls_active), so no wp.capture_while device-conditional subgraph is
+                # recorded. Bodies force-accept at the cap identically to the conditional
+                # early-exit, so the committed step is numerically the same.
+                for _ in range(int(max_iterations) - 1):
+                    self._run_sap_backtracking_body(
+                        contact_result=contact_result,
+                        dt=float(dt),
+                        armijo_c=float(armijo_c),
+                        rho=float(rho),
+                        max_iterations=int(max_iterations),
+                    )
+            else:
+                wp.capture_while(
+                    self.ls_active_count,
+                    while_body=self._run_sap_backtracking_body,
+                    contact_result=contact_result,
+                    dt=float(dt),
+                    armijo_c=float(armijo_c),
+                    rho=float(rho),
+                    max_iterations=int(max_iterations),
+                )
 
         if check_errors:
             self._raise_line_search_errors_if_any(stage="backtracking")
@@ -5330,7 +5356,7 @@ class SapContactSolve:
                 self.line_search_base_quadratic,
                 self.solve_dtype(self.contact_beta),
                 self.solve_dtype(self.contact_sigma),
-                self.solve_dtype(dt),
+                self._dt_world,
                 1,
                 int(self._has_pd_terms),
                 int(self._has_limit_terms),
@@ -5367,8 +5393,11 @@ class SapContactSolve:
         cost_abs_tol: float,
         cost_rel_tol: float,
         check_errors: bool,
+        static_loop: bool = False,
     ) -> None:
         if line_search_variant == "monotone_decay":
+            # monotone_decay is already a fully fused (non-conditional) line search, so it
+            # needs no static_loop branch.
             self._run_unit_decay_line_search(
                 contact_result,
                 dt,
@@ -5391,6 +5420,7 @@ class SapContactSolve:
                 max_iterations=int(line_search_max_iterations),
                 relative_slop=float(line_search_relative_slop),
                 check_errors=bool(check_errors),
+                static_loop=bool(static_loop),
             )
             return
 
@@ -5402,6 +5432,7 @@ class SapContactSolve:
                 cost_abs_tol=float(cost_abs_tol),
                 cost_rel_tol=float(cost_rel_tol),
                 check_errors=bool(check_errors),
+                static_loop=bool(static_loop),
             )
             return
 
@@ -5424,6 +5455,7 @@ class SapContactSolve:
         rho: float,
         line_search_relative_slop: float,
         check_line_search_errors: bool,
+        static_loop: bool = False,
     ) -> None:
         self._run_unit_conditional_newton_step(
             contact_result=contact_result,
@@ -5436,6 +5468,7 @@ class SapContactSolve:
             cost_abs_tol=float(cost_abs_tol),
             cost_rel_tol=float(cost_rel_tol),
             check_line_search_errors=bool(check_line_search_errors),
+            static_loop=bool(static_loop),
         )
         self._solver_update_active(
             contact_result,
@@ -5462,6 +5495,7 @@ class SapContactSolve:
         cost_abs_tol: float,
         cost_rel_tol: float,
         check_line_search_errors: bool,
+        static_loop: bool = False,
     ) -> None:
         contact_capacity = self._ensure_hessian_terms_for_active_envs(
             contact_result,
@@ -5485,6 +5519,7 @@ class SapContactSolve:
             cost_abs_tol=float(cost_abs_tol),
             cost_rel_tol=float(cost_rel_tol),
             check_errors=bool(check_line_search_errors),
+            static_loop=bool(static_loop),
         )
         wp.launch(self.k._increment_scalar_i32, dim=1, inputs=[self.newton_loop_iteration], device=self.device)
 
@@ -5508,6 +5543,7 @@ class SapContactSolve:
         check_line_search_errors: bool,
         loop_counters_initialized: bool = False,
         v_flat_seeded: bool = False,
+        static_loop: bool = False,
     ) -> SapContactSolveResult:
         if not bool(loop_counters_initialized):
             wp.launch(
@@ -5529,24 +5565,48 @@ class SapContactSolve:
             cost_min_alpha=float(cost_min_alpha),
         )
         if int(max_iterations) > 0:
-            wp.capture_while(
-                self.active_count,
-                while_body=self._run_unit_conditional_newton_body,
-                contact_result=contact_result,
-                dt=float(dt),
-                max_iterations=int(max_iterations),
-                optimality_abs_tol=float(optimality_abs_tol),
-                optimality_rel_tol=float(optimality_rel_tol),
-                cost_abs_tol=float(cost_abs_tol),
-                cost_rel_tol=float(cost_rel_tol),
-                cost_min_alpha=float(cost_min_alpha),
-                line_search_max_iterations=int(line_search_max_iterations),
-                line_search_variant=line_search_variant,
-                armijo_c=float(armijo_c),
-                rho=float(rho),
-                line_search_relative_slop=float(line_search_relative_slop),
-                check_line_search_errors=False,
-            )
+            if static_loop:
+                # Fixed-iteration, NON-conditional Newton loop: run exactly max_iterations
+                # bodies (converged envs are masked to no-ops inside the body via
+                # newton_active), so no wp.capture_while device-conditional subgraph is
+                # recorded. The inner line search is likewise static (static_loop=True).
+                for _ in range(int(max_iterations)):
+                    self._run_unit_conditional_newton_body(
+                        contact_result=contact_result,
+                        dt=float(dt),
+                        max_iterations=int(max_iterations),
+                        optimality_abs_tol=float(optimality_abs_tol),
+                        optimality_rel_tol=float(optimality_rel_tol),
+                        cost_abs_tol=float(cost_abs_tol),
+                        cost_rel_tol=float(cost_rel_tol),
+                        cost_min_alpha=float(cost_min_alpha),
+                        line_search_max_iterations=int(line_search_max_iterations),
+                        line_search_variant=line_search_variant,
+                        armijo_c=float(armijo_c),
+                        rho=float(rho),
+                        line_search_relative_slop=float(line_search_relative_slop),
+                        check_line_search_errors=False,
+                        static_loop=True,
+                    )
+            else:
+                wp.capture_while(
+                    self.active_count,
+                    while_body=self._run_unit_conditional_newton_body,
+                    contact_result=contact_result,
+                    dt=float(dt),
+                    max_iterations=int(max_iterations),
+                    optimality_abs_tol=float(optimality_abs_tol),
+                    optimality_rel_tol=float(optimality_rel_tol),
+                    cost_abs_tol=float(cost_abs_tol),
+                    cost_rel_tol=float(cost_rel_tol),
+                    cost_min_alpha=float(cost_min_alpha),
+                    line_search_max_iterations=int(line_search_max_iterations),
+                    line_search_variant=line_search_variant,
+                    armijo_c=float(armijo_c),
+                    rho=float(rho),
+                    line_search_relative_slop=float(line_search_relative_slop),
+                    check_line_search_errors=False,
+                )
 
         if not bool(v_flat_seeded):
             wp.launch(
@@ -5581,6 +5641,7 @@ class SapContactSolve:
         check_line_search_errors: bool,
         loop_counters_initialized: bool,
         v_flat_seeded: bool,
+        static_loop: bool = False,
     ) -> None:
         self._run_unit_conditional_newton_loop(
             contact_result,
@@ -5600,6 +5661,7 @@ class SapContactSolve:
             check_line_search_errors=bool(check_line_search_errors),
             loop_counters_initialized=bool(loop_counters_initialized),
             v_flat_seeded=bool(v_flat_seeded),
+            static_loop=bool(static_loop),
         )
 
     def _run_sap_exact(
@@ -5611,6 +5673,7 @@ class SapContactSolve:
         cost_abs_tol: float,
         cost_rel_tol: float,
         check_errors: bool = True,
+        static_loop: bool = False,
     ) -> None:
         if int(max_iterations) <= 0:
             return
@@ -5704,13 +5767,23 @@ class SapContactSolve:
         )
 
         self.ls_loop_iteration.fill_(1)
-        wp.capture_while(
-            self.ls_active_count,
-            while_body=self._run_sap_exact_root_body,
-            contact_result=contact_result,
-            dt=float(dt),
-            max_iterations=int(max_iterations),
-        )
+        if static_loop:
+            # Fixed-iteration, NON-conditional exact-root line search (no device-conditional
+            # subgraph). Converged envs are masked to no-ops inside the body via ls_active.
+            for _ in range(int(max_iterations) - 1):
+                self._run_sap_exact_root_body(
+                    contact_result=contact_result,
+                    dt=float(dt),
+                    max_iterations=int(max_iterations),
+                )
+        else:
+            wp.capture_while(
+                self.ls_active_count,
+                while_body=self._run_sap_exact_root_body,
+                contact_result=contact_result,
+                dt=float(dt),
+                max_iterations=int(max_iterations),
+            )
 
         wp.launch(self.k._copy_i32_batched, dim=self.num_envs, inputs=[self.ls_accepted, self.ls_active], device=self.device)
         wp.launch(
@@ -5867,7 +5940,7 @@ class SapContactSolve:
                 self.dv,
                 self.contact_beta,
                 self.contact_sigma,
-                float(dt),
+                self._dt_world,
                 self.trial_contact_cost,
                 self.trial_cost,
             ],
@@ -5885,7 +5958,7 @@ class SapContactSolve:
                 self.pd_gain,
                 self.pd_limit,
                 self.v_trial,
-                float(dt),
+                self._dt_world,
                 self.trial_pd_y,
                 self.trial_pd_gamma,
                 self.trial_pd_hdiag,
@@ -6000,6 +6073,26 @@ class SapContactSolve:
             f"cost={cost:.6e}, alpha={alpha:.6e})."
         )
 
+    def _set_dt_world(self, dt) -> None:
+        """Fill self._dt_world (shape [num_envs], solve dtype) from this solve's dt.
+
+        A scalar fills every world uniformly -- bit-identical to the legacy
+        scalar(dt) the kernels received.  A per-world wp.array (length num_envs)
+        gives each env its own dt (cast to the solve dtype if needed).
+        """
+        if isinstance(dt, wp.array):
+            n = int(self.num_envs)
+            if int(dt.shape[0]) != n:
+                raise ValueError(f"per-world dt length {int(dt.shape[0])} != num_envs {n}")
+            if dt.dtype == self._dt_world.dtype:
+                wp.copy(self._dt_world, dt)
+            elif self._dt_world.dtype == wp.float64:
+                wp.launch(_copy_f32_to_f64, dim=n, inputs=[dt, self._dt_world], device=self.device)
+            else:
+                wp.launch(_copy_f64_to_f32, dim=n, inputs=[dt, self._dt_world], device=self.device)
+            return
+        self._dt_world.fill_(float(dt))
+
     def solve(
         self,
         contact_result: SapContactJacobianResult,
@@ -6024,9 +6117,17 @@ class SapContactSolve:
         collect_iteration_stats: bool = True,
         check_line_search_errors: bool = True,
         graph_conditional: bool = True,
+        static_loop: bool = False,
     ) -> SapContactSolveResult:
         """Solve the SAP velocity objective for the active contacts and write the next generalized velocity
         in SAP order.
+
+        ``static_loop=True`` runs the Newton + line-search loops as FIXED-iteration Python
+        ``for`` loops instead of ``wp.capture_while`` / ``wp.capture_if`` device-conditional
+        captures, so the whole solve records as a flat launch stream (no nested conditional
+        CUDA-graph subgraphs). Each loop body already masks finished envs to no-ops and
+        force-terminates at the iteration cap, so the converged result is identical; only the
+        (wasted) trailing no-op launches differ.
         """
         if line_search_relative_slop is None:
             line_search_relative_slop = 1000.0 * np.finfo(self.numpy_dtype).eps
@@ -6047,6 +6148,12 @@ class SapContactSolve:
             cost_rel_tol = 5.0e-3 if line_search_variant == "monotone_decay" else 1.0e-15
         cost_min_alpha = 0.0 if line_search_variant == "monotone_decay" else 0.5
 
+        # Per-world timestep source for the contact-solve kernels (scalar or a
+        # per-world array).  Every dt-kernel now reads self._dt_world, so the
+        # scalar dt threaded below is vestigial -- rebind it to a plain float
+        # (0.0 for the array case) so the legacy threading stays valid.
+        self._set_dt_world(dt)
+        dt = float(dt) if not isinstance(dt, wp.array) else 0.0
         self.prepare(
             contact_result,
             state,
@@ -6087,27 +6194,52 @@ class SapContactSolve:
             ],
             device=self.device,
         )
-        wp.capture_if(
-            self.stage2_active_count,
-            on_true=self._run_unit_conditional_newton_loop_capture,
-            contact_result=contact_result,
-            dt=float(dt),
-            max_iterations=int(max_iterations),
-            optimality_abs_tol=float(optimality_abs_tol),
-            optimality_rel_tol=float(optimality_rel_tol),
-            cost_abs_tol=float(cost_abs_tol),
-            cost_rel_tol=float(cost_rel_tol),
-            line_search_max_iterations=int(line_search_max_iterations),
-            line_search_variant=line_search_variant,
-            armijo_c=float(armijo_c),
-            rho=float(rho),
-            line_search_relative_slop=float(line_search_relative_slop),
-            cost_min_alpha=float(cost_min_alpha),
-            collect_iteration_stats=bool(collect_iteration_stats),
-            check_line_search_errors=bool(check_line_search_errors),
-            loop_counters_initialized=False,
-            v_flat_seeded=(v_guess is self.v_flat),
-        )
+        if static_loop:
+            # Flat, non-conditional path: always run the inner loop (finished/empty envs
+            # are masked to no-ops inside), so no wp.capture_if device-conditional subgraph
+            # is recorded. This is what makes an outer ScopedCapture single-level.
+            self._run_unit_conditional_newton_loop_capture(
+                contact_result=contact_result,
+                dt=float(dt),
+                max_iterations=int(max_iterations),
+                optimality_abs_tol=float(optimality_abs_tol),
+                optimality_rel_tol=float(optimality_rel_tol),
+                cost_abs_tol=float(cost_abs_tol),
+                cost_rel_tol=float(cost_rel_tol),
+                line_search_max_iterations=int(line_search_max_iterations),
+                line_search_variant=line_search_variant,
+                armijo_c=float(armijo_c),
+                rho=float(rho),
+                line_search_relative_slop=float(line_search_relative_slop),
+                cost_min_alpha=float(cost_min_alpha),
+                collect_iteration_stats=bool(collect_iteration_stats),
+                check_line_search_errors=bool(check_line_search_errors),
+                loop_counters_initialized=False,
+                v_flat_seeded=(v_guess is self.v_flat),
+                static_loop=True,
+            )
+        else:
+            wp.capture_if(
+                self.stage2_active_count,
+                on_true=self._run_unit_conditional_newton_loop_capture,
+                contact_result=contact_result,
+                dt=float(dt),
+                max_iterations=int(max_iterations),
+                optimality_abs_tol=float(optimality_abs_tol),
+                optimality_rel_tol=float(optimality_rel_tol),
+                cost_abs_tol=float(cost_abs_tol),
+                cost_rel_tol=float(cost_rel_tol),
+                line_search_max_iterations=int(line_search_max_iterations),
+                line_search_variant=line_search_variant,
+                armijo_c=float(armijo_c),
+                rho=float(rho),
+                line_search_relative_slop=float(line_search_relative_slop),
+                cost_min_alpha=float(cost_min_alpha),
+                collect_iteration_stats=bool(collect_iteration_stats),
+                check_line_search_errors=bool(check_line_search_errors),
+                loop_counters_initialized=False,
+                v_flat_seeded=(v_guess is self.v_flat),
+            )
         if v_guess_active is not None:
             wp.launch(
                 self.k._set_scalar_i32,

@@ -293,7 +293,8 @@ def _integrate_generalized_positions_sap_euler(
     body_com: wp.array(dtype=wp.vec3d),
     joint_q_in: wp.array(dtype=wp.float32),
     v_sap: wp.array(dtype=wp.float64),
-    dt: float,
+    joint_world: wp.array(dtype=int),
+    dt: wp.array(dtype=wp.float64),
     joint_q_out: wp.array(dtype=wp.float32),
     joint_qd_out: wp.array(dtype=wp.float32),
 ):
@@ -302,7 +303,7 @@ def _integrate_generalized_positions_sap_euler(
     qd_start = joint_qd_start[joint]
     axis_count = joint_dof_dim[joint, 0] + joint_dof_dim[joint, 1]
     jtype = joint_type[joint]
-    h = wp.float32(dt)
+    h = wp.float32(dt[joint_world[joint]])
 
     if jtype == SAP_JOINT_PRISMATIC or jtype == SAP_JOINT_REVOLUTE:
         qd = wp.float32(v_sap[qd_start])
@@ -400,7 +401,8 @@ def _integrate_generalized_positions_midpoint(
     joint_q_in: wp.array(dtype=wp.float32),
     v_prev_sap: wp.array(dtype=wp.float64),
     v_new_sap: wp.array(dtype=wp.float64),
-    dt: float,
+    joint_world: wp.array(dtype=int),
+    dt: wp.array(dtype=wp.float64),
     joint_q_out: wp.array(dtype=wp.float32),
     joint_qd_out: wp.array(dtype=wp.float32),
 ):
@@ -409,7 +411,7 @@ def _integrate_generalized_positions_midpoint(
     qd_start = joint_qd_start[joint]
     axis_count = joint_dof_dim[joint, 0] + joint_dof_dim[joint, 1]
     jtype = joint_type[joint]
-    h = wp.float32(dt)
+    h = wp.float32(dt[joint_world[joint]])
 
     if jtype == SAP_JOINT_PRISMATIC or jtype == SAP_JOINT_REVOLUTE:
         qd = wp.float32(v_new_sap[qd_start])
@@ -523,7 +525,8 @@ def _integrate_generalized_positions_sap_euler_f64(
     joint_dof_dim: wp.array(dtype=int, ndim=2),
     joint_q_in: wp.array(dtype=wp.float64),
     v_sap: wp.array(dtype=wp.float64),
-    dt: wp.float64,
+    joint_world: wp.array(dtype=int),
+    dt: wp.array(dtype=wp.float64),
     joint_q_out: wp.array(dtype=wp.float64),
     joint_qd_out: wp.array(dtype=wp.float64),
 ):
@@ -532,7 +535,7 @@ def _integrate_generalized_positions_sap_euler_f64(
     qd_start = joint_qd_start[joint]
     axis_count = joint_dof_dim[joint, 0] + joint_dof_dim[joint, 1]
     jtype = joint_type[joint]
-    h = wp.float64(dt)
+    h = wp.float64(dt[joint_world[joint]])
 
     if jtype == SAP_JOINT_PRISMATIC or jtype == SAP_JOINT_REVOLUTE:
         qd = v_sap[qd_start]
@@ -620,7 +623,8 @@ def _integrate_generalized_positions_midpoint_f64(
     joint_q_in: wp.array(dtype=wp.float64),
     v_prev_sap: wp.array(dtype=wp.float64),
     v_new_sap: wp.array(dtype=wp.float64),
-    dt: wp.float64,
+    joint_world: wp.array(dtype=int),
+    dt: wp.array(dtype=wp.float64),
     joint_q_out: wp.array(dtype=wp.float64),
     joint_qd_out: wp.array(dtype=wp.float64),
 ):
@@ -629,7 +633,7 @@ def _integrate_generalized_positions_midpoint_f64(
     qd_start = joint_qd_start[joint]
     axis_count = joint_dof_dim[joint, 0] + joint_dof_dim[joint, 1]
     jtype = joint_type[joint]
-    h = wp.float64(dt)
+    h = wp.float64(dt[joint_world[joint]])
 
     if jtype == SAP_JOINT_PRISMATIC or jtype == SAP_JOINT_REVOLUTE:
         qd = v_new_sap[qd_start]
@@ -774,6 +778,9 @@ class SolverSAP:
         collect_iteration_stats: bool = False,
         check_line_search_errors: bool = False,
         graph_conditional: bool = True,
+        static_substep: bool = False,
+        static_substep_iterations: int = 8,
+        static_substep_line_search_iterations: int = 6,
         position_integration: str | None = None,
     ):
         if not isinstance(model, SapModel):
@@ -846,6 +853,23 @@ class SolverSAP:
                 "the Python contact-solve loop has been removed."
             )
         self.graph_conditional = True
+        # static_substep: when True the inner contact solve runs a FIXED, NON-conditional
+        # iteration count (Python for-loops instead of wp.capture_while / wp.capture_if), so
+        # SolverSAP.step records as a flat launch stream with no nested conditional CUDA-graph
+        # subgraphs. This is what lets an OUTER ScopedCapture (e.g. SolverSAPAdaptive's per-N
+        # step-doubling graph) record SolverSAP.step without the nested-conditional-capture
+        # node explosion that SIGABRTs at >=1024 envs. Default False preserves legacy behavior.
+        self.static_substep = bool(static_substep)
+        # When static_substep, the inner solve runs a FIXED iteration count. Unlike the conditional
+        # path (which early-exits per env at convergence, so a large cap is cheap), a static loop
+        # ALWAYS runs the full count and UNROLLS it into the captured graph -- using the conditional
+        # cap (max_iterations=30, line_search=40) makes the per-N graph enormous and OOMs the graph
+        # exec at >=1024 envs with many contacts. CENIC Sec. VI-B: under outer error control the
+        # inner solve needs only ~kappa*eps_acc, so a small fixed count is numerically sufficient
+        # (residual is absorbed by the outer error controller, which simply subdivides more). These
+        # are the fixed counts used when static_substep=True.
+        self.static_substep_iterations = int(static_substep_iterations)
+        self.static_substep_line_search_iterations = int(static_substep_line_search_iterations)
         self.position_integration = str(position_integration).strip().lower().replace("-", "_")
         if self.position_integration not in {"sap_euler", "midpoint"}:
             raise ValueError(
@@ -900,6 +924,24 @@ class SolverSAP:
         self.dof_count = int(model.joint_dof_count)
         self.num_envs = int(getattr(model, "world_count", 1))
         self.dof_per_env = self.dof_count // max(self.num_envs, 1)
+        # Per-world timestep buffer -- the single dt source for the position
+        # integration kernels.  _update_dt_world() fills it from this step's dt:
+        # a scalar fills uniformly (reproducing the legacy float(dt) path
+        # bit-for-bit), a per-world array gives each env its own dt.  f64 to
+        # match the legacy scalar precision.
+        self._dt_world = wp.zeros(max(self.num_envs, 1), dtype=wp.float64, device=model.device)
+        # joint -> world map (the world of each joint's child body), precomputed
+        # once so joint-indexed kernels can read self._dt_world[joint_world[j]].
+        _body_world = getattr(model, "body_world", None)
+        if _body_world is not None and int(model.joint_count) > 0:
+            _jc = model.joint_child.numpy()
+            _bw = _body_world.numpy()
+            _jw = np.zeros(int(model.joint_count), dtype=np.int32)
+            _valid = _jc >= 0
+            _jw[_valid] = _bw[_jc[_valid]]
+            self._joint_world = wp.array(_jw, dtype=wp.int32, device=model.device)
+        else:
+            self._joint_world = wp.zeros(max(int(model.joint_count), 1), dtype=wp.int32, device=model.device)
         self.last_contacts: object | None = None
         self.last_contact_jacobian_result: SapContactJacobianResult | None = None
         self.last_contact_solve_result: SapContactSolveResult | None = None
@@ -909,6 +951,25 @@ class SolverSAP:
     def device(self):
         """Return the Warp device used by the solver model and scratch buffers."""
         return self.model.device
+
+    def _update_dt_world(self, dt) -> None:
+        """Fill self._dt_world (shape [num_envs], f64) with this step's timestep.
+
+        A Python scalar fills every world uniformly -- what fixed-step and
+        non-adaptive callers pass -- and reproduces the legacy float(dt) path
+        bit-for-bit.  A per-world wp.array (length num_envs) gives each env its
+        own dt (cast to f64 when the caller's array is f32).
+        """
+        if isinstance(dt, wp.array):
+            n = int(self.num_envs)
+            if int(dt.shape[0]) != n:
+                raise ValueError(f"per-world dt length {int(dt.shape[0])} != num_envs {n}")
+            if dt.dtype == wp.float64:
+                wp.copy(self._dt_world, dt)
+            else:
+                wp.launch(_copy_f32_to_f64, dim=n, inputs=[dt, self._dt_world], device=self.model.device)
+            return
+        self._dt_world.fill_(float(dt))
 
     def get_max_contact_count(self) -> int:
         """Return the per-environment rigid-contact capacity used by the contact solve."""
@@ -1204,7 +1265,8 @@ class SolverSAP:
                         state_in.joint_q,
                         self.free_motion.joint_qd_sap_input,
                         solved_v_sap,
-                        float(dt),
+                        self._joint_world,
+                        self._dt_world,
                         state_out.joint_q,
                         state_out.joint_qd,
                     ],
@@ -1221,7 +1283,8 @@ class SolverSAP:
                         model.joint_dof_dim,
                         state_in.joint_q,
                         solved_v_sap,
-                        float(dt),
+                        self._joint_world,
+                        self._dt_world,
                         state_out.joint_q,
                         state_out.joint_qd,
                     ],
@@ -1257,7 +1320,8 @@ class SolverSAP:
                     state_in.joint_q,
                     self.free_motion.joint_qd_sap_input,
                     solved_v_sap,
-                    float(dt),
+                    self._joint_world,
+                    self._dt_world,
                     state_out.joint_q,
                     joint_qd_out_f32,
                 ],
@@ -1276,7 +1340,8 @@ class SolverSAP:
                     self.free_motion.model_body_com,
                     state_in.joint_q,
                     solved_v_sap,
-                    float(dt),
+                    self._joint_world,
+                    self._dt_world,
                     state_out.joint_q,
                     joint_qd_out_f32,
                 ],
@@ -1326,6 +1391,10 @@ class SolverSAP:
         if not isinstance(contacts, SapContacts):
             contacts = sap_contacts_from_newton(contacts)
 
+        # Per-world timestep source for the integration kernels.  Contact
+        # jacobian/solve still take the scalar dt during the per-world
+        # migration; under uniform dt the two are consistent.
+        self._update_dt_world(dt)
         self.last_contacts = contacts
         solve_state, integrate_state_out, solve_control, output_is_public = self._prepare_step_boundary(
             state_in,
@@ -1337,25 +1406,34 @@ class SolverSAP:
             solve_state,
             contacts,
             control=solve_control,
-            dt=float(dt),
+            dt=dt,
         )
+
+        # Static substep runs a FIXED (small) iteration count that is unrolled into the captured
+        # graph; the conditional path keeps the larger early-exit cap. See __init__ rationale.
+        if self.static_substep:
+            eff_max_iterations = self.static_substep_iterations
+            eff_line_search_max_iterations = self.static_substep_line_search_iterations
+        else:
+            eff_max_iterations = self.max_iterations
+            eff_line_search_max_iterations = self.line_search_max_iterations
 
         v0 = self.free_motion.joint_qd_sap_input
         solve_result = self.contact_solve.solve(
             contact_result,
             solve_state,
             solve_control,
-            float(dt),
+            dt,
             self.free_motion.free_motion_joint_qd_sap,
             v0=v0,
             v_guess=self.contact_solve.v_flat,
             v_guess_active=self._contact_solve_v_guess_active,
-            max_iterations=self.max_iterations,
+            max_iterations=eff_max_iterations,
             optimality_abs_tol=self.optimality_abs_tol,
             optimality_rel_tol=self.optimality_rel_tol,
             cost_abs_tol=self.cost_abs_tol,
             cost_rel_tol=self.cost_rel_tol,
-            line_search_max_iterations=self.line_search_max_iterations,
+            line_search_max_iterations=eff_line_search_max_iterations,
             armijo_c=self.armijo_c,
             rho=self.rho,
             line_search_relative_slop=self.line_search_relative_slop,
@@ -1363,6 +1441,7 @@ class SolverSAP:
             collect_iteration_stats=self.collect_iteration_stats,
             check_line_search_errors=self.check_line_search_errors,
             graph_conditional=self.graph_conditional,
+            static_loop=self.static_substep,
         )
 
         v_integrate = solve_result.v_flat
@@ -1374,7 +1453,7 @@ class SolverSAP:
                 device=self.sap_model.device,
             )
             v_integrate = self._integrate_v_f64
-        self._integrate_state(solve_state, integrate_state_out, v_integrate, float(dt))
+        self._integrate_state(solve_state, integrate_state_out, v_integrate, dt)
         if output_is_public:
             self._copy_sap_joint_velocity_to_public(state_out, v_integrate)
             sap_eval_fk(self.model, state_out.joint_q, state_out.joint_qd, state_out)
@@ -1387,7 +1466,10 @@ class SolverSAP:
         self.last_line_search_iterations = int(solve_result.line_search_iterations)
         self.last_converged = bool(solve_result.converged)
         self._has_contact_solve_v_guess = True
-        self.sim_time += float(dt)
+        # Per-world (array) dt advances each world's own clock in the adaptive
+        # driver; this inner scalar bookkeeping only applies to fixed/scalar dt.
+        if not isinstance(dt, wp.array):
+            self.sim_time += float(dt)
         self.frame_id += 1
         return state_out
 
