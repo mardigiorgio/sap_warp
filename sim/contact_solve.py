@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass
 from functools import cache
 from types import SimpleNamespace
@@ -51,6 +52,10 @@ _SAP_LIMIT_WINDOW_FACTOR = 2.0
 _SAP_EXACT_LINE_SEARCH_ALPHA_MAX = 1.5
 _SAP_EXACT_LINE_SEARCH_MAX_ITERATIONS = 100
 _SAP_EXACT_LINE_SEARCH_F_TOLERANCE = 1.0e-8
+# CENIC (sec VI-D) cubic initial guess for the exact-root line search. Default on
+# (cubic Hermite seed); set SAP_CUBIC_INIT=0 to fall back to the legacy quadratic
+# seed (refs [16],[17]). Read at kernel-build time, so it is fixed per process.
+_SAP_USE_CUBIC_INIT = os.environ.get("SAP_CUBIC_INIT", "1") != "0"
 
 _CONTACT_MODE_NONE = 0
 _CONTACT_MODE_STICTION = 1
@@ -2984,7 +2989,31 @@ def _make_contact_solve_kernel_table(scalar):
             ls_status[env] = -3
             return
 
-        alpha_guess = -dell0[env] / trial_second_derivative[env]
+        # Quadratic initial guess (Nocedal&Wright eq 3.57 / refs [16],[17]):
+        # minimizer of the quadratic through ell(0), ell'(0), ell''(0). Used as the
+        # fallback when the cubic is ill-conditioned.
+        quad_guess = -dell0[env] / trial_second_derivative[env]
+
+        # CENIC (sec VI-D) CUBIC initial guess: minimizer of the Hermite cubic
+        # through (0, ell(0), ell'(0)) and (alpha_max, ell(alpha_max), ell'(alpha_max)),
+        # i.e. Nocedal & Wright eq 3.59 on the interval [0, h], h = alpha_max.
+        alpha_guess = quad_guess
+        if _SAP_USE_CUBIC_INIT:
+            h = scalar(alpha_max)
+            c0 = current_cost[env]
+            d0 = dell0[env]
+            c1 = trial_cost[env]
+            d1 = trial_derivative[env]
+            theta = d0 + d1 - scalar(3.0) * (c1 - c0) / h
+            disc = theta * theta - d0 * d1
+            if wp.isfinite(disc) and disc >= scalar(0.0):
+                gamma = wp.sqrt(disc)
+                denom = d1 - d0 + scalar(2.0) * gamma
+                if denom != scalar(0.0):
+                    cubic_guess = h - h * (d1 + gamma - theta) / denom
+                    if wp.isfinite(cubic_guess) and cubic_guess > scalar(0.0) and cubic_guess <= h:
+                        alpha_guess = cubic_guess
+
         if alpha_guess > scalar(alpha_max):
             alpha_guess = scalar(alpha_max)
         if (
