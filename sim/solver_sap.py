@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import warnings
+
 import numpy as np
 import warp as wp
 
@@ -765,7 +767,11 @@ class SolverSAP:
         armijo_c: float = 1.0e-4,
         rho: float = 0.8,
         line_search_relative_slop: float | None = None,
-        line_search_variant: str = "monotone_decay",
+        # armijo_decay pairs with the Drake-tight cost tolerances (1e-30/1e-15) chosen
+        # below; monotone_decay's loose 5e-3 cost early-exit can stop Newton on a
+        # linesearch plateau before the gradient converges, leaving unconverged
+        # (jittery) contact forces exactly in hard stiction/impact states.
+        line_search_variant: str = "armijo_decay",
         contact_preset_variant: str | None = None,
         contact_weight_mode: str | None = None,
         contact_point_mode: str | None = None,
@@ -880,6 +886,14 @@ class SolverSAP:
         shape_fallback_tau_d = (
             _infer_contact_tau_d_fallback(model) if contact_tau_d is None else float(contact_tau_d)
         )
+        if contact_tau_d is None and shape_fallback_tau_d == 0.0:
+            warnings.warn(
+                "No contact dissipation authored on the model and no contact_tau_d given: "
+                "tau_d falls back to 0.0, making contacts undamped springs at near-rigid "
+                "stiffness (bounce/rattle). Pass contact_tau_d on the order of the "
+                "simulation step (Drake guidance: tau_d ~ dt) for stable contact.",
+                stacklevel=2,
+            )
         self.sap_model = model
         self.contact_jacobian = SapContactJacobian(
             self.sap_model,
