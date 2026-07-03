@@ -3303,6 +3303,10 @@ class SapContactSolve:
         max_rigid_contact: int = 128,
         contact_beta: float = 1.0,
         contact_sigma: float = 1.0e-3,
+        # PER-PAIR dissipation timescale [s], used only when the contact-Jacobian
+        # result carries no per-contact tau array. The Jacobian's convention is
+        # tau_pair = tau(shape0) + tau(shape1), so per-shape values must be
+        # summed before being passed here (see SolverSAP).
         contact_tau_d: float = 0.1,
         block_size: int | None = None,
         diag_shift: float = 0.0,

@@ -890,8 +890,10 @@ class SolverSAP:
             warnings.warn(
                 "No contact dissipation authored on the model and no contact_tau_d given: "
                 "tau_d falls back to 0.0, making contacts undamped springs at near-rigid "
-                "stiffness (bounce/rattle). Pass contact_tau_d on the order of the "
-                "simulation step (Drake guidance: tau_d ~ dt) for stable contact.",
+                "stiffness (bounce/rattle). contact_tau_d is a PER-SHAPE fallback "
+                "(contacting pairs use the sum of both shapes' tau); pass a value on the "
+                "order of the simulation step (Drake guidance: tau_d ~ dt) for stable "
+                "contact.",
                 stacklevel=2,
             )
         self.sap_model = model
@@ -916,6 +918,10 @@ class SolverSAP:
             max_rigid_contact=self.max_rigid_contact,
             contact_beta=contact_beta,
             contact_sigma=contact_sigma,
+            # SapContactSolve.contact_tau_d is PER-PAIR: the Jacobian combines
+            # dissipation per contact as tau(shape0) + tau(shape1) (_contact_tau_pair),
+            # so the solve-side fallback for two unauthored shapes is 2x the per-shape
+            # fallback. Not a typo.
             contact_tau_d=shape_fallback_tau_d + shape_fallback_tau_d,
             block_size=block_size,
             diag_shift=diag_shift,
